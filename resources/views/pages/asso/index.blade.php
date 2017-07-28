@@ -39,10 +39,10 @@
         <div class="content">
             <div class="tab-content">
 
-            @include('pages.asso.articles');
-            @include('pages.asso.evenements');
-            {{--@include('pages.asso.informations');--}}
-                {{--@include('pages.asso.contact');--}}
+                @include('pages.asso.articles')
+                @include('pages.asso.evenements')
+                {{--@include('pages.asso.informations');--}}
+                @include('pages.asso.contact')
 
             </div>
         </div>

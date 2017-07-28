@@ -5,7 +5,7 @@
     </head>
     <body>
 
-        @include('includes.header')
+        @include('includes.navbar')
 
         <div class="wrapper">
 

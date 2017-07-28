@@ -6,25 +6,22 @@
 </head>
 <body>
 
-@include('includes.header')
+@include('includes.navbar')
 
 <div class="wrapper">
 
-    @include('includes.carousel')
+    @include('includes.carouselAsso')
 
-    <div class="main">
-        <div class="container">
+    <div class="main main-raised">
+        <div class="section">
 
-            <div class="row">
+            @yield('content')
 
-                @yield('content')
-
-            </div>
-
-            <footer class="row">
-                @include('includes.footer')
-            </footer>
         </div>
+
+        <footer class="footer">
+            @include('includes.footer')
+        </footer>
     </div>
 </div>
 </body>

@@ -51,7 +51,6 @@ $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
-    // $faker = Faker\Factory::create('fr_FR'); // create a French faker
 
 	$faker->locale('fr_FR');
 
