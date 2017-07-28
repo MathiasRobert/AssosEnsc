@@ -24,14 +24,17 @@
 // });
 
 use App\CategorieEvenement;
+use App\CategorieArticle;
 
 $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 
-	$categorieRandom = CategorieEvenement::orderBy(DB::raw('RAND()'))->first();
+	$faker->locale('fr_FR');
+
+	$categorieEvenementRandom = CategorieEvenement::orderBy(DB::raw('RAND()'))->first();
 
     return [
-		'association_id' => 0, //Dans Evenement Seeder
-		'categorie_id' => $categorieRandom->id,
+		'association_id' => 0, // redefinis Dans EvenementsTableSeederSeeder
+		'categorie_id' => $categorieEvenementRandom->id,
 		'titre' => $faker->name,
 		'lieu' => $faker->streetName,
 		'dateDeb' => $faker->dateTime(),
@@ -48,11 +51,15 @@ $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
-    $faker = Faker\Factory::create('fr_FR'); // create a French faker
+    // $faker = Faker\Factory::create('fr_FR'); // create a French faker
+
+	$faker->locale('fr_FR');
+
+    $categorieArticleRandom = CategorieArticle::orderBy(DB::raw('RAND()'))->first();
 
     return [
-        'association_id' => $faker->numberBetween($min = 1, $max = 5),
-        'categorie_id' => $faker->numberBetween($min = 1, $max = 5),
+        'association_id' => 0,// redefini Dans ArticlesTableSeeder,
+        'categorie_id' => $categorieArticleRandom->id,
         'titre' => $faker->word,
         'texte' => $faker->paragraphs($nb = 4, $asText = true),
         'image' => $faker->imageUrl($width = 640, $height = 480),

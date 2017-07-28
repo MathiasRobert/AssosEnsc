@@ -22,5 +22,9 @@ class Association extends Model
         return $this->hasMany('App\Evenement');
     }
 
+    public function articles(){
+        return $this->hasMany('App\Evenement');
+    }
+
 
 }

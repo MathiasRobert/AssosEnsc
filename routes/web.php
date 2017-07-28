@@ -31,5 +31,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
 });
-
-Route::get('/css/couleurAsso/{id}', ['uses' => 'AssociationController@genereCss']);
