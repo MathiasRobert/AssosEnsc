@@ -26,10 +26,6 @@
                 </thead>
                 <tbody>
                 @foreach ($evenements as $e)
-
-                    list($annee, $mois, $jour) = explode("-", $e->even_dateDeb);
-                    list($heuresD, $minutesD) = explode(":", $e->even_heureDeb);
-                    list($heuresF, $minutesF) = explode(":", $e->even_heureFin);
                     <tr data-date="{!! $e->dateDeb !!} {!! $e->heureDeb !!}">
                         <td>
                             <div class="img-container">
@@ -50,41 +46,17 @@
                             <div class="btn-group-lg btn-group-vertical">
                                 <a href="" role="button" class="btn btn-block">
                                     En savoir plus <i class="material-icons">info</i>
-                                </a>';
-
-                    // On recupère la date actuelle
-                    date_default_timezone_set('Europe/Paris');
-                    $dateActuelle = date('Y-m-d H:i:s');
-                    $dateEven = $e->even_dateDeb.' '.$e->even_heureDeb;
-
-                    // On affiche le bouton de participation si l'événement n'est pas dépassé et que l'utilisateur est connecté
-                    if(isset($_SESSION['ID_USER']) && $dateEven > $dateActuelle)
-                    {
-                        $even_id = $e->even_id;
-                        include('requetes/requeteVerifInscrit.php');
-
-                        echo '<a id="'.$e->even_id.'" role="button" class="btn-inscription btn ';
-                        if($estInscrit)
-                            echo 'btn-danger';
-                        else
-                            echo 'btn-success';
-                        echo ' btn-block">';
-                        if($estInscrit)
-                            echo 'Ne plus participer &nbsp;';
-                        else
-                            echo 'Participer &nbsp;';
-                        echo '<i class="material-icons">';
-                        if($estInscrit)
-                            echo 'clear';
-                        else
-                            echo 'done';
-                        echo '</i>
-                                                        <div class="ripple-container"></div>
-                                                    </a>';
-                    }
-                    echo '</div>
-                                                </td>
-                                            </tr>';
+                                </a>
+                                @if(!$e->estPasse)
+                                    <a id="" role="button" class="btn-inscription btn btn-success btn-block">
+                                        Participer &nbsp;
+                                        <i class="material-icons"></i>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

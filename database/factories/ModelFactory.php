@@ -22,3 +22,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    $faker = Faker\Factory::create('fr_FR'); // create a French faker
+
+    return [
+        'association_id' => $faker->numberBetween($min = 1, $max = 5),
+        'categorie_id' => $faker->numberBetween($min = 1, $max = 5),
+        'titre' => $faker->word,
+        'texte' => $faker->paragraphs($nb = 4, $asText = true),
+        'image' => $faker->imageUrl($width = 640, $height = 480),
+        'created_at' => $faker->dateTime,
+    ];
+});
+

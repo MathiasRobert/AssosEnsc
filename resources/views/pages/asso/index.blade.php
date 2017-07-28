@@ -40,10 +40,11 @@
             <div class="tab-content">
 
             @include('pages.asso.articles');
-            {{--@include('pages.asso.evenements');--}}
+            @include('pages.asso.evenements');
             {{--@include('pages.asso.informations');--}}
                 {{--@include('pages.asso.contact');--}}
 
             </div>
         </div>
+    </div>
 @endsection

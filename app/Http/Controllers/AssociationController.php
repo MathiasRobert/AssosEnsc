@@ -20,8 +20,12 @@ class AssociationController extends Controller
         }
         $evenements = Evenement::where('association_id', $association->id)->get();
         foreach($evenements as $entries){
-            //if(Carbon::parse($entries->dateDeb))
-            //$entries->put('estPasse', );
+            $dateEvenement = Carbon::parse($entries->dateDeb.' '.$entries->heureDeb);
+            $dateActuelle = Carbon::now();
+            if($dateEvenement->gte($dateActuelle))
+                $entries->estPasse = false;
+            else
+                $entries->estPasse = true;
         }
         return view('pages.asso.index', compact('articles', 'evenements', 'association'));
     }
