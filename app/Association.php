@@ -17,4 +17,10 @@ class Association extends Model
         return $query->select('diminutif')->pluck('diminutif');
     }
 
+
+    public function evenements(){
+        return $this->hasMany('App\Evenement');
+    }
+
+
 }
