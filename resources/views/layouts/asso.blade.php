@@ -2,7 +2,7 @@
 <html>
 <head>
     @include('includes.head')
-    <link rel="stylesheet" href="/css/couleurAsso/{!! $association->id !!}">
+    @include('includes.couleurPerso')
 </head>
 <body>
 
