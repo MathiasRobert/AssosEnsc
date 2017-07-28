@@ -14,11 +14,13 @@ class EvenementsTableSeeder extends Seeder
      */
     public function run()
     {
-        Association::all()->each(function($asso){
+       $allAssos = Association::all();
+
+
+        $allAssos->each(function($asso){
         	for ($i=0; $i < 10 ; $i++) { 
         		$asso->evenements()->save(factory(App\Evenement::class)->make());
         	}
-        	
         });
     }
 }
