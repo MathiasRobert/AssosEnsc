@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        View::composer( 'includes.header', function ($view) {
+        View::composer( 'includes.navbar', function ($view) {
             $view->with('assoDiminutifs', Association::diminutif());
         });
     }

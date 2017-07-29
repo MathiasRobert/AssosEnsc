@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'google_id' => '0',
             'name' => 'Jean Patrick',
             'email' => 'jeanpatrick@ensc.fr',
-            'avatar' => 'http://lorempixel.com/800/600/cats/',
+            'avatar' => 'http://lorempixel.com/600/600/cats/',
         ]);
     }
 }
