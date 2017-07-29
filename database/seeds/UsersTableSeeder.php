@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         User::Create([
             'google_id' => '0',
             'name' => 'Jean Patrick',
-            'email' => 'jeanpatrick@ensc.fr',
+            'email' => 'bde@ensc.fr',
             'avatar' => 'http://lorempixel.com/600/600/cats/',
         ]);
     }

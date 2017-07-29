@@ -35,7 +35,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //POUR TEST
 Route::get('logintest', function() {
-    $user = App\User::where('email', 'jeanpatrick@ensc.fr')->first();
+    $user = App\User::where('email', 'bde@ensc.fr')->first();
     Auth::login($user);
     return redirect('/');
 })->name('logintest');
