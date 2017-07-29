@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,8 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token'
     ];
+
+    public function isAdmin(){
+        return (Auth::check() && Association::where('email', '=', Auth::user()->email)->first());
+    }
 }

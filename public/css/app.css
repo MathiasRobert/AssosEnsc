@@ -18,13 +18,11 @@
 .main {
   padding-top: 10px; }
 
-.main-raised  .section{
-    padding-top: 0px;
-}
+.main-raised .section {
+  padding-top: 0px; }
 
 .card-title {
-    text-transform: capitalize;
-}
+  text-transform: capitalize; }
 
 @media (min-width: 768px) {
   .navbar-nav > li > .dropdown-menu {

@@ -26,9 +26,9 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('admin', ['uses' => 'AdminController@dashboard'])->name('admin');
+    Route::get('admin/article', ['uses' => 'AdminController@articles'])->name('adminArticles');
+    Route::get('admin/evenement', ['uses' => 'AdminController@evenements'])->name('adminEvenements');
 
 });
 
