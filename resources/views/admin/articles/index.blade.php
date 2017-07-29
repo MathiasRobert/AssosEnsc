@@ -7,10 +7,17 @@
                 <div class="card-header card-header-icon" data-background-color="purple">
                     <i class="material-icons">assignment</i>
                 </div>
+                <div class="card-header card-header-button">
+                    <a href="{{ route('articles.create') }}" class="btn btn-primary">
+                        <i class="material-icons">add_circle</i> Ajouter un article
+                    </a>
+                </div>
                 <div class="card-content">
-                    <h4 class="card-title">Gestion des articles</h4>
+                    <h4 class="card-title">
+                        Gestion des articles
+                    </h4>
                     <div class="toolbar">
-                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+
                     </div>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">

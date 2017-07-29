@@ -14,3 +14,12 @@
         vertical-align: inherit;
     }
 }
+
+.card-header-button {
+    float: right;
+    position: relative;
+    z-index:5 !important;
+}
+.card .card-title {
+
+}
