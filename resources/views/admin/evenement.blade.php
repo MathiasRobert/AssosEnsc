@@ -8,7 +8,7 @@
                     <i class="material-icons">assignment</i>
                 </div>
                 <div class="card-content">
-                    <h4 class="card-title">Gestion des articles</h4>
+                    <h4 class="card-title">Gestion des évènements</h4>
                     <div class="toolbar">
                         <!--        Here you can write extra buttons/actions for the toolbar              -->
                     </div>
@@ -20,29 +20,33 @@
                                            class="table table-striped table-no-bordered table-hover dataTable dtr-inline">
                                         <thead>
                                         <tr>
-                                            <th class="disabled-sorting">Image</th>
+                                            <th class="disabled-sorting">Affiche</th>
                                             <th class="sorting">Titre</th>
                                             <th class="sorting">Categorie</th>
-                                            <th class="sorting_desc">Création</th>
+                                            <th class="sorting">Lieu</th>
+                                            <th class="sorting">Prix</th>
+                                            <th class="sorting">Date</th>
                                             <th class="sorting">Dernière modifs</th>
                                             <th class="disabled-sorting text-right sorting">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($articles as $article)
-                                        <tr>
-                                            <td><img class="img img-responsive" src="{{ $article->image }}"/></td>
-                                            <td>{{ $article->titre }}</td>
-                                            <td>{{ $article->categorie->nom }}</td>
-                                            <td>{{ $article->created_at }}</td>
-                                            <td>{{ $article->updated_at }}</td>
-                                            <td class="text-right">
-                                                <a href="#" class="btn btn-simple btn-info btn-icon like"><i
-                                                            class="material-icons">edit</i></a>
-                                                <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i
-                                                            class="material-icons">close</i></a>
-                                            </td>
-                                        </tr>
+                                        @foreach($evenements as $evenement)
+                                            <tr>
+                                                <td><img class="img img-responsive" src="{{ $evenement->affiche }}"/></td>
+                                                <td>{{ $evenement->titre }}</td>
+                                                <td>{{ $evenement->categorie->nom }}</td>
+                                                <td>{{ $evenement->lieu }}</td>
+                                                <td>{{ $evenement->prix }}</td>
+                                                <td>{{ $evenement->dateDeb }}</td>
+                                                <td>{{ $evenement->updated_at }}</td>
+                                                <td class="text-right">
+                                                    <a href="#" class="btn btn-simple btn-info btn-icon like"><i
+                                                                class="material-icons">edit</i></a>
+                                                    <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i
+                                                                class="material-icons">close</i></a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                         </tbody>
                                     </table>

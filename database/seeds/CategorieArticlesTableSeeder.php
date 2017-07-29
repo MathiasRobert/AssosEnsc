@@ -13,23 +13,23 @@ class CategorieArticlesTableSeeder extends Seeder
     public function run()
     {
         CategorieArticle::Create([
-            'nom' => 'EVENEMENT'
+            'nom' => 'Evenement'
         ]);
 
         CategorieArticle::Create([
-            'nom' => 'VIE DE L\'ECOLE'
+            'nom' => 'Vie de l\'ecole'
         ]);
 
         CategorieArticle::Create([
-            'nom' => 'INFOS'
+            'nom' => 'Infos'
         ]);
 
         CategorieArticle::Create([
-            'nom' => 'DIVERS'
+            'nom' => 'Divers'
         ]);
 
         CategorieArticle::Create([
-            'nom' => 'IMPORTANT'
+            'nom' => 'Important'
         ]);
     }
 }
