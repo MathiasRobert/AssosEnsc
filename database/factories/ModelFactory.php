@@ -25,6 +25,7 @@
 
 use App\CategorieEvenement;
 use App\CategorieArticle;
+use App\User;
 
 $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 
@@ -63,5 +64,19 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'texte' => $faker->paragraphs($nb = 4, $asText = true),
         'image' => $faker->imageUrl($width = 640, $height = 480),
         'created_at' => $faker->dateTime,
+    ];
+});
+
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+
+	$faker->locale('fr_FR');
+
+    $userRandom = User::orderBy(DB::raw('RAND()'))->first();
+
+    return [
+        // 'association_id' => 0,// redefini Dans ArticlesTableSeeder,
+        'user_id' => $userRandom->id,
+        'texte' => $faker->paragraphs($nb = 4, $asText = true),
     ];
 });
