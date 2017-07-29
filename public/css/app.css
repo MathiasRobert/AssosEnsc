@@ -18,7 +18,6 @@
 .main {
   padding-top: 10px; }
 
-
 .main-raised .section {
   padding-top: 0px; }
 
@@ -87,5 +86,18 @@
 
 .navbar .navbar-nav > li > .profile-photo {
   margin: 5px 2px; }
+
+/*
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: rgba(255,255,255,.2);
+    transition: background-color .1s .2s;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}*/
 
 /*# sourceMappingURL=app.css.map */

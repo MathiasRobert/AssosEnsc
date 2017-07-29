@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer( 'includes.navbar', function ($view) {
             $view->with('assoDiminutifs', Association::diminutif());
         });
+
+        View::composer( 'layouts.front', function ($view) {
+            $view->with('assoDiminutifs', Association::diminutif());
+        });
     }
 
     /**

@@ -10,10 +10,10 @@
             <li class="" onclick="evePasse('<?php date_default_timezone_set('Europe/Paris'); echo date('Y-m-d h:i:s');?>')"><a href="#" data-toggle="tab" aria-expanded="false">Passé</a>
             </li>
         </ul>
-        <ul class="triDate nav nav-pills nav-pills-color">
+      <!--   <ul class="triDate nav nav-pills nav-pills-color">
             <li class="active" onclick="triDateCroissant()"><a href="#" data-toggle="tab" aria-expanded="false">Tri date <i class="material-icons">arrow_downward</i></a>
             </li>
-        </ul>
+        </ul> -->
         <div class="table-responsive">
             <table class="table table-evenements">
                 <thead>
