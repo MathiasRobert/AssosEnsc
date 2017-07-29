@@ -8,7 +8,7 @@ $(document).ready(function () {
         responsive: true,
         language: {
             search: "_INPUT_",
-            searchPlaceholder: "Search records",
+            url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/French.json",
         }
 
     });

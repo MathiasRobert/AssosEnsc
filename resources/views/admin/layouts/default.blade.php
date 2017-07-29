@@ -6,11 +6,11 @@
 <body>
 <div class="wrapper">
 
-    @include('admin.includes.sidebar');
+    @include('admin.includes.sidebar')
 
     <div class="main-panel">
 
-        @include('admin.includes.navbar');
+        @include('admin.includes.navbar')
 
         <div class="content">
 

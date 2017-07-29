@@ -23,7 +23,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "Le BDE gère ta vie étudiante en t'organisant des soirées de folieeeee !",
       		'description_longue' => null,
-        	'logo' => "images/1/logo/bde.jpg",
+        	'logo' => "/images/bde.jpg",
         ]);
 
         Association::create([
@@ -36,7 +36,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "Le BDS te permet de faire un peu de sport pour entretenir ton corps alcolisé !",
       		'description_longue' => null,
-        	'logo' => "images/2/logo/bds.png",
+        	'logo' => "/images/bds.jpg",
         ]);
 
 
@@ -50,7 +50,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "Le BDA illumine tes journées et te fait découvrir des monts et merveilles.",
       		'description_longue' => null,
-        	'logo' => "images/3/logo/bda.png",
+        	'logo' => "/images/bda.jpg",
         ]);
 
         Association::create([
@@ -63,7 +63,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "Le BDA illumine tes journées et te fait découvrir des monts et merveilles.",
       		'description_longue' => null,
-        	'logo' => "images/3/logo/bda.png",
+        	'logo' => "/images/bda.jpg",
         ]);
 
         Association::create([
@@ -76,7 +76,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "La JE te propose des repas hors de prix et te fait gagner plein de sous sous",
       		'description_longue' => null,
-        	'logo' => "images/4/logo/je.png",
+        	'logo' => "/images/je.jpg",
         ]);
 
 
@@ -90,7 +90,7 @@ class AssociationsTableSeeder extends Seeder
         	'lien_siteweb'  => null,
         	'description_courte' => "Un président grandiose !",
       		'description_longue' => null,
-        	'logo' => "images/5/logo/adcog.jpg",
+        	'logo' => "/images/adcog.jpg",
         ]);
 
 
