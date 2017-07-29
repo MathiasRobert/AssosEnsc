@@ -1,33 +1,34 @@
 <!doctype html>
 <html>
-    <head>
-        @include('includes.head')
-    </head>
-    <body>
+<head>
+    @include('includes.head')
+</head>
+<body>
 
-        @include('includes.navbar')
+@include('includes.navbar')
 
-        <div class="wrapper">
+<div class="wrapper">
 
-            @include('includes.carousel')
+    @include('includes.carousel')
 
-            <div class="main">
-                <div class="container">
+    <div class="main">
 
-                    <div class="row">
+        <div class="container">
 
-                        @yield('content')
+            <div class="row">
 
-                    </div>
+                @yield('content')
 
-                    <footer class="row">
-                        @include('includes.footer')
-                    </footer>
-                </div>
             </div>
-        </div>
-    </body>
 
-    @include('includes.script')
+            <footer class="row">
+                @include('includes.footer')
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+
+@include('includes.script')
 
 </html>

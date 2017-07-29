@@ -3,7 +3,8 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -32,30 +33,35 @@
                     <li><a href="{{ route('login') }}">Connexion</a></li>
                 @else
                     <li class="dropdown">
-                    <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <div class="profile-photo-small">
-                            <img id="avatar" class="img-circle img-responsive" src="{{ Auth::user()->avatar }}" alt="avatar">
-                        </div>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">Mon compte</a>
-                        </li>
-                        <li>
-                            <a href="#">Mes événements</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Se déconnecter
-                            </a>
+                        <a href="#" class="profile-photo dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-photo-small">
+                                <img id="avatar" class="img-circle img-responsive" src="{{ Auth::user()->avatar }}"
+                                     alt="avatar">
+                            </div>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Mon compte</a>
+                            </li>
+                            <li>
+                                <a href="#">Mes événements</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Se déconnecter
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                        </li>
-                    </ul>
-                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">{{ csrf_field() }}</form>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
-
+                @if(Auth::check() && Auth::user()->isAdmin())
+                    <li><a href="{{ route('admin') }}">Admin</a></li>
+                @endif
             </ul>
 
         </div>

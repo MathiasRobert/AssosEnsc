@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && DB::table('associations')->where('email', '=', Auth::user()->email)->first()) {
+        if (Auth::user()->isAdmin()) {
             return $next($request);
         }
 
