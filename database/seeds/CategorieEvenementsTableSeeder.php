@@ -13,23 +13,23 @@ class CategorieEvenementsTableSeeder extends Seeder
     public function run()
     {
         CategorieEvenement::Create([
-            'nom' => 'SOIREE'
+            'nom' => 'Soiree'
         ]);
 
         CategorieEvenement::Create([
-            'nom' => 'WEEKEND'
+            'nom' => 'Weekend'
         ]);
 
         CategorieEvenement::Create([
-            'nom' => 'AUTRE ECOLE'
+            'nom' => 'Autre ecole'
         ]);
 
         CategorieEvenement::Create([
-            'nom' => 'SORTIE CULTURELLE'
+            'nom' => 'Sortie culturelle'
         ]);
 
         CategorieEvenement::Create([
-            'nom' => 'SORTIE SPORTIVE'
+            'nom' => 'Sortie sportive'
         ]);
     }
 }

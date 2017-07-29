@@ -20,8 +20,15 @@ class AdminController extends Controller
     public function articles()
     {
         $association = Association::where('email', Auth::user()->email)->first();
-        $articles = $association->articles();
+        $articles = $association->articles->all();
         return view('admin.article', compact('articles', 'association'));
+    }
+
+    public function evenements()
+    {
+        $association = Association::where('email', Auth::user()->email)->first();
+        $evenements = $association->evenements->all();
+        return view('admin.evenement', compact('evenements', 'association'));
 
     }
 }
