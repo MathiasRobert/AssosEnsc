@@ -3,7 +3,8 @@
 @section('content')
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="" method="" novalidate="novalidate">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.store') }}" method="post" novalidate="novalidate">
+                {!! csrf_field() !!}
                 <div class="card-header card-header-with-icons" data-background-color="purple">
                     <h4 class="card-title">Ajouter un article</h4>
                 </div>
@@ -50,7 +51,7 @@
                         <label class="col-sm-2 label-on-left">Catégorie</label>
                         <div class="col-lg-5 col-md-6 col-sm-3">
                             <div class="btn-group bootstrap-select">
-                                <select class="selectpicker" data-style="btn btn-primary btn-round"
+                                <select name="categorie" class="selectpicker" data-style="btn btn-primary btn-round"
                                         title="">
                                     @foreach($categories as $categorie)
                                         <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
