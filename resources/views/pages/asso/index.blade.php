@@ -7,7 +7,7 @@
 @section('header')
 
 <!-- Quand il y aura les images des assos il faudra mettre la div en dessous -->
-<!-- <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{asset($association->logo)}}'); transform: translate3d(0px, 0px, 0px);"> -->
+<!--<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{{ $association->logo }}'); transform: translate3d(0px, 0px, 0px);"> -->
 <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('/images/beer.jpg'); transform: translate3d(0px, 0px, 0px);">
     <div class="container">
         <div class="row">
