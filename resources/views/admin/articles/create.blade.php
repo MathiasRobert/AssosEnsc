@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.store') }}" method="post" novalidate="novalidate">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.store') }}" method="post">
                 {!! csrf_field() !!}
                 <div class="card-header card-header-with-icons" data-background-color="purple">
                     <h4 class="card-title">Ajouter un article</h4>

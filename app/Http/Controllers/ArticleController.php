@@ -102,14 +102,13 @@ class ArticleController extends Controller
         $rules = array(
             'titre'       => 'required',
             'texte'      => 'required',
-            'image' => 'required',
             'categorie' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return redirect('admin/articles/create')
+            return redirect('admin/articles/edit/'.$id)
                 ->withErrors($validator);
         } else {
             // store
@@ -118,9 +117,9 @@ class ArticleController extends Controller
             $article = Article::find($id);
             $article->titre     = $request->get('titre');
             $article->texte     = $request->get('texte');
-            $article->image     = $request->get('image');
+            if($request->get('image') != null)
+                $article->image     = $request->get('image');
             $article->categorie_id     = $request->get('categorie');
-            $article->association_id = $association->id;
             $article->save();
 
             // redirect
@@ -135,14 +134,17 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // delete
         $article = Article::find($id);
         $article->delete();
 
-        // redirect
-        //Session::flash('message', 'Successfully deleted the nerd!');
-        return redirect('admin/articles');
+        if ( $request->ajax() ) {
+            $article->delete( $request->all() );
+
+            return response(['msg' => 'Product deleted', 'status' => 'success']);
+        }
+        return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
     }
 }

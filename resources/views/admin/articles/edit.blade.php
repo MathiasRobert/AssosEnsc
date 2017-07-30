@@ -3,8 +3,9 @@
 @section('content')
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.update', $article->id) }}" method="post" novalidate="novalidate">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.update', $article->id) }}" method="post">
                 {!! csrf_field() !!}
+                {{ method_field('PUT') }}
                 <div class="card-header card-header-with-icons" data-background-color="purple">
                     <h4 class="card-title">Editer un article</h4>
                 </div>
@@ -20,7 +21,7 @@
                                     <span class="btn btn-primary btn-round btn-file">
                                         <span class="fileinput-new">Selectionner une image</span>
                                         <span class="fileinput-exists">Changer</span>
-                                        <input type="file" name="image" required="true">
+                                        <input type="file" name="image">
                                     </span>
                                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
                                        data-dismiss="fileinput"><i class="fa fa-times"></i> Supprimer</a>
@@ -67,7 +68,7 @@
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-danger btn-fill"><i class="material-icons">delete</i> Supprimer</button>
-                    <button type="submit" class="btn btn-success btn-fill"><i class="material-icons">edit</i> Editer</button>
+                    <button type="submit" class="btn btn-success btn-fill"><i class="material-icons">edit</i> Sauvegarder</button>
                 </div>
             </form>
         </div>
