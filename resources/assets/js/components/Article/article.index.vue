@@ -6,7 +6,7 @@
                 <i class="material-icons">assignment</i>
             </div>
             <div class="card-header card-header-button">
-                <a href=" route('articles.create')" class="btn btn-primary">
+                <a v-link="{ name: 'newArticle' }" class="btn btn-primary">
                     <i class="material-icons">add_circle</i> Ajouter un article
                 </a>
             </div>

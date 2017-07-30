@@ -14897,25 +14897,6 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _vue = require('vue');
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  getAll: function getAll() {
-    return _vue2.default.http.get('/api/admin/articles');
-  }
-};
-
-},{"vue":6}],10:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("#articleAdminTable .img-article img {\n  max-width: 100px;\n}\n#articleAdminTable .content-article p {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  max-width: 200px;\n}\n")
 'use strict';
@@ -14976,7 +14957,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-header card-header-button\">\n                <a href=\" route('articles.create')\" class=\"btn btn-primary\">\n                    <i class=\"material-icons\">add_circle</i> Ajouter un article\n                </a>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">\n                    Gestion des articles\n                </h4>\n                <div class=\"toolbar\">\n\n                </div>\n                <div class=\"material-datatables\">\n                    <div class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"articleAdminTable\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Image</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Contenu</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting_desc\">Création</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                    <!-- @foreach($articles as $article) -->\n                                    <tr v-for=\"article in articles\">\n                                        <td class=\"img-article\"><img class=\"img img-responsive\" v-bind:src=\"article.image\"></td>\n                                        <td> {{article.titre}}</td>\n                                        <td class=\"content-article\"><p>{{article.texte}}</p></td>\n                                        <td> {{article.categorie.nom}}</td>\n                                        <td> {{article.created_at}}</td>\n                                        <td> {{article.updated_at}}</td>\n                                        <td class=\"text-right\">\n                                            <a href=\" route('articles.edit', $article->id)\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                            <a href=\" route('articles.destroy', $article->id)\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"material-icons\">close</i></a>\n                                        </td>\n                                    </tr>\n                                    <!-- @endforeach -->\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n    </div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-header card-header-button\">\n                <a v-link=\"{ name: 'newArticle' }\" class=\"btn btn-primary\">\n                    <i class=\"material-icons\">add_circle</i> Ajouter un article\n                </a>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">\n                    Gestion des articles\n                </h4>\n                <div class=\"toolbar\">\n\n                </div>\n                <div class=\"material-datatables\">\n                    <div class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"articleAdminTable\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Image</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Contenu</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting_desc\">Création</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                    <!-- @foreach($articles as $article) -->\n                                    <tr v-for=\"article in articles\">\n                                        <td class=\"img-article\"><img class=\"img img-responsive\" v-bind:src=\"article.image\"></td>\n                                        <td> {{article.titre}}</td>\n                                        <td class=\"content-article\"><p>{{article.texte}}</p></td>\n                                        <td> {{article.categorie.nom}}</td>\n                                        <td> {{article.created_at}}</td>\n                                        <td> {{article.updated_at}}</td>\n                                        <td class=\"text-right\">\n                                            <a href=\" route('articles.edit', $article->id)\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                            <a href=\" route('articles.destroy', $article->id)\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"material-icons\">close</i></a>\n                                        </td>\n                                    </tr>\n                                    <!-- @endforeach -->\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n    </div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14986,12 +14967,43 @@ if (module.hot) {(function () {  module.hot.accept()
     document.head.removeChild(__vueify_style__)
   })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-aa0f619a", module.exports)
+    hotAPI.createRecord("_v-46a1f257", module.exports)
   } else {
-    hotAPI.update("_v-aa0f619a", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-46a1f257", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"./article.services.js":9,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],11:[function(require,module,exports){
+},{"./article.services.js":11,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],10:[function(require,module,exports){
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container-fluid\">\n\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <form class=\"form-horizontal\" method=\"post\" novalidate=\"novalidate\">\n                <div class=\"card-header card-header-with-icons\" data-background-color=\"purple\">\n                    <h4 class=\"card-title\">Ajouter un article</h4>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-12 text-center\">\n                            <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                <div class=\"fileinput-new thumbnail\">\n                                    <img src=\"/images/image_placeholder.jpg\" alt=\"...\">\n                                </div>\n                                <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                <div>\n                                    <span class=\"btn btn-primary btn-round btn-file\">\n                                        <span class=\"fileinput-new\">Selectionner une image</span>\n                                        <span class=\"fileinput-exists\">Changer</span>\n                                        <input type=\"file\" name=\"image\" required=\"true\" aria-required=\"true\">\n                                    </span>\n                                    <a href=\"#pablo\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\"><i class=\"fa fa-times\"></i> Supprimer</a>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Titre</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input class=\"form-control\" type=\"text\" name=\"titre\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span>\n                            <span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Texte</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input class=\"form-control\" type=\"text\" name=\"texte\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span><span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Catégorie</label>\n                        <div class=\"col-lg-5 col-md-6 col-sm-3\">\n                            <div class=\"btn-group bootstrap-select\">\n                                <select class=\"selectpicker\" data-style=\"btn btn-primary btn-round\" title=\"\">\n                                    <!-- @foreach($categories as $categorie) -->\n                                        <option value=\" $categorie->id \"> $categorie-&gt;nom </option>\n                                    <!-- @endforeach -->\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"card-footer text-right\">\n                    <button type=\"submit\" class=\"btn btn-success btn-fill\"><i class=\"material-icons\">add_circle</i> Ajouter</button>\n                </div>\n            </form>\n        </div>\n    </div>\n\n</div>\n"
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-099c7365", module.exports)
+  } else {
+    hotAPI.update("_v-099c7365", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":3}],11:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  getAll: function getAll() {
+    return _vue2.default.http.get('/api/admin/articles');
+  }
+};
+
+},{"vue":6}],12:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-lg-12\">\n    <h1 class=\"page-header\">\n        Dashboard\n    </h1>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -15003,7 +15015,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-c734dba2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3}],13:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">Gestion des évènements</h4>\n                <div class=\"toolbar\">\n                    <!--        Here you can write extra buttons/actions for the toolbar              -->\n                </div>\n                <div class=\"material-datatables\">\n                    <div id=\"datatables_wrapper\" class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Affiche</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting\">Lieu</th>\n                                        <th class=\"sorting\">Prix</th>\n                                        <th class=\"sorting\">Date</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                    <!-- @foreach($evenements as $evenement) -->\n                                        <tr>\n                                            <td><img class=\"img img-responsive\" src=\" $evenement->affiche \"></td>\n                                            <td> $evenement-&gt;titre </td>\n                                            <td> $evenement-&gt;categorie-&gt;nom </td>\n                                            <td> $evenement-&gt;lieu </td>\n                                            <td> $evenement-&gt;prix </td>\n                                            <td> $evenement-&gt;dateDeb </td>\n                                            <td> $evenement-&gt;updated_at </td>\n                                            <td class=\"text-right\">\n                                                <a href=\"#\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                                <a href=\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"material-icons\">close</i></a>\n                                            </td>\n                                        </tr>\n                                    <!-- @endforeach -->\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -15015,7 +15027,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7224f2ce", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],13:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3}],14:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -15038,9 +15050,13 @@ var _dashboard = require('./components/Dashboard/dashboard.vue');
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
-var _article = require('./components/Article/article.vue');
+var _articleIndex = require('./components/Article/article.index.vue');
 
-var _article2 = _interopRequireDefault(_article);
+var _articleIndex2 = _interopRequireDefault(_articleIndex);
+
+var _articleNew = require('./components/Article/article.new.vue');
+
+var _articleNew2 = _interopRequireDefault(_articleNew);
 
 var _evenement = require('./components/Evenement/evenement.vue');
 
@@ -15060,10 +15076,13 @@ router.map({
     name: 'dashboard',
     component: _dashboard2.default
   },
-  '/back/article': {
+  '/back/article/': {
     name: 'article',
-    component: _article2.default
-
+    component: _articleIndex2.default
+  },
+  '/back/article/new': {
+    name: 'newArticle',
+    component: _articleNew2.default
   },
   '/back/evenement': {
     name: 'evenement',
@@ -15079,6 +15098,6 @@ router.redirect({
 
 router.start(_App2.default, '#app');
 
-},{"./components/App.vue":8,"./components/Article/article.vue":10,"./components/Dashboard/dashboard.vue":11,"./components/Evenement/evenement.vue":12,"vue":6,"vue-resource":4,"vue-router":5}]},{},[13]);
+},{"./components/App.vue":8,"./components/Article/article.index.vue":9,"./components/Article/article.new.vue":10,"./components/Dashboard/dashboard.vue":12,"./components/Evenement/evenement.vue":13,"vue":6,"vue-resource":4,"vue-router":5}]},{},[14]);
 
 //# sourceMappingURL=main.js.map

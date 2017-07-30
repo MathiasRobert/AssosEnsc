@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Resource from 'vue-resource';
 import App from './components/App.vue';
 import DashboardView from './components/Dashboard/dashboard.vue';
-import ArticleView from './components/Article/article.vue';
+import ArticleView from './components/Article/article.index.vue';
+import ArticleNewView from './components/Article/article.new.vue';
 import EvenementView from './components/Evenement/evenement.vue';
 
 
@@ -19,10 +20,13 @@ router.map({
     name: 'dashboard',
     component: DashboardView, 
   },
-  '/back/article': {
+  '/back/article/': {
     name: 'article',
-    component: ArticleView, 
-
+    component: ArticleView,
+  },
+  '/back/article/new': {
+    name: 'newArticle',
+    component: ArticleNewView,
   },
   '/back/evenement': {
     name: 'evenement',
