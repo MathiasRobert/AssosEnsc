@@ -40,3 +40,12 @@ Route::get('logintest', function() {
     Auth::login($user);
     return redirect('/');
 })->name('logintest');
+
+
+Route::get('/back/{all}', function () {
+    return view('pages.back');
+})->where(['all' => '.*']);;
+
+// Route::any('{all}', function () {
+//     return view('index');
+// })
