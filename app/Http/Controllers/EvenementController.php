@@ -46,11 +46,15 @@ class EvenementController extends Controller
     public function store(StoreEvenementRequest $request)
     {
         $association = Association::where('email', Auth::user()->email)->first();
-
-        $evenements = new Evenement($request->all());
-        $evenements->affiche = $request->get('affiche');
-        $evenements->association_id = $association->id;
-        $evenements->save();
+        $evenement = new Evenement($request->all());
+        $evenement->association_id = $association->id;
+        $evenement->affiche = '/images/image_placeholder.jpg';
+        $evenement->save();
+        if (isset($request->affiche) && $request->file('affiche')->isValid()) {
+            $evenement->affiche = $request->affiche->store('public/images/'.$evenement->association_id.'/evenements/'.$evenement->id);
+            $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
+        }
+        $evenement->save();
 
         return redirect('admin/evenements');
     }
@@ -80,8 +84,10 @@ class EvenementController extends Controller
     {
         $evenement = Evenement::find($id);
         $evenement->fill($request->all());
-        if ($request->get('affiche') != null)
-            $evenement->image = $request->get('affiche');
+        if (isset($request->affiche) && $request->file('affiche')->isValid()) {
+            $evenement->affiche = $request->affiche->store('public/images/'.$evenement->association_id.'/evenements/'.$evenement->id);
+            $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
+        }
         $evenement->save();
 
         return redirect('admin/evenements');

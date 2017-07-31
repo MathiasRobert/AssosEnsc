@@ -51,7 +51,7 @@ class ArticleController extends Controller
         $article->save();
         if (isset($request->image) && $request->file('image')->isValid()) {
             $article->image = $request->image->store('public/images/'.$article->association_id.'/articles/'.$article->id);
-            $article->image = '/storage/'.substr($article->image, 6);
+            $article->image = '/storage/'.substr($article->image, 7);
         }
         $article->save();
         return redirect('admin/articles');
@@ -83,7 +83,7 @@ class ArticleController extends Controller
         $article->fill($request->all());
         if (isset($request->image) && $request->file('image')->isValid()) {
             $article->image = $request->image->store('public/images/'.$article->association_id.'/articles/'.$article->id);
-            $article->image = '/storage/'.substr($article->image, 6);
+            $article->image = '/storage/'.substr($article->image, 7);
         }
         $article->save();
         return redirect('admin/articles');
