@@ -44,9 +44,9 @@
                                             <td>{{ $article->created_at }}</td>
                                             <td>{{ $article->updated_at }}</td>
                                             <td class="text-right">
-                                                <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-simple btn-info btn-icon edit"><i
+                                                <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-simple btn-info btn-icon"><i
                                                             class="material-icons">edit</i></a>
-                                                <button data-id="{{ $article->id }}" data-token="{{ csrf_token() }}" class="btn btn-simple btn-danger btn-icon remove"><i
+                                                <button data-id="{{ $article->id }}" data-token="{{ csrf_token() }}" class="btn btn-simple btn-danger btn-icon remove-article"><i
                                                             class="material-icons">close</i></button>
                                             </td>
                                         </tr>

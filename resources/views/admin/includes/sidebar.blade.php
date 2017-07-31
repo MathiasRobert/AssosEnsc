@@ -52,8 +52,8 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     <p>Articles</p>
                 </a>
             </li>
-            <li class="@if(Route::currentRouteName() === 'adminEvenements') active @endif">
-                <a href="{{ route('adminEvenements') }}">
+            <li class="@if(Route::currentRouteName() === 'evenements.index') active @endif">
+                <a href="{{ route('evenements.index') }}">
                     <i class="material-icons">apps</i>
                     <p>Evenements</p>
                 </a>

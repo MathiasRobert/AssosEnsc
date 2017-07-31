@@ -18,7 +18,7 @@
                     Dashboard
                 @elseif(Route::currentRouteName() === 'articles.index')
                     Listes des articles
-                @elseif(Route::currentRouteName() === 'adminEvenements')
+                @elseif(Route::currentRouteName() === 'evenements.index')
                     Listes des évènements
                 @endif
             </a>

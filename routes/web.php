@@ -28,7 +28,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', ['uses' => 'AdminController@dashboard'])->name('admin');
     Route::resource('admin/articles', 'ArticleController', ['except' => ['show']]);
-    Route::get('admin/evenement', ['uses' => 'AdminController@evenements'])->name('adminEvenements');
+    Route::resource('admin/evenements', 'EvenementController', ['except' => ['show']]);
 
 });
 
