@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CategorieEvenement;
 use App\Evenement;
+use App\Http\Requests\StoreEvenementRequest;
 use Illuminate\Http\Request;
 use App\Association;
 use Auth;
@@ -39,48 +40,25 @@ class EvenementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEvenementRequest $request)
     {
-        $rules = array(
-            'titre'       => 'required',
-            'lieu'      => 'required',
-            'affiche' => 'required',
-            'prix' => 'required',
-            'categorie_id' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        $association = Association::where('email', Auth::user()->email)->first();
 
-        if ($validator->fails()) {
-            return redirect('admin/evenements/create')
-                ->withErrors($validator);
-        } else {
-            $association = Association::where('email', Auth::user()->email)->first();
+        $evenements = new Evenement($request->all());
+        $evenements->affiche = $request->get('affiche');
+        $evenements->association_id = $association->id;
+        $evenements->save();
 
-            $evenements = new Evenement();
-            $evenements->titre     = $request->get('titre');
-            $evenements->lieu     = $request->get('lieu');
-            $evenements->affiche     = $request->get('affiche');
-            $evenements->categorie_id     = $request->get('categorie_id');
-            $evenements->dateDeb     = $request->get('dateDeb');
-            $evenements->dateFin     = $request->get('dateFin');
-            $evenements->prix     = $request->get('prix');
-            $evenements->tarifs     = $request->get('tarifs');
-            $evenements->description     = $request->get('description');
-            $evenements->nbMaxParticipants     = $request->get('nbMaxParticipants');
-            $evenements->association_id = $association->id;
-            $evenements->save();
-
-            return redirect('admin/evenements');
-        }
+        return redirect('admin/evenements');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -94,58 +72,33 @@ class EvenementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEvenementRequest $request, $id)
     {
-        $rules = array(
-            'titre'       => 'required',
-            'lieu'      => 'required',
-            'prix'      => 'required',
-            'categorie_id' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        $evenement = Evenement::find($id);
+        $evenement->fill($request->all());
+        if ($request->get('affiche') != null)
+            $evenement->image = $request->get('affiche');
+        $evenement->save();
 
-        if ($validator->fails()) {
-            return redirect('admin/evenements/edit'.$id)
-                ->withErrors($validator);
-        } else {
-            $association = Association::where('email', Auth::user()->email)->first();
-
-            $evenement = Evenement::find($id);
-            $evenement->titre = $request->get('titre');
-            $evenement->lieu = $request->get('lieu');
-            if($request->get('affiche') != null)
-                $evenement->image     = $request->get('affiche');
-            $evenement->categorie_id = $request->get('categorie_id');
-            $evenement->dateDeb = $request->get('dateDeb');
-            $evenement->dateFin = $request->get('dateFin');
-            $evenement->prix = $request->get('prix');
-            $evenement->tarifs = $request->get('tarifs');
-            $evenement->description = $request->get('description');
-            $evenement->nbMaxParticipants = $request->get('nbMaxParticipants');
-            $evenement->association_id = $association->id;
-            $evenement->save();
-
-            return redirect('admin/evenements');
-        }
+        return redirect('admin/evenements');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
-        $evenement = Evenement::find($id);
-        $evenement->delete();
+        Evenement::destroy($id);
 
-        if ( $request->ajax() ) {
-            $evenement->delete( $request->all() );
+        if ($request->ajax()) {
+            Evenement::destroy($request->all());
 
             return response(['status' => 'success']);
         }

@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evenement extends Model
 {
+    protected $fillable = [
+        "categorie_id",
+        "titre",
+        "lieu",
+        "dateDeb",
+        "dateFin",
+        "prix",
+        "tarifs",
+        "description",
+        "nbMaxParticipants"
+    ];
 
     public function comments()
     {

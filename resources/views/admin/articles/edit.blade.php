@@ -1,9 +1,18 @@
 @extends('admin.layouts.default')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.update', $article->id) }}" method="post">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.update', $article->id) }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="card-header card-header-with-icons" data-background-color="purple">
@@ -52,7 +61,7 @@
                         <label class="col-sm-2 label-on-left">Catégorie</label>
                         <div class="col-lg-5 col-md-6 col-sm-3">
                             <div class="btn-group bootstrap-select">
-                                <select name="categorie" class="selectpicker" data-style="btn btn-primary btn-round"
+                                <select name="categorie_id" class="selectpicker" data-style="btn btn-primary btn-round"
                                         title="">
                                     @foreach($categories as $categorie)
                                         <option value="{{ $categorie->id }}"

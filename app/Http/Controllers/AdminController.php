@@ -33,12 +33,12 @@ class AdminController extends Controller
 
     }
 
-    public function association()
+    public function association($tab)
     {
         $association = Association::where('email', Auth::user()->email)->first();
         $couleurs = Couleur::all();
         $membres = $association->membres->all();
-        return view('admin.association', compact( 'association', 'couleurs', 'membres'));
+        return view('admin.association', compact( 'association', 'couleurs', 'membres', 'tab'));
 
     }
 }

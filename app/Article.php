@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    protected $fillable = [
+        "categorie_id",
+        "titre",
+        "texte"
+    ];
 
     public function comments()
     {

@@ -6,19 +6,19 @@
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="active">
+                        <li class="{{ empty($tab) || $tab == 'infos' ? 'active' : '' }}">
                             <a href="#infos" data-toggle="tab">
                                 <i class="material-icons">edit</i> Mes informations
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="{{ !empty($tab) && $tab == 'equipe' ? 'active' : '' }}">
                             <a href="#equipe" data-toggle="tab">
                                 <i class="material-icons">group</i> Mon équipe
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="{{ !empty($tab) && $tab == 'parametres' ? 'active' : '' }}">
                             <a href="#parametres" data-toggle="tab">
                                 <i class="material-icons">settings</i> Paramètres
                                 <div class="ripple-container"></div>
@@ -30,8 +30,8 @@
         </div>
         <div class="card-content">
             <div class="tab-content">
-                <div class="tab-pane active" id="infos">
-                    <form action="{{ route('association.update', $association->id) }}" method="post">
+                <div class="tab-pane {{ empty($tab) || $tab == 'infos' ? 'active' : '' }}" id="infos">
+                    <form action="{{ route('association.update', $association->id) }}" method="post" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
                         <div class="row">
@@ -128,7 +128,7 @@
                         <div class="clearfix"></div>
                     </form>
                 </div>
-                <div class="tab-pane" id="equipe">
+                <div class="tab-pane {{ !empty($tab) && $tab == 'equipe' ? 'active' : '' }}" id="equipe">
                     <a href="{{ route('membres.create') }}" class="btn btn-primary">
                         <i class="material-icons">add_circle</i> Ajouter un membre
                     </a>
@@ -163,7 +163,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane" id="parametres">
+                <div class="tab-pane {{ !empty($tab) && $tab == 'parametres' ? 'active' : '' }}" id="parametres">
                     <table class="table">
                         <tbody>
                         <tr>

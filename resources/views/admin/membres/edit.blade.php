@@ -1,9 +1,18 @@
 @extends('admin.layouts.default')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="{{ route('membres.update', $membre->id) }}" method="post">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('membres.update', $membre->id) }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 {{ method_field('PUT') }}
                 <div class="card-header card-header-with-icons" data-background-color="purple">

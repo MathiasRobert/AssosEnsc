@@ -49,7 +49,7 @@ $(document).ready(function () {
 
                     },{
                         type: "success",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
                     },{
                         type: "danger",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
                     },{
                         type: "success",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
@@ -123,7 +123,7 @@ $(document).ready(function () {
 
                     },{
                         type: "danger",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
@@ -167,7 +167,7 @@ $(document).ready(function () {
 
                     },{
                         type: "success",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
@@ -181,7 +181,7 @@ $(document).ready(function () {
 
                     },{
                         type: "danger",
-                        timer: 3000,
+                        timer: 2000,
                         placement: {
                             from: 'top',
                             align: 'right'
