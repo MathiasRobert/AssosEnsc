@@ -1,5 +1,5 @@
 <template>
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-icon" data-background-color="purple">
@@ -34,7 +34,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!-- @foreach($articles as $article) -->
                                     <tr v-for="article in articles">
                                         <td class="img-article"><img class="img img-responsive" v-bind:src="article.image"/></td>
                                         <td> {{article.titre}}</td>
@@ -49,7 +48,6 @@
                                                         class="material-icons">close</i></a>
                                         </td>
                                     </tr>
-                                    <!-- @endforeach -->
                                     </tbody>
                                 </table>
                             </div>
@@ -57,12 +55,9 @@
                     </div>
                 </div>
             </div>
-            <!-- end content-->
         </div>
-        <!--  end card  -->
     </div>
-    <!-- end col-md-12 -->
-    </div>
+  </div>
 </template>
 
 
@@ -72,8 +67,6 @@ import articlesService from './article.services.js';
 
 export default {
 
-  // components: { Topic, NewTopicModal },
-
   data () {
     return {
       articles: [],
@@ -81,30 +74,17 @@ export default {
   },
 
   methods: {
-    // showModal () {
-    //   this.$root.showModal();
-    // }
   },
 
-  // events: {
-  //   topicWasCreated (topic) {
-  //     this.topics.unshift(topic);
-  //   }
-  // },
+  events: {
+  },
 
-  // watch: {
-  //   'topics' () {
-  //     let breadcrumbs = this.topics[0].breadcrumbs;
-  //     breadcrumbs.pop();
-  //     this.$root.breadcrumbs = breadcrumbs;
-  //   }
-  // },
+  watch: {
+  },
 
   route: {
     data ({ to }) {
-
       return articlesService.getAll().then(function(response) {
-          // console.log(methods);
           return {
             articles : response.body
           }
@@ -115,17 +95,16 @@ export default {
 </script>
 
 <style lang="stylus">
-    #articleAdminTable
-        .img-article
-            img{
-                max-width: 100px;
-            }
-        .content-article
-            p{
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                max-width: 200px;
-            }
-
+  #articleAdminTable
+      .img-article
+          img{
+              max-width: 100px;
+          }
+      .content-article
+          p{
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              max-width: 200px;
+          }
 </style>

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\CategorieArticle;
 use Illuminate\Http\Request;
 use Auth;
-use App\Association;
 use Validator;
 use Illuminate\Support\Facades\Input;
+
+
+use App\Article;
+use App\CategorieArticle;
+use App\Association;
+use App\Http\Requests\StoreArticleRequest;
+
 
 class ArticleControllerApi extends Controller
 {
@@ -41,38 +45,30 @@ class ArticleControllerApi extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'titre'       => 'required',
-            'texte'      => 'required',
-            'image' => 'required',
-            'categorie' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        
+        $article = new Article($request->all());
 
-        // process the login
-        if ($validator->fails()) {
-            return redirect('admin/articles/create')
-                ->withErrors($validator);
-        } else {
-            // store
-            $association = Association::where('email', Auth::user()->email)->first();
+        $association = Association::where('email', Auth::user()->email)->first();
+        $article->association_id = $association->id;
+        $article->image = '/images/image_placeholder.jpg';
 
-            $article = new Article();
-            $article->titre     = $request->get('titre');
-            $article->texte     = $request->get('texte');
-            $article->image     = $request->get('image');
-            $article->categorie_id     = $request->get('categorie');
-            $article->association_id = $association->id;
-            $article->save();
+        $article->save();
 
-            // redirect
-            //Session::flash('message', 'Successfully created nerd!');
-            return redirect('admin/articles');
+        if(isset($request->image))
+        {
+            $destinationPath = public_path().'/storage/images/articles/'.$article->id;
+            $extension       = Input::file('image')->getClientOriginalExtension(); // getting image extension
+            $fileName        = time().'.'.$extension; // renameing image
+            Input::file('image')->move($destinationPath, $fileName);
+            $article->image = '/storage/images/articles/'.$article->id.'/'.$fileName;
         }
+
+        $article->save();
+
+        return $article;
+
     }
 
     /**
@@ -145,4 +141,11 @@ class ArticleControllerApi extends Controller
         //Session::flash('message', 'Successfully deleted the nerd!');
         return redirect('admin/articles');
     }
+
+
+    public function getAllCategoriesArticle()
+    {
+        return CategorieArticle::all();
+    }
+
 }

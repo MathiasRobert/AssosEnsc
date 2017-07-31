@@ -3,7 +3,7 @@
 
         <div class="col-md-12">
             <div class="card">
-                <form class="form-horizontal" method="post" novalidate="novalidate">
+                <form id="formNewArticle" class="form-horizontal" v-on:submit.prevent="postArticle">
                     <div class="card-header card-header-with-icons" data-background-color="purple">
                         <h4 class="card-title">Ajouter un article</h4>
                     </div>
@@ -19,7 +19,7 @@
                                         <span class="btn btn-primary btn-round btn-file">
                                             <span class="fileinput-new">Selectionner une image</span>
                                             <span class="fileinput-exists">Changer</span>
-                                            <input type="file" name="image" required="true" aria-required="true">
+                                            <input v-model='article.image' type="file" name="image" aria-required="true">
                                         </span>
                                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Supprimer</a>
                                     </div>
@@ -31,7 +31,7 @@
                             <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input class="form-control" type="text" name="titre" required="true" aria-required="true">
+                                    <input v-model='article.titre' class="form-control" type="text" name="titre" required="true" aria-required="true">
                                     <span class="material-input"></span>
                                 <span class="material-input"></span></div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input class="form-control" type="text" name="texte" required="true" aria-required="true">
+                                    <input v-model='article.texte' class="form-control" type="text" name="texte" required="true" aria-required="true">
                                     <span class="material-input"></span><span class="material-input"></span></div>
                             </div>
                         </div>
@@ -49,18 +49,15 @@
                             <label class="col-sm-2 label-on-left">Catégorie</label>
                             <div class="col-lg-5 col-md-6 col-sm-3">
                                 <div class="btn-group bootstrap-select">
-                                    <select class="selectpicker" data-style="btn btn-primary btn-round"
-                                        title="">
-                                        <!-- @foreach($categories as $categorie) -->
-                                            <option value=" $categorie->id "> $categorie->nom </option>
-                                        <!-- @endforeach -->
+                                    <select class="selectpicker" data-style="btn btn-primary btn-round" name="categorie_id" v:model="categorieId">
+                                        <option v-for="categorie in categories" value="{{categorie.id}}"> {{categorie.nom}} </option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-success btn-fill"><i class="material-icons">add_circle</i> Ajouter</button>
+                        <button class="btn btn-success btn-fill"><i class="material-icons">add_circle</i> Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -68,3 +65,58 @@
 
     </div>
 </template>
+
+<script>
+
+    import articlesService from './article.services.js';
+
+    export default {
+
+ 
+    data () {
+        return {
+          article:{},
+          categories : []
+        }
+      },
+
+      methods: {
+        postArticle () {
+            console.log(this.article);
+            var form = document.getElementById('formNewArticle');
+            var dataForm = new FormData(form);
+            articlesService.postArticle(dataForm)
+            .then(function(response){
+                console.log(response);
+
+            });
+
+        }
+      },
+
+      events: {
+      },
+
+      watch: {
+        // 'article.image' (){
+        //     console.log(this.article);
+        // }
+      },
+
+      route: {
+        data ({ to }) {
+            this.article = {};
+
+            
+            return articlesService.getAllCategoriesArticle(this.categoryId, this.page)
+                .then(function(response) {
+                    
+                    $('#formNewArticle .fileinput').fileinput('clear');
+                    return {
+                        categories : response.body
+                    }
+                });
+        }
+      }
+    }
+</script>
