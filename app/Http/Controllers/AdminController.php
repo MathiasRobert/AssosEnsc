@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Couleur;
 use Auth;
 use App\Association;
 
@@ -29,6 +30,14 @@ class AdminController extends Controller
         $association = Association::where('email', Auth::user()->email)->first();
         $evenements = $association->evenements->all();
         return view('admin.evenement', compact('evenements', 'association'));
+
+    }
+
+    public function association()
+    {
+        $association = Association::where('email', Auth::user()->email)->first();
+        $couleurs = Couleur::all();
+        return view('admin.association', compact( 'association', 'couleurs'));
 
     }
 }

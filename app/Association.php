@@ -26,5 +26,8 @@ class Association extends Model
         return $this->hasMany('App\Article');
     }
 
+    public function couleur() {
+        return $this->belongsTo('App\Couleur');
+    }
 
 }

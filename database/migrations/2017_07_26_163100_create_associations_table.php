@@ -20,13 +20,17 @@ class CreateAssociationsTable extends Migration
             $table->string('nom');
             $table->string('diminutif', 8);
             $table->string('email');
-            $table->string('couleur');
+            $table->integer('couleur_id')->unsigned();
             $table->string('lien_facebook')->nullable();
             $table->string('lien_siteweb')->nullable();
             $table->string('description_courte')->nullable();
             $table->text('description_longue')->nullable();
             $table->string('logo');
             $table->timestamps();
+        });
+
+        Schema::table('associations', function($table) {
+            $table->foreign('couleur_id')->references('id')->on('couleurs');
         });
     }
 

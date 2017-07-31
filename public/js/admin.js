@@ -161,4 +161,17 @@ $(document).ready(function () {
             sideBySide: true
         }
     });
+
+    var color = $( "#select-couleur option:selected" ).text();
+    $('[data-id="select-couleur"]').css("background-color", color);
+
+    $("#select-couleur" ).change(function() {
+        color = $("#select-couleur option:selected" ).text();
+        console.log(color);
+
+        $('[data-id="select-couleur"]').css({
+            'background-color' : color, // couleur rouge
+
+        });
+    });
 });

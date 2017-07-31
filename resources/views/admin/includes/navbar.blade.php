@@ -16,6 +16,8 @@
             <a class="navbar-brand" href="#">
                 @if(Route::currentRouteName() === 'admin')
                     Dashboard
+                @elseif(Route::currentRouteName() === 'admin.association')
+                    Gestion de l'association
                 @elseif(Route::currentRouteName() === 'articles.index')
                     Listes des articles
                 @elseif(Route::currentRouteName() === 'evenements.index')

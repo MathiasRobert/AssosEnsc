@@ -27,7 +27,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li>
-                            <a href="#">Mes informations</a>
+                            <a href="{{ route('admin.association') }}">Mes informations</a>
                         </li>
                         <li>
                             <a href="#">Mon équipe</a>
