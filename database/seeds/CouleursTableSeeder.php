@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Couleur;
 
-class CouleurTableSeeder extends Seeder
+class CouleursTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

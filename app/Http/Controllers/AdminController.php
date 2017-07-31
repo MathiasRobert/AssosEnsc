@@ -37,7 +37,8 @@ class AdminController extends Controller
     {
         $association = Association::where('email', Auth::user()->email)->first();
         $couleurs = Couleur::all();
-        return view('admin.association', compact( 'association', 'couleurs'));
+        $membres = $association->membres->all();
+        return view('admin.association', compact( 'association', 'couleurs', 'membres'));
 
     }
 }

@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     });
 
-    // Delete article
+    // Delete evenement
     table.on('click', '.remove-event', function (e) {
         var id = $(this).data("id");
         var token = $(this).data("token");
@@ -132,9 +132,67 @@ $(document).ready(function () {
                 }
             });
         });
-
-
     });
+
+    // Delete evenement
+    table.on('click', '.remove-memvre', function (e) {
+        var id = $(this).data("id");
+        var token = $(this).data("token");
+        var tr = $(this).closest('tr');
+        swal({
+            title: 'Êtes-vous sur ?',
+            text: "C'est une suppression définitive !",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Supprimer',
+            cancelButtonText: 'Annuler',
+            buttonsStyling: false
+        }).then(function () {
+            $.ajax({
+                url: "/admin/membres/" + id,
+                type: 'DELETE',
+                data: {
+                    "id": id,
+                    "_method": 'DELETE',
+                    "_token": token,
+                },
+                success: function () {
+                    table.row(tr).remove().draw();
+                    e.preventDefault();
+                    $.notify({
+                        icon: "done",
+                        message: "Membre supprimé"
+
+                    },{
+                        type: "success",
+                        timer: 3000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+                },
+                fail: function () {
+                    $.notify({
+                        icon: "danger",
+                        message: "Erreur : membre non supprimé"
+
+                    },{
+                        type: "danger",
+                        timer: 3000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+
 
     $('.card .material-datatables label').addClass('form-group');
 
