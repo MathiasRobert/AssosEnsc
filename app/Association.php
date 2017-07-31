@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Association extends Model
 {
+    protected $fillable = [
+        'nom',
+        'diminutif',
+        'email',
+        'couleur_id',
+        'lien_facebook',
+        'lien_siteweb',
+        'description_courte',
+        'description_longue',
+    ];
+
     /**
      * Scope a query to only include diminutif.
      *

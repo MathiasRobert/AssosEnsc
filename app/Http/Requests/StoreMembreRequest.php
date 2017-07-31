@@ -24,7 +24,10 @@ class StoreMembreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nom' => 'required',
+            'prenom' => 'required',
+            'poste' => 'required',
+            'email' => 'required',
         ];
     }
 }
