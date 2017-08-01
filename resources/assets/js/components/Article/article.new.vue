@@ -31,7 +31,7 @@
                             <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input v-model='article.titre' class="form-control" type="text" name="titre" required="true" aria-required="true">
+                                    <input v-model='newArticle.titre' class="form-control" type="text" name="titre" required="true" aria-required="true">
                                     <span class="material-input"></span>
                                 <span class="material-input"></span></div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty">
                                     <label class="control-label"></label>
-                                    <input v-model='article.texte' class="form-control" type="text" name="texte" required="true" aria-required="true">
+                                    <input v-model='newArticle.texte' class="form-control" type="text" name="texte" required="true" aria-required="true">
                                     <span class="material-input"></span><span class="material-input"></span></div>
                             </div>
                         </div>
@@ -68,24 +68,24 @@
 
 <script>
 
-    import articlesService from './article.services.js';
+    import articleService from './article.services.js';
 
     export default {
 
  
     data () {
         return {
-          article:{},
+          newArticle:{},
           categories : []
         }
       },
 
       methods: {
         postArticle () {
-            console.log(this.article);
+            console.log(this.newArticle);
             var form = document.getElementById('formNewArticle');
             var dataForm = new FormData(form);
-            articlesService.postArticle(dataForm)
+            articleService.postArticle(dataForm)
             .then(function(response){
                 console.log(response);
 
@@ -97,21 +97,15 @@
       events: {
       },
 
-      watch: {
-        // 'article.image' (){
-        //     console.log(this.article);
-        // }
-      },
-
       route: {
         data ({ to }) {
-            this.article = {};
+            this.newArticle = {};
 
-            
-            return articlesService.getAllCategoriesArticle(this.categoryId, this.page)
+            return articleService.getAllCategoriesArticle(this.categoryId, this.page)
                 .then(function(response) {
                     
                     $('#formNewArticle .fileinput').fileinput('clear');
+                    
                     return {
                         categories : response.body
                     }

@@ -60,3 +60,51 @@
     <!-- end col-md-12 -->
 </div>
 </template>
+
+<script>
+
+import evenementService from './evenement.services.js';
+
+export default {
+
+  data () {
+    return {
+      evenements: [],
+    }
+  },
+
+  methods: {
+  },
+
+  events: {
+  },
+
+  watch: {
+  },
+
+  route: {
+    data ({ to }) {
+      return evenementService.getAll().then(function(response) {
+          return {
+            evenements : response.body
+          }
+      });
+    }
+  }
+}
+</script>
+
+<style lang="stylus">
+  #articleAdminTable
+      .img-article
+          img{
+              max-width: 100px;
+          }
+      .content-article
+          p{
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              max-width: 200px;
+          }
+</style>

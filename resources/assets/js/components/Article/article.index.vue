@@ -63,7 +63,7 @@
 
 <script>
 
-import articlesService from './article.services.js';
+import articleService from './article.services.js';
 
 export default {
 
@@ -84,7 +84,7 @@ export default {
 
   route: {
     data ({ to }) {
-      return articlesService.getAll().then(function(response) {
+      return articleService.getAll().then(function(response) {
           return {
             articles : response.body
           }

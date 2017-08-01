@@ -8,6 +8,9 @@ use App\Evenement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+
+use Auth;
+
 class AssociationController extends Controller
 {
 
@@ -28,6 +31,10 @@ class AssociationController extends Controller
                 $entries->estPasse = true;
         }
         return view('pages.asso.index', compact('articles', 'evenements', 'association'));
+    }
+
+    public function getCurrentAssociation(Request $request){
+        return Association::where('email', Auth::user()->email)->first();
     }
 
 

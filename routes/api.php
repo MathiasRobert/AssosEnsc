@@ -20,5 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('admin/articles', 'ArticleControllerApi');
+Route::resource('admin/evenements', 'EvenementControllerApi');
+
 
 Route::get('admin/getAllCategoriesArticle', 'ArticleControllerApi@getAllCategoriesArticle');
+Route::get('admin/getCurrentAssociation', 'AssociationController@getCurrentAssociation');

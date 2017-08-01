@@ -14879,13 +14879,47 @@ exports.insert = function (css) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _associationServices = require("./Association/association.services.js");
+
+var _associationServices2 = _interopRequireDefault(_associationServices);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
 
-  replace: false
+  replace: false,
 
+  data: function data() {
+    return {
+      currentAssociation: {}
+    };
+  },
+
+
+  created: function created() {
+    var vm = this;
+    _associationServices2.default.getCurrentAssociation().then(function (response) {
+      vm.currentAssociation = response.body;
+    });
+  },
+
+  methods: {},
+
+  events: {},
+
+  watch: {},
+
+  route: {
+    data: function data(_ref) {
+      var to = _ref.to;
+
+      console.log("hello");
+    }
+  }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<div class=\"wrapper\" id=\"root\">\n  \n  <div class=\"sidebar\" data-active-color=\"purple\" data-background-color=\"black\">\n\n    <div class=\"logo\">\n        <a href=\"#\" class=\"simple-text\">\n             Bureau des élèves\n        </a>\n    </div>\n    <div class=\"logo logo-mini\">\n        <a href=\"#\" class=\"simple-text\">\n             BDE\n        </a>\n    </div>\n    <div class=\"sidebar-wrapper\">\n        <div class=\"user\">\n            <div class=\"photo\">\n                <img src=\"/images/bde.jpg\">\n            </div>\n            <div class=\"info\">\n                <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                     $association-&gt;email \n                    <b class=\"caret\"></b>\n                </a>\n                <div class=\"collapse\" id=\"collapseExample\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a href=\"#\">Mes informations</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Mon équipe</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Paramètres</a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <ul class=\"nav\">\n            <li v-link=\"{ name: 'dashboard', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>Dashboard</p>\n                </a>\n            </li>\n            <li v-link=\"{ name: 'article', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">image</i>\n                    <p>Articles</p>\n                </a>\n            </li>\n            <li v-link=\"{ name: 'evenement', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">apps</i>\n                    <p>Evenements</p>\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n\n<div class=\"main-panel\">\n\n    <nav class=\"navbar navbar-transparent navbar-absolute\">\n      <div class=\"container-fluid\">\n          <div class=\"navbar-minimize\">\n              <button id=\"minimizeSidebar\" class=\"btn btn-round btn-white btn-fill btn-just-icon\">\n                  <i class=\"material-icons visible-on-sidebar-regular\">more_vert</i>\n                  <i class=\"material-icons visible-on-sidebar-mini\">view_list</i>\n              <div class=\"ripple-container\"></div></button>\n          </div>\n          <div class=\"navbar-header\">\n              <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                  <span class=\"sr-only\">Toggle navigation</span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n              </button>\n              <a class=\"navbar-brand\" href=\"#\">\n              Dashboard\n              <div class=\"ripple-container\"></div>\n              </a>\n          </div>\n          <div class=\"collapse navbar-collapse\">\n              <ul class=\"nav navbar-nav navbar-right\">\n                  <li>\n                      <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                          <i class=\"material-icons\">dashboard</i>\n                          <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                      </a>\n                  </li>\n                  <li class=\"dropdown\">\n                      <a href=\"#\" class=\"profile-photo dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">\n                          <div class=\"profile-photo-small\">\n                              <img id=\"avatar\" class=\"img-circle img-responsive\" src=\"http://lorempixel.com/600/600/cats/\" alt=\"avatar\">\n                          </div>\n                          <b class=\"caret\"></b>\n                      </a>\n                      <ul class=\"dropdown-menu\">\n                          <li>\n                              <a href=\"http://localhost:8000/logout\" onclick=\"event.preventDefault(); document.getElementById('logout-form').submit();\">\n                                  Se déconnecter\n                              </a>\n\n                              <form id=\"logout-form\" action=\"http://localhost:8000/logout\" method=\"POST\" style=\"display: none;\"><input type=\"hidden\" name=\"_token\" value=\"F53ezuUAZ4V8IOmNOAeIbJHCtgMXa74JodDLHLti\"></form>\n                          </li>\n                      </ul>\n              </li></ul>\n          </div>\n      </div>\n    </nav>\n    <div class=\"content\">\n      <main>\n        <router-view class=\"view\" keep-alive=\"\" transition=\"\" transition-mode=\"out-in\">\n        </router-view>\n      </main>\n    </div>\n</div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n\n<div class=\"wrapper\" id=\"root\">\n  \n  <div class=\"sidebar\" data-active-color=\"purple\" data-background-color=\"black\">\n\n    <div class=\"logo\">\n        <a href=\"#\" class=\"simple-text\">\n             {{currentAssociation.nom}}\n        </a>\n    </div>\n    <div class=\"logo logo-mini\">\n        <a href=\"#\" class=\"simple-text\">\n             {{currentAssociation.diminutif}}\n        </a>\n    </div>\n    <div class=\"sidebar-wrapper\">\n        <div class=\"user\">\n            <div class=\"photo\">\n                <img v-bind:src=\"currentAssociation.logo\">\n            </div>\n            <div class=\"info\">\n                <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                     {{currentAssociation.email}} \n                    <b class=\"caret\"></b>\n                </a>\n                <div class=\"collapse\" id=\"collapseExample\">\n                    <ul class=\"nav\">\n                        <li>\n                            <a href=\"#\">Mes informations</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Mon équipe</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Paramètres</a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <ul class=\"nav\">\n            <li v-link=\"{ name: 'dashboard', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">dashboard</i>\n                    <p>Dashboard</p>\n                </a>\n            </li>\n            <li v-link=\"{ name: 'article', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">image</i>\n                    <p>Articles</p>\n                </a>\n            </li>\n            <li v-link=\"{ name: 'evenement', activeClass: 'active'}\">\n                <a>\n                    <i class=\"material-icons\">apps</i>\n                    <p>Evenements</p>\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n\n<div class=\"main-panel\">\n\n    <nav class=\"navbar navbar-transparent navbar-absolute\">\n      <div class=\"container-fluid\">\n          <div class=\"navbar-minimize\">\n              <button id=\"minimizeSidebar\" class=\"btn btn-round btn-white btn-fill btn-just-icon\">\n                  <i class=\"material-icons visible-on-sidebar-regular\">more_vert</i>\n                  <i class=\"material-icons visible-on-sidebar-mini\">view_list</i>\n              <div class=\"ripple-container\"></div></button>\n          </div>\n          <div class=\"navbar-header\">\n              <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                  <span class=\"sr-only\">Toggle navigation</span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n                  <span class=\"icon-bar\"></span>\n              </button>\n              <a class=\"navbar-brand\" href=\"#\">\n              Dashboard\n              <div class=\"ripple-container\"></div>\n              </a>\n          </div>\n          <div class=\"collapse navbar-collapse\">\n              <ul class=\"nav navbar-nav navbar-right\">\n                  <li>\n                      <a href=\"#pablo\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                          <i class=\"material-icons\">dashboard</i>\n                          <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                      </a>\n                  </li>\n                  <li class=\"dropdown\">\n                      <a href=\"#\" class=\"profile-photo dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">\n                          <div class=\"profile-photo-small\">\n                              <img id=\"avatar\" class=\"img-circle img-responsive\" src=\"http://lorempixel.com/600/600/cats/\" alt=\"avatar\">\n                          </div>\n                          <b class=\"caret\"></b>\n                      </a>\n                      <ul class=\"dropdown-menu\">\n                          <li>\n                              <a href=\"http://localhost:8000/logout\" onclick=\"event.preventDefault(); document.getElementById('logout-form').submit();\">\n                                  Se déconnecter\n                              </a>\n\n                              <form id=\"logout-form\" action=\"http://localhost:8000/logout\" method=\"POST\" style=\"display: none;\"><input type=\"hidden\" name=\"_token\" value=\"F53ezuUAZ4V8IOmNOAeIbJHCtgMXa74JodDLHLti\"></form>\n                          </li>\n                          <li>\n                              <a href=\"/\">\n                                  Retour sur le site\n                              </a>\n                          </li>\n                      </ul>\n              </li></ul>\n          </div>\n      </div>\n    </nav>\n    <div class=\"content\">\n      <main>\n        <router-view class=\"view\" keep-alive=\"\" transition=\"\" transition-mode=\"out-in\">\n        </router-view>\n      </main>\n    </div>\n</div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14896,7 +14930,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-d9821912", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],9:[function(require,module,exports){
+},{"./Association/association.services.js":12,"vue":6,"vue-hot-reload-api":3}],9:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
 var __vueify_style__ = __vueify_insert__.insert("#articleAdminTable .img-article img {\n  max-width: 100px;\n}\n#articleAdminTable .content-article p {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  max-width: 200px;\n}\n")
 'use strict';
@@ -14969,7 +15003,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
     data: function data() {
         return {
-            article: {},
+            newArticle: {},
             categories: []
         };
     },
@@ -14977,7 +15011,7 @@ exports.default = {
 
     methods: {
         postArticle: function postArticle() {
-            console.log(this.article);
+            console.log(this.newArticle);
             var form = document.getElementById('formNewArticle');
             var dataForm = new FormData(form);
             _articleServices2.default.postArticle(dataForm).then(function (response) {
@@ -14988,21 +15022,16 @@ exports.default = {
 
     events: {},
 
-    watch: {
-        // 'article.image' (){
-        //     console.log(this.article);
-        // }
-    },
-
     route: {
         data: function data(_ref) {
             var to = _ref.to;
 
-            this.article = {};
+            this.newArticle = {};
 
             return _articleServices2.default.getAllCategoriesArticle(this.categoryId, this.page).then(function (response) {
 
                 $('#formNewArticle .fileinput').fileinput('clear');
+
                 return {
                     categories: response.body
                 };
@@ -15011,7 +15040,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container-fluid\">\n\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <form id=\"formNewArticle\" class=\"form-horizontal\" v-on:submit.prevent=\"postArticle\">\n                <div class=\"card-header card-header-with-icons\" data-background-color=\"purple\">\n                    <h4 class=\"card-title\">Ajouter un article</h4>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-12 text-center\">\n                            <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                <div class=\"fileinput-new thumbnail\">\n                                    <img src=\"/images/image_placeholder.jpg\" alt=\"...\">\n                                </div>\n                                <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                <div>\n                                    <span class=\"btn btn-primary btn-round btn-file\">\n                                        <span class=\"fileinput-new\">Selectionner une image</span>\n                                        <span class=\"fileinput-exists\">Changer</span>\n                                        <input v-model=\"article.image\" type=\"file\" name=\"image\" aria-required=\"true\">\n                                    </span>\n                                    <a href=\"#pablo\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\"><i class=\"fa fa-times\"></i> Supprimer</a>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Titre</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input v-model=\"article.titre\" class=\"form-control\" type=\"text\" name=\"titre\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span>\n                            <span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Texte</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input v-model=\"article.texte\" class=\"form-control\" type=\"text\" name=\"texte\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span><span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Catégorie</label>\n                        <div class=\"col-lg-5 col-md-6 col-sm-3\">\n                            <div class=\"btn-group bootstrap-select\">\n                                <select class=\"selectpicker\" data-style=\"btn btn-primary btn-round\" name=\"categorie_id\" v:model=\"categorieId\">\n                                    <option v-for=\"categorie in categories\" value=\"{{categorie.id}}\"> {{categorie.nom}} </option>\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"card-footer text-right\">\n                    <button class=\"btn btn-success btn-fill\"><i class=\"material-icons\">add_circle</i> Ajouter</button>\n                </div>\n            </form>\n        </div>\n    </div>\n\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container-fluid\">\n\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <form id=\"formNewArticle\" class=\"form-horizontal\" v-on:submit.prevent=\"postArticle\">\n                <div class=\"card-header card-header-with-icons\" data-background-color=\"purple\">\n                    <h4 class=\"card-title\">Ajouter un article</h4>\n                </div>\n                <div class=\"card-content\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-12 text-center\">\n                            <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                                <div class=\"fileinput-new thumbnail\">\n                                    <img src=\"/images/image_placeholder.jpg\" alt=\"...\">\n                                </div>\n                                <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                                <div>\n                                    <span class=\"btn btn-primary btn-round btn-file\">\n                                        <span class=\"fileinput-new\">Selectionner une image</span>\n                                        <span class=\"fileinput-exists\">Changer</span>\n                                        <input v-model=\"article.image\" type=\"file\" name=\"image\" aria-required=\"true\">\n                                    </span>\n                                    <a href=\"#pablo\" class=\"btn btn-danger btn-round fileinput-exists\" data-dismiss=\"fileinput\"><i class=\"fa fa-times\"></i> Supprimer</a>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Titre</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input v-model=\"newArticle.titre\" class=\"form-control\" type=\"text\" name=\"titre\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span>\n                            <span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Texte</label>\n                        <div class=\"col-sm-7\">\n                            <div class=\"form-group label-floating is-empty\">\n                                <label class=\"control-label\"></label>\n                                <input v-model=\"newArticle.texte\" class=\"form-control\" type=\"text\" name=\"texte\" required=\"true\" aria-required=\"true\">\n                                <span class=\"material-input\"></span><span class=\"material-input\"></span></div>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <label class=\"col-sm-2 label-on-left\">Catégorie</label>\n                        <div class=\"col-lg-5 col-md-6 col-sm-3\">\n                            <div class=\"btn-group bootstrap-select\">\n                                <select class=\"selectpicker\" data-style=\"btn btn-primary btn-round\" name=\"categorie_id\" v:model=\"categorieId\">\n                                    <option v-for=\"categorie in categories\" value=\"{{categorie.id}}\"> {{categorie.nom}} </option>\n                                </select>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"card-footer text-right\">\n                    <button class=\"btn btn-success btn-fill\"><i class=\"material-icons\">add_circle</i> Ajouter</button>\n                </div>\n            </form>\n        </div>\n    </div>\n\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -15048,6 +15077,28 @@ exports.default = {
 };
 
 },{"vue":6}],12:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  // getAll () {
+  //   return Vue.http.get('/api/admin/articles');
+  // },
+  getCurrentAssociation: function getCurrentAssociation() {
+    return _vue2.default.http.get('/api/admin/getCurrentAssociation');
+  }
+};
+
+},{"vue":6}],13:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"col-lg-12\">\n    <h1 class=\"page-header\">\n        Dashboard\n    </h1>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -15059,7 +15110,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-c734dba2", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],13:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3}],14:[function(require,module,exports){
 ;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">Gestion des évènements</h4>\n                <div class=\"toolbar\">\n                    <!--        Here you can write extra buttons/actions for the toolbar              -->\n                </div>\n                <div class=\"material-datatables\">\n                    <div id=\"datatables_wrapper\" class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Affiche</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting\">Lieu</th>\n                                        <th class=\"sorting\">Prix</th>\n                                        <th class=\"sorting\">Date</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                    <!-- @foreach($evenements as $evenement) -->\n                                        <tr>\n                                            <td><img class=\"img img-responsive\" src=\" $evenement->affiche \"></td>\n                                            <td> $evenement-&gt;titre </td>\n                                            <td> $evenement-&gt;categorie-&gt;nom </td>\n                                            <td> $evenement-&gt;lieu </td>\n                                            <td> $evenement-&gt;prix </td>\n                                            <td> $evenement-&gt;dateDeb </td>\n                                            <td> $evenement-&gt;updated_at </td>\n                                            <td class=\"text-right\">\n                                                <a href=\"#\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                                <a href=\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"material-icons\">close</i></a>\n                                            </td>\n                                        </tr>\n                                    <!-- @endforeach -->\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
@@ -15071,7 +15122,7 @@ if (module.hot) {(function () {  module.hot.accept()
     hotAPI.update("_v-7224f2ce", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],14:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":3}],15:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -15108,40 +15159,42 @@ var _evenement2 = _interopRequireDefault(_evenement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.use(_vueRouter2.default);
-_vue2.default.use(_vueResource2.default);
+document.addEventListener("DOMContentLoaded", function (event) {
+  _vue2.default.use(_vueRouter2.default);
+  _vue2.default.use(_vueResource2.default);
 
-var router = new _vueRouter2.default({
-  history: true
+  var router = new _vueRouter2.default({
+    history: true
+  });
+
+  router.map({
+    '/back/dashboard': {
+      name: 'dashboard',
+      component: _dashboard2.default
+    },
+    '/back/article/': {
+      name: 'article',
+      component: _articleIndex2.default
+    },
+    '/back/article/new': {
+      name: 'newArticle',
+      component: _articleNew2.default
+    },
+    '/back/evenement': {
+      name: 'evenement',
+      component: _evenement2.default
+
+    }
+  });
+
+  // Redirect 404 pages
+  router.redirect({
+    '*': '/back/dashboard'
+  });
+
+  router.start(_App2.default, '#app');
 });
 
-router.map({
-  '/back/dashboard': {
-    name: 'dashboard',
-    component: _dashboard2.default
-  },
-  '/back/article/': {
-    name: 'article',
-    component: _articleIndex2.default
-  },
-  '/back/article/new': {
-    name: 'newArticle',
-    component: _articleNew2.default
-  },
-  '/back/evenement': {
-    name: 'evenement',
-    component: _evenement2.default
-
-  }
-});
-
-// Redirect 404 pages
-router.redirect({
-  '*': '/back/dashboard'
-});
-
-router.start(_App2.default, '#app');
-
-},{"./components/App.vue":8,"./components/Article/article.index.vue":9,"./components/Article/article.new.vue":10,"./components/Dashboard/dashboard.vue":12,"./components/Evenement/evenement.vue":13,"vue":6,"vue-resource":4,"vue-router":5}]},{},[14]);
+},{"./components/App.vue":8,"./components/Article/article.index.vue":9,"./components/Article/article.new.vue":10,"./components/Dashboard/dashboard.vue":13,"./components/Evenement/evenement.vue":14,"vue":6,"vue-resource":4,"vue-router":5}]},{},[15]);
 
 //# sourceMappingURL=main.js.map

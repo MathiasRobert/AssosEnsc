@@ -7,15 +7,15 @@ import ArticleView from './components/Article/article.index.vue';
 import ArticleNewView from './components/Article/article.new.vue';
 import EvenementView from './components/Evenement/evenement.vue';
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  Vue.use(Router);
+  Vue.use(Resource);
 
-Vue.use(Router);
-Vue.use(Resource);
+  var router = new Router({
+    history: true
+  });
 
-var router = new Router({
-	  history: true
-});
-
-router.map({
+  router.map({
   '/back/dashboard': {
     name: 'dashboard',
     component: DashboardView, 
@@ -33,12 +33,15 @@ router.map({
     component: EvenementView, 
 
   },
-});
+  });
 
-// Redirect 404 pages
-router.redirect({
+  // Redirect 404 pages
+  router.redirect({
   '*': '/back/dashboard'
+  });
+
+
+  router.start(App, '#app');
+
 });
 
-
-router.start(App, '#app');

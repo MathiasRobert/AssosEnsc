@@ -6,22 +6,22 @@
 
       <div class="logo">
           <a href="#" class="simple-text">
-               Bureau des élèves
+               {{currentAssociation.nom}}
           </a>
       </div>
       <div class="logo logo-mini">
           <a href="#" class="simple-text">
-               BDE
+               {{currentAssociation.diminutif}}
           </a>
       </div>
       <div class="sidebar-wrapper">
           <div class="user">
               <div class="photo">
-                  <img src="/images/bde.jpg" />
+                  <img v-bind:src="currentAssociation.logo" />
               </div>
               <div class="info">
                   <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                       $association->email 
+                       {{currentAssociation.email}} 
                       <b class="caret"></b>
                   </a>
                   <div class="collapse" id="collapseExample">
@@ -107,6 +107,11 @@
 
                                 <form id="logout-form" action="http://localhost:8000/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="F53ezuUAZ4V8IOmNOAeIbJHCtgMXa74JodDLHLti"></form>
                             </li>
+                            <li>
+                                <a href="/">
+                                    Retour sur le site
+                                </a>
+                            </li>
                         </ul>
                 </li></ul>
             </div>
@@ -129,11 +134,43 @@
 
 <script>
 
+  import associationService from './Association/association.services.js';
+
   export default {
 
     replace :false,
 
+      data () {
+        return {
+          currentAssociation: {},
+        }
+      },
+
+      created: function () {
+        var vm = this;
+        associationService.getCurrentAssociation().then(function(response) {
+          vm.currentAssociation = response.body  
+        });
+      },
+
+      methods: {
+      },
+
+      events: {
+      },
+
+      watch: {
+      },
+
+      route: {
+        data ({ to }) {
+          console.log("hello");
+          
+        }
+      }
   }
+
+
 
 </script>
 
