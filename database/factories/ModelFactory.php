@@ -39,9 +39,7 @@ $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 		'titre' => $faker->name,
 		'lieu' => $faker->streetName,
 		'dateDeb' => $faker->dateTime(),
-		'heureDeb' => '08:00',
 		'dateFin' => $faker->dateTime(),
-		'heureFin' => '18:00',
 		'prix' => $faker->numberBetween(0,70),
 		'tarifs' => '3$ La pinte, 4$ Mojito et le pastaga 2$',
 		'description' => $faker->text(200),
@@ -75,8 +73,24 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     $userRandom = User::orderBy(DB::raw('RAND()'))->first();
 
     return [
-        // 'association_id' => 0,// redefini Dans ArticlesTableSeeder,
         'user_id' => $userRandom->id,
         'texte' => $faker->paragraphs($nb = 4, $asText = true),
+    ];
+});
+
+$factory->define(App\Membre::class, function (Faker\Generator $faker) {
+
+    $faker->locale('fr_FR');
+
+    return [
+        'association_id' => 0,// redefini Dans ArticlesTableSeeder,
+        'nom' => $faker->lastName,
+        'prenom' => $faker->firstName,
+        'surnom' => $faker->userName,
+        'poste' => $faker->jobTitle,
+        'email' => $faker->email,
+        'description' => $faker->paragraphs($nb = 1, $asText = true),
+        'photo' => $faker->imageUrl($width = 500, $height = 500),
+        'created_at' => $faker->dateTime,
     ];
 });

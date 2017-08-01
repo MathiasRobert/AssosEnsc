@@ -11,17 +11,23 @@ use Illuminate\Support\Facades\Response;
 
 use Auth;
 
+use Validator;
+use Illuminate\Support\Facades\Input;
+
+
 class AssociationController extends Controller
 {
 
     public function index(Request $request, $diminutif)
     {
         $association = Association::where('diminutif', $diminutif)->first();
-        $articles = Article::where('association_id', $association->id)->join('categorie_articles', 'articles.categorie_id', '=', 'categorie_articles.id')->get();
+        $association->couleur = $association->couleur->code;
+        $articles = $association->articles;
         foreach($articles as $entries){
+            $entries->categorie = $entries->categorie->nom;
             $entries->texte = substr($entries->texte, 0, 250);
         }
-        $evenements = Evenement::where('association_id', $association->id)->get();
+        $evenements = $association->evenements;
         foreach($evenements as $entries){
             $dateEvenement = Carbon::parse($entries->dateDeb.' '.$entries->heureDeb);
             $dateActuelle = Carbon::now();
@@ -33,9 +39,41 @@ class AssociationController extends Controller
         return view('pages.asso.index', compact('articles', 'evenements', 'association'));
     }
 
+
     public function getCurrentAssociation(Request $request){
         return Association::where('email', Auth::user()->email)->first();
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $rules = array(
+            'couleur_id'       => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('admin/association')
+                ->withErrors($validator);
+        } else {
+            $association = Association::find($id);
+            if($request->get('logo') != null)
+                $association->logo     = $request->get('logo');
+            $association->couleur_id = $request->get('couleur_id');
+            $association->lien_facebook = $request->get('lien_facebook');
+            $association->lien_siteweb = $request->get('lien_siteweb');
+            $association->description_courte = $request->get('description_courte');
+            $association->description_longue = $request->get('description_longue');
+            $association->save();
+
+            return redirect('admin/association');
+        }
+    }
 
 }

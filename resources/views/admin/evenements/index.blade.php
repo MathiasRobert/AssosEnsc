@@ -7,10 +7,17 @@
                 <div class="card-header card-header-icon" data-background-color="purple">
                     <i class="material-icons">assignment</i>
                 </div>
+                <div class="card-header card-header-button">
+                    <a href="{{ route('evenements.create') }}" class="btn btn-primary">
+                        <i class="material-icons">add_circle</i> Ajouter un évènement
+                    </a>
+                </div>
                 <div class="card-content">
-                    <h4 class="card-title">Gestion des évènements</h4>
+                    <h4 class="card-title">
+                        Gestion des évènements
+                    </h4>
                     <div class="toolbar">
-                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+
                     </div>
                     <div class="material-datatables">
                         <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -41,10 +48,10 @@
                                                 <td>{{ $evenement->dateDeb }}</td>
                                                 <td>{{ $evenement->updated_at }}</td>
                                                 <td class="text-right">
-                                                    <a href="#" class="btn btn-simple btn-info btn-icon like"><i
+                                                    <a href="{{ route('evenements.edit', $evenement->id) }}" class="btn btn-simple btn-info btn-icon"><i
                                                                 class="material-icons">edit</i></a>
-                                                    <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i
-                                                                class="material-icons">close</i></a>
+                                                    <button data-id="{{ $evenement->id }}" data-token="{{ csrf_token() }}" class="btn btn-simple btn-danger btn-icon remove-event"><i
+                                                                class="material-icons">close</i></button>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -4,9 +4,7 @@ require('laravel-elixir-vueify');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.sass('admin.scss');
     mix.browserify('main.js');
 });
 
-// elixirVue(function(mix) {
-//     // mix.sass('app.scss');
-// });

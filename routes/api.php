@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('admin/articles', 'ArticleControllerApi');
-Route::resource('admin/evenements', 'EvenementControllerApi');
+Route::resource('admin/evenements', 'EvenementController');
 
 
 Route::get('admin/getAllCategoriesArticle', 'ArticleControllerApi@getAllCategoriesArticle');

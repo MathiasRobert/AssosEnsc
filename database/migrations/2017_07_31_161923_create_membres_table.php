@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssociationsTable extends Migration
+class CreateMembresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,24 @@ class CreateAssociationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('associations', function (Blueprint $table) {
+        Schema::create('membres', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->integer('association_id')->unsigned();
             $table->string('nom');
-            $table->string('diminutif', 8);
+            $table->string('prenom');
+            $table->string('poste');
+            $table->string('surnom')->nullable();
             $table->string('email');
-            $table->integer('couleur_id')->unsigned();
             $table->string('lien_facebook')->nullable();
-            $table->string('lien_siteweb')->nullable();
-            $table->string('description_courte')->nullable();
-            $table->text('description_longue')->nullable();
-            $table->string('logo');
+            $table->text('description')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('associations', function($table) {
-            $table->foreign('couleur_id')->references('id')->on('couleurs');
+        Schema::table('membres', function($table) {
+            $table->foreign('association_id')->references('id')->on('associations');
         });
     }
 
@@ -41,6 +41,6 @@ class CreateAssociationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associations');
+        Schema::dropIfExists('membres');
     }
 }

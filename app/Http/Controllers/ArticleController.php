@@ -9,6 +9,7 @@ use Auth;
 use App\Association;
 use Validator;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\StoreArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -41,38 +42,19 @@ class ArticleController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'titre'       => 'required',
-            'texte'      => 'required',
-            'image' => 'required',
-            'categorie' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return redirect('admin/articles/create')
-                ->withErrors($validator);
-        } else {
-            // store
-            $association = Association::where('email', Auth::user()->email)->first();
-
-            $article = new Article();
-            $article->titre     = $request->get('titre');
-            $article->texte     = $request->get('texte');
-            $article->image     = $request->get('image');
-            $article->categorie_id     = $request->get('categorie');
-            $article->association_id = $association->id;
-            $article->save();
-
-            // redirect
-            //Session::flash('message', 'Successfully created nerd!');
-            return redirect('admin/articles');
+        $article = new Article($request->all());
+        $association = Association::where('email', Auth::user()->email)->first();
+        $article->association_id = $association->id;
+        $article->image = '/images/image_placeholder.jpg';
+        $article->save();
+        if (isset($request->image) && $request->file('image')->isValid()) {
+            $article->image = $request->image->store('public/images/'.$article->association_id.'/articles/'.$article->id);
+            $article->image = '/storage/'.substr($article->image, 7);
         }
+        $article->save();
+        return redirect('admin/articles');
     }
 
     /**
@@ -95,38 +77,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreArticleRequest $request, $id)
     {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'titre'       => 'required',
-            'texte'      => 'required',
-            'image' => 'required',
-            'categorie' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return redirect('admin/articles/create')
-                ->withErrors($validator);
-        } else {
-            // store
-            $association = Association::where('email', Auth::user()->email)->first();
-
-            $article = Article::find($id);
-            $article->titre     = $request->get('titre');
-            $article->texte     = $request->get('texte');
-            $article->image     = $request->get('image');
-            $article->categorie_id     = $request->get('categorie');
-            $article->association_id = $association->id;
-            $article->save();
-
-            // redirect
-            //Session::flash('message', 'Successfully created nerd!');
-            return redirect('admin/articles');
+        $article = Article::find($id);
+        $article->fill($request->all());
+        if (isset($request->image) && $request->file('image')->isValid()) {
+            $article->image = $request->image->store('public/images/'.$article->association_id.'/articles/'.$article->id);
+            $article->image = '/storage/'.substr($article->image, 7);
         }
+        $article->save();
+        return redirect('admin/articles');
     }
 
     /**
@@ -135,14 +95,15 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        // delete
-        $article = Article::find($id);
-        $article->delete();
+        Article::destroy($id);
 
-        // redirect
-        //Session::flash('message', 'Successfully deleted the nerd!');
-        return redirect('admin/articles');
+        if ( $request->ajax() ) {
+            Article::destroy($request->all());
+
+            return response(['status' => 'success']);
+        }
+        return response(['status' => 'failed']);
     }
 }

@@ -22,14 +22,12 @@ class CreateEvenementsTable extends Migration
             $table->string('titre');
             $table->string('lieu');
             $table->date('dateDeb');
-            $table->time('heureDeb')->nullable();
             $table->date('dateFin')->nullable();
-            $table->time('heureFin')->nullable();
             $table->float('prix');
             $table->text('tarifs')->nullable();
             $table->text('description')->nullable();
             $table->string('affiche');
-            $table->integer('nbMaxParticipants');
+            $table->integer('nbMaxParticipants')->nullable();
             $table->timestamps();
         });
 

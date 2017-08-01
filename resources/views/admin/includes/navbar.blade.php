@@ -16,9 +16,11 @@
             <a class="navbar-brand" href="#">
                 @if(Route::currentRouteName() === 'admin')
                     Dashboard
+                @elseif(Route::currentRouteName() === 'admin.association')
+                    Gestion de l'association
                 @elseif(Route::currentRouteName() === 'articles.index')
                     Listes des articles
-                @elseif(Route::currentRouteName() === 'adminEvenements')
+                @elseif(Route::currentRouteName() === 'evenements.index')
                     Listes des évènements
                 @endif
             </a>
@@ -26,9 +28,9 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">dashboard</i>
-                        <p class="hidden-lg hidden-md">Dashboard</p>
+                    <a href="/">
+                        <i class="material-icons">web</i>
+                        <p class="hidden-lg hidden-md">Site</p>
                     </a>
                 </li>
                 <li class="dropdown">

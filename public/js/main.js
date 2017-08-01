@@ -15111,18 +15111,121 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3}],14:[function(require,module,exports){
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">Gestion des évènements</h4>\n                <div class=\"toolbar\">\n                    <!--        Here you can write extra buttons/actions for the toolbar              -->\n                </div>\n                <div class=\"material-datatables\">\n                    <div id=\"datatables_wrapper\" class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"datatables\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Affiche</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting\">Lieu</th>\n                                        <th class=\"sorting\">Prix</th>\n                                        <th class=\"sorting\">Date</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                    <!-- @foreach($evenements as $evenement) -->\n                                        <tr>\n                                            <td><img class=\"img img-responsive\" src=\" $evenement->affiche \"></td>\n                                            <td> $evenement-&gt;titre </td>\n                                            <td> $evenement-&gt;categorie-&gt;nom </td>\n                                            <td> $evenement-&gt;lieu </td>\n                                            <td> $evenement-&gt;prix </td>\n                                            <td> $evenement-&gt;dateDeb </td>\n                                            <td> $evenement-&gt;updated_at </td>\n                                            <td class=\"text-right\">\n                                                <a href=\"#\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                                <a href=\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"material-icons\">close</i></a>\n                                            </td>\n                                        </tr>\n                                    <!-- @endforeach -->\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n</div>\n"
+var __vueify_insert__ = require("vueify/lib/insert-css")
+var __vueify_style__ = __vueify_insert__.insert("#evenementAdminTable .img-evenement img {\n  max-width: 100px;\n}\n#evenementAdminTable .content-evenement p {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  max-width: 200px;\n}\n")
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _evenementServices = require('./evenement.services.js');
+
+var _evenementServices2 = _interopRequireDefault(_evenementServices);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      evenements: []
+    };
+  },
+
+
+  methods: {
+    deleteEvenement: function deleteEvenement(evenementToDelete, indexEvenement) {
+
+      var vm = this;
+
+      swal({
+        title: 'Êtes-vous sur ?',
+        text: "C'est une suppression définitive !",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        confirmButtonText: 'Supprimer',
+        cancelButtonText: 'Annuler',
+        buttonsStyling: false
+      }).then(function () {
+
+        _evenementServices2.default.delete(evenementToDelete.id).then(function (data) {
+          vm.evenements.splice(indexEvenement, 1);
+        }).catch(function (data) {
+          console.log(data);
+          $.notify({
+            icon: "danger",
+            message: "Erreur : article non supprimé"
+
+          }, {
+            type: "danger",
+            timer: 2000,
+            placement: {
+              from: 'top',
+              align: 'right'
+            }
+          });
+        });
+      }).catch(swal.noop);
+    }
+  },
+
+  events: {},
+
+  watch: {},
+
+  route: {
+    data: function data(_ref) {
+      var to = _ref.to;
+
+      return _evenementServices2.default.getAll().then(function (response) {
+        return {
+          evenements: response.body
+        };
+      });
+    }
+  }
+};
+if (module.exports.__esModule) module.exports = module.exports.default
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <div class=\"card\">\n            <div class=\"card-header card-header-icon\" data-background-color=\"purple\">\n                <i class=\"material-icons\">assignment</i>\n            </div>\n            <div class=\"card-content\">\n                <h4 class=\"card-title\">Gestion des évènements</h4>\n                <div class=\"toolbar\">\n                    <!--        Here you can write extra buttons/actions for the toolbar              -->\n                    <div class=\"card-header card-header-button\">\n                    <a href=\"http://localhost:8000/admin/evenements/create\" class=\"btn btn-primary\">\n                        <i class=\"material-icons\">add_circle</i> Ajouter un évènement\n                    <div class=\"ripple-container\"></div></a>\n                </div>\n                </div>\n                <div class=\"material-datatables\">\n                    <div id=\"datatables_wrapper\" class=\"dataTables_wrapper form-inline dt-bootstrap\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                <table id=\"evenementAdminTable\" class=\"table table-striped table-no-bordered table-hover dataTable dtr-inline\">\n                                    <thead>\n                                    <tr>\n                                        <th class=\"disabled-sorting\">Affiche</th>\n                                        <th class=\"sorting\">Titre</th>\n                                        <th class=\"sorting\">Categorie</th>\n                                        <th class=\"sorting\">Lieu</th>\n                                        <th class=\"sorting\">Prix</th>\n                                        <th class=\"sorting\">Date</th>\n                                        <th class=\"sorting\">Dernière modifs</th>\n                                        <th class=\"disabled-sorting text-right sorting\">Actions</th>\n                                    </tr>\n                                    </thead>\n                                    <tbody>\n                                        <tr v-for=\"evenement in evenements\" track-by=\"$index\">\n                                        <!-- <tr> -->\n                                            <td class=\"img-evenement\"><img class=\"img img-responsive\" v-bind:src=\"evenement.affiche\"></td>\n                                            <td> {{evenement.titre }}</td>\n                                            <td> {{evenement.categorie.nom }}</td>\n                                            <td> {{evenement.lieu }}</td>\n                                            <td> {{evenement.prix }}</td>\n                                            <td> {{evenement.dateDeb }}</td>\n                                            <td> {{evenement.updated_at }}</td>\n                                            <td class=\"text-right\">\n                                                <a href=\"#\" class=\"btn btn-simple btn-info btn-icon like\"><i class=\"material-icons\">edit</i></a>\n                                                <a href=\"#\" class=\"btn btn-simple btn-danger btn-icon remove\" v-on:click=\"deleteEvenement(evenement,$index)\"><i class=\"material-icons\">close</i></a>\n                                            </td>\n                                        </tr>\n                                    </tbody>\n                                </table>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <!-- end content-->\n        </div>\n        <!--  end card  -->\n    </div>\n    <!-- end col-md-12 -->\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
+  module.hot.dispose(function () {
+    __vueify_insert__.cache["#evenementAdminTable .img-evenement img {\n  max-width: 100px;\n}\n#evenementAdminTable .content-evenement p {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  max-width: 200px;\n}\n"] = false
+    document.head.removeChild(__vueify_style__)
+  })
   if (!module.hot.data) {
-    hotAPI.createRecord("_v-7224f2ce", module.exports)
+    hotAPI.createRecord("_v-614d853d", module.exports)
   } else {
-    hotAPI.update("_v-7224f2ce", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+    hotAPI.update("_v-614d853d", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
   }
 })()}
-},{"vue":6,"vue-hot-reload-api":3}],15:[function(require,module,exports){
+},{"./evenement.services.js":15,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],15:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  getAll: function getAll() {
+    return _vue2.default.http.get('/api/admin/evenements');
+  },
+  delete: function _delete(id) {
+    return _vue2.default.http.delete('/api/admin/evenements/' + id);
+  }
+};
+
+},{"vue":6}],16:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -15153,9 +15256,9 @@ var _articleNew = require('./components/Article/article.new.vue');
 
 var _articleNew2 = _interopRequireDefault(_articleNew);
 
-var _evenement = require('./components/Evenement/evenement.vue');
+var _evenementIndex = require('./components/Evenement/evenement.index.vue');
 
-var _evenement2 = _interopRequireDefault(_evenement);
+var _evenementIndex2 = _interopRequireDefault(_evenementIndex);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15182,7 +15285,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     },
     '/back/evenement': {
       name: 'evenement',
-      component: _evenement2.default
+      component: _evenementIndex2.default
 
     }
   });
@@ -15195,6 +15298,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   router.start(_App2.default, '#app');
 });
 
-},{"./components/App.vue":8,"./components/Article/article.index.vue":9,"./components/Article/article.new.vue":10,"./components/Dashboard/dashboard.vue":13,"./components/Evenement/evenement.vue":14,"vue":6,"vue-resource":4,"vue-router":5}]},{},[15]);
+},{"./components/App.vue":8,"./components/Article/article.index.vue":9,"./components/Article/article.new.vue":10,"./components/Dashboard/dashboard.vue":13,"./components/Evenement/evenement.index.vue":14,"vue":6,"vue-resource":4,"vue-router":5}]},{},[16]);
 
 //# sourceMappingURL=main.js.map

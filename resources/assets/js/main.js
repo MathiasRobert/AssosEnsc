@@ -5,7 +5,7 @@ import App from './components/App.vue';
 import DashboardView from './components/Dashboard/dashboard.vue';
 import ArticleView from './components/Article/article.index.vue';
 import ArticleNewView from './components/Article/article.new.vue';
-import EvenementView from './components/Evenement/evenement.vue';
+import EvenementIndexView from './components/Evenement/evenement.index.vue';
 
 document.addEventListener("DOMContentLoaded", function(event) {
   Vue.use(Router);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   },
   '/back/evenement': {
     name: 'evenement',
-    component: EvenementView, 
+    component: EvenementIndexView, 
 
   },
   });

@@ -4,9 +4,9 @@ export default {
   getAll () {
     return Vue.http.get('/api/admin/evenements');
   },
-  // getAllCategoriesArticle () {
-  //   return Vue.http.get('/api/admin/getAllCategoriesArticle');
-  // },
+  delete (id) {
+    return Vue.http.delete('/api/admin/evenements/'+id);
+  },
   // postArticle (data) {
   //   return Vue.http.post('/api/admin/articles', data);
   // }

@@ -12,10 +12,10 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <form id="TypeValidation" class="form-horizontal" action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
+            <form id="TypeValidation" class="form-horizontal" action="{{ route('evenements.store') }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 <div class="card-header card-header-with-icons" data-background-color="purple">
-                    <h4 class="card-title">Ajouter un article</h4>
+                    <h4 class="card-title">Ajouter un évènement</h4>
                 </div>
                 <div class="card-content">
                     <div class="row">
@@ -27,9 +27,9 @@
                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                 <div>
                                     <span class="btn btn-primary btn-round btn-file">
-                                        <span class="fileinput-new">Selectionner une image</span>
+                                        <span class="fileinput-new">Selectionner une affiche</span>
                                         <span class="fileinput-exists">Changer</span>
-                                        <input type="file" name="image">
+                                        <input type="file" name="affiche">
                                     </span>
                                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
                                        data-dismiss="fileinput"><i class="fa fa-times"></i> Supprimer</a>
@@ -42,17 +42,17 @@
                         <div class="col-sm-7">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input class="form-control" type="text" name="titre" required="true">
+                                <input class="form-control" type="text" name="titre" required>
                                 <span class="material-input"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-2 label-on-left">Texte</label>
+                        <label class="col-sm-2 label-on-left">Lieu</label>
                         <div class="col-sm-7">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input class="form-control" type="text" name="texte" required="true">
+                                <input class="form-control" type="text" name="lieu" required>
                                 <span class="material-input"></span></div>
                         </div>
                     </div>
@@ -67,6 +67,49 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 label-on-left">Date de début</label>
+                        <div class="col-sm-2">
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"></label>
+                                <input name="dateDeb" type="text" class="form-control datetimepicker" required>
+                                <span class="material-input"></span></div>
+                        </div>
+                        <label class="col-sm-2 label-on-left">Date de fin</label>
+                        <div class="col-sm-2">
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"></label>
+                                <input name="dateFin" type="text" class="form-control datetimepicker">
+                                <span class="material-input"></span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 label-on-left">Prix</label>
+                        <div class="col-sm-7">
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"></label>
+                                <input class="form-control" type="number" name="prix" required>
+                                <span class="material-input"></span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 label-on-left">Tarifs</label>
+                        <div class="col-sm-7">
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"></label>
+                                <textarea class="form-control" name="tarifs" rows="2" cols="50"></textarea>
+                                <span class="material-input"></span></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 label-on-left">Description</label>
+                        <div class="col-sm-7">
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label"></label>
+                                <textarea class="form-control" name="description" rows="6" cols="50"></textarea>
+                                <span class="material-input"></span></div>
                         </div>
                     </div>
                 </div>
