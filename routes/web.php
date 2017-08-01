@@ -15,11 +15,7 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('users', ['uses' => 'UsersController@index']);
-Route::get('users/create', ['uses' => 'UsersController@create']);
-Route::post('users', ['uses' => 'UsersController@store']);
-
-Route::get('asso/{diminutif}', ['uses' => 'AssociationController@index']);
+Route::get('asso/{diminutif}', ['uses' => 'PagesController@index']);
 
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
@@ -27,11 +23,11 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', ['uses' => 'AdminController@dashboard'])->name('admin');
-    Route::get('admin/association/{tab}', ['uses' => 'AdminController@association'])->name('admin.association');
-    Route::put('admin/association/{id}', ['uses' => 'AssociationController@update'])->name('association.update');
+    Route::get('admin/associations/{tab}', ['uses' => 'AdminController@association']);
     Route::resource('admin/articles', 'ArticleController', ['except' => ['show']]);
     Route::resource('admin/evenements', 'EvenementController', ['except' => ['show']]);
     Route::resource('admin/membres', 'MembreController', ['except' => ['show', 'index']]);
+    Route::resource('admin/associations', 'AssociationController', ['except' => ['show', 'index', 'destroy']]);
 
 });
 

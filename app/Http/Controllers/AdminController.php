@@ -18,27 +18,12 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('association'));
     }
 
-    public function articles()
-    {
-        $association = Association::where('email', Auth::user()->email)->first();
-        $articles = $association->articles->all();
-        return view('admin.article', compact('articles', 'association'));
-    }
-
-    public function evenements()
-    {
-        $association = Association::where('email', Auth::user()->email)->first();
-        $evenements = $association->evenements->all();
-        return view('admin.evenement', compact('evenements', 'association'));
-
-    }
-
     public function association($tab)
     {
         $association = Association::where('email', Auth::user()->email)->first();
         $couleurs = Couleur::all();
         $membres = $association->membres->all();
-        return view('admin.association', compact( 'association', 'couleurs', 'membres', 'tab'));
+        return view('admin.associations.edit', compact( 'association', 'couleurs', 'membres', 'tab'));
 
     }
 }
