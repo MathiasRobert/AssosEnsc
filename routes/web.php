@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('asso/{diminutif}', ['uses' => 'PagesController@index']);
+Route::resource('evenements', 'EvenementController', ['only' => ['show']]);
 
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

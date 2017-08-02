@@ -3,11 +3,11 @@
         content: url("{{ $association->logo }}")
     }
 
-    .btn,
-    .btn:hover,
-    .btn:active,
-    .btn:visited,
-    .btn:focus {
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited,
+    .btn-primary:focus {
         background-color: {{ $association->couleur }} !important;
     }
 

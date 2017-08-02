@@ -25,6 +25,14 @@ class EvenementController extends Controller
         return view('admin.evenements.index', compact('evenements', 'association'));
     }
 
+    public function show($id)
+    {
+        $evenement = Evenement::find($id);
+        $association = Association::find($evenement->association_id);
+        $association->couleur = $association->couleur->code;
+        return view('pages.asso.evenements.show', compact('evenement', 'association'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

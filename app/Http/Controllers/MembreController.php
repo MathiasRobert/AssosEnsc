@@ -49,7 +49,7 @@ class MembreController extends Controller
             $membre->photo = '/storage/'.substr($membre->photo, 7);
         }
         $membre->save();
-        return redirect('admin/membres');
+        return redirect('admin/association/equipe/edit');
     }
 
     /**
@@ -81,7 +81,7 @@ class MembreController extends Controller
             $membre->photo = '/storage/'.substr($membre->photo, 7);
         }
         $membre->save();
-        return redirect('admin/membres');
+        return redirect('admin/association/equipe/edit');
     }
 
     /**

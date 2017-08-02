@@ -15,7 +15,7 @@
             </li>
         </ul> -->
         <div class="table-responsive">
-            <table class="table table-evenements">
+            <table class="table table-shopping">
                 <thead>
                 <tr>
                     <th class="text-center"></th>
@@ -44,14 +44,13 @@
                         </td>
                         <td class="td-actions text-right">
                             <div class="btn-group-lg btn-group-vertical">
-                                <a href="" role="button" class="btn btn-block">
+                                <a href=" {{ route('evenements.show', $e->id) }}" role="button" class="btn btn-primary btn-block">
                                     En savoir plus <i class="material-icons">info</i>
                                 </a>
                                 @if(!$e->estPasse)
                                     <a id="" role="button" class="btn-inscription btn btn-success btn-block">
                                         Participer &nbsp;
                                         <i class="material-icons"></i>
-                                        <div class="ripple-container"></div>
                                     </a>
                                 @endif
                             </div>
