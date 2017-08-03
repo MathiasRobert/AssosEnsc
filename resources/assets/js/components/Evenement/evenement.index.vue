@@ -33,7 +33,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="evenement in evenements" track-by="$index">
+                                        <tr v-for="evenement in evenements" track-by="$index" v-bind:key="evenement.id">
                                         <!-- <tr> -->
                                             <td class="img-evenement"><img class="img img-responsive" v-bind:src="evenement.affiche"/></td>
                                             <td> {{evenement.titre }}</td>
@@ -43,7 +43,7 @@
                                             <td> {{evenement.dateDeb }}</td>
                                             <td> {{evenement.updated_at }}</td>
                                             <td class="text-right">
-                                                <a href="#" class="btn btn-simple btn-info btn-icon like"><i
+                                                <a href="#" v-link="{ name: 'editEvenement',params: { id: evenement.id }}" class="btn btn-simple btn-info btn-icon like"><i
                                                             class="material-icons">edit</i></a>
                                                 <a href="#" class="btn btn-simple btn-danger btn-icon remove" v-on:click="deleteEvenement(evenement,$index)"><i
                                                             class="material-icons">close</i></a>
@@ -102,7 +102,6 @@ export default {
                 $.notify({
                     icon: "danger",
                     message: "Erreur : article non supprimé"
-
                 },{
                     type: "danger",
                     timer: 2000,
@@ -135,7 +134,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
   #evenementAdminTable
       .img-evenement
           img{

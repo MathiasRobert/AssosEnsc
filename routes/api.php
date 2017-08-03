@@ -24,4 +24,5 @@ Route::resource('admin/evenements', 'EvenementController');
 
 
 Route::get('admin/getAllCategoriesArticle', 'ArticleControllerApi@getAllCategoriesArticle');
+Route::get('admin/getAllCategoriesEvenement', 'EvenementController@getAllCategoriesEvenement');
 Route::get('admin/getCurrentAssociation', 'AssociationController@getCurrentAssociation');

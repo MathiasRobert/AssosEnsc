@@ -6,6 +6,9 @@ import DashboardView from './components/Dashboard/dashboard.vue';
 import ArticleView from './components/Article/article.index.vue';
 import ArticleNewView from './components/Article/article.new.vue';
 import EvenementIndexView from './components/Evenement/evenement.index.vue';
+import EvenementEditView from './components/Evenement/evenement.edit.vue';
+
+Vue.config.debug = true;
 
 document.addEventListener("DOMContentLoaded", function(event) {
   Vue.use(Router);
@@ -31,7 +34,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   '/back/evenement': {
     name: 'evenement',
     component: EvenementIndexView, 
-
+  },
+  '/back/evenement/edit/:id': {
+    name: 'editEvenement',
+    component: EvenementEditView, 
   },
   });
 

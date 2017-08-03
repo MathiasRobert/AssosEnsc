@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\CategorieEvenement;
-use App\Evenement;
 use App\Http\Requests\StoreEvenementRequest;
 use Illuminate\Http\Request;
-use App\Association;
 use Auth;
 use Validator;
 use Illuminate\Support\Facades\Input;
+
+use App\Association;
+use App\Evenement;
+use App\CategorieEvenement;
 
 class EvenementController extends Controller
 {
@@ -41,6 +42,17 @@ class EvenementController extends Controller
         $association = Association::where('email', Auth::user()->email)->first();
         $categories = CategorieEvenement::all();
         return view('admin.evenements.create', compact('association', 'categories'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id,Request $request)
+    {
+        // return Evenement::find($id);
+        return Evenement::with('categorie')->find($id);
     }
 
     /**
@@ -107,6 +119,7 @@ class EvenementController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        // return All();
         Evenement::destroy($id);
         // var deroro;
         // if ($request->ajax()) {
@@ -116,5 +129,9 @@ class EvenementController extends Controller
         // }
         // return Evenement::all()->getEl();
         return response(['status' => 'success','id_deleted' => $id]);
+    }
+
+    public function getAllCategoriesEvenement(Request $request){
+        return CategorieEvenement::all();
     }
 }

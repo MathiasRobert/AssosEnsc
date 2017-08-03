@@ -34,7 +34,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="article in articles">
+                                    <tr v-for="article in articles" v-bind:key="article.id">
                                         <td class="img-article"><img class="img img-responsive" v-bind:src="article.image"/></td>
                                         <td> {{article.titre}}</td>
                                         <td class="content-article"><p>{{article.texte}}</p></td>
@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
   #articleAdminTable
       .img-article
           img{
