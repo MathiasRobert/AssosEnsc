@@ -41,19 +41,19 @@
           </div>
           <ul class="nav">
             <li>
-              <router-link to="dashboard">
+              <router-link :to="{name:'dashboard'}">
                   <i class="material-icons">dashboard</i>
                   <p>Dashboard</p>
               </router-link>
             </li>
             <li>
-              <router-link to="article">
+              <router-link :to="{name:'article'}">
                   <i class="material-icons">image</i>
                   <p>Articles</p>
               </router-link>
             </li>
             <li>
-              <router-link to="evenement">
+              <router-link :to="{name:'evenement'}">
                   <i class="material-icons">apps</i>
                   <p>Événements</p>
               </router-link>
