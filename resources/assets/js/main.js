@@ -10,44 +10,55 @@ import EvenementEditView from './components/Evenement/evenement.edit.vue';
 
 Vue.config.debug = true;
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  Vue.use(Router);
-  Vue.use(Resource);
+Vue.use(Router);
+Vue.use(Resource);
 
-  var router = new Router({
-    history: true
-  });
-
-  router.map({
-  '/back/dashboard': {
-    name: 'dashboard',
-    component: DashboardView, 
-  },
-  '/back/article/': {
-    name: 'article',
-    component: ArticleView,
-  },
-  '/back/article/new': {
-    name: 'newArticle',
-    component: ArticleNewView,
-  },
-  '/back/evenement': {
-    name: 'evenement',
-    component: EvenementIndexView, 
-  },
-  '/back/evenement/edit/:id': {
-    name: 'editEvenement',
-    component: EvenementEditView, 
-  },
-  });
-
-  // Redirect 404 pages
-  router.redirect({
-  '*': '/back/dashboard'
-  });
-
-
-  router.start(App, '#app');
-
+const router = new Router({
+  // history: true,
+  mode: 'history',
+  routes:[
+    {
+      path:'/back/dashboard',
+      name: 'dashboard',
+      component: DashboardView, 
+    },
+    {
+      path:'/back/article/',
+      name: 'article',
+      component: ArticleView,
+    },
+   {
+    path: '/back/article/new',
+      name: 'newArticle',
+      component: ArticleNewView,
+    },
+    {
+      path:'/back/evenement',
+      name: 'evenement',
+      component: EvenementIndexView, 
+    },
+    {
+      path:'/back/evenement/edit/:id',
+      name: 'editEvenement',
+      component: EvenementEditView, 
+    },
+    {
+      path:'*',redirect:'/back/dashboard'
+    }
+  ]
 });
+
+// // router.map();
+
+// Redirect 404 pages
+// router.redirect({
+// '*': '/back/dashboard'
+// });
+
+const app = new Vue({
+  router,
+  el:'#app',
+  render : h => h(App)
+});
+// router.start(App, '#app');
 

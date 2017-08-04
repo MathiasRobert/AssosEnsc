@@ -13,7 +13,6 @@
 	<link href="/css/material-dashboard.css" rel="stylesheet" />
 	<!--     Fonts and icons     -->
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,200,300,400" rel="stylesheet" type="text/css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>

@@ -40,24 +40,24 @@
               </div>
           </div>
           <ul class="nav">
-              <li v-link="{ name: 'dashboard', activeClass: 'active'}">
-                  <a>
-                      <i class="material-icons">dashboard</i>
-                      <p>Dashboard</p>
-                  </a>
-              </li>
-              <li v-link="{ name: 'article', activeClass: 'active'}">
-                  <a>
-                      <i class="material-icons">image</i>
-                      <p>Articles</p>
-                  </a>
-              </li>
-              <li v-link="{ name: 'evenement', activeClass: 'active'}">
-                  <a>
-                      <i class="material-icons">apps</i>
-                      <p>Evenements</p>
-                  </a>
-              </li>
+            <li>
+              <router-link to="dashboard">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="article">
+                  <i class="material-icons">image</i>
+                  <p>Articles</p>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="evenement">
+                  <i class="material-icons">apps</i>
+                  <p>Événements</p>
+              </router-link>
+            </li>
           </ul>
       </div>
   </div>
@@ -119,12 +119,14 @@
       </nav>
       <div class="content">
         <main>
+        <transition name="fade">
           <router-view
             class="view"
             keep-alive
             transition
             transition-mode="out-in">
           </router-view>
+          </transition>
         </main>
       </div>
   </div>
@@ -177,6 +179,26 @@
 
 <style lang="scss">
 
+.sidebar .nav li > a:hover, .sidebar .nav li > a:focus, .off-canvas-sidebar .nav li > a:hover, .off-canvas-sidebar .nav li > a:focus{
+    background-color: #9c27b0;
+}
+ul.nav{
+  a.router-link-active,a:hover{
+      background-color: #9c27b0;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 
 </style>
-

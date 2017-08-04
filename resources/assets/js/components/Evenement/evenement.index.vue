@@ -1,3 +1,18 @@
+<style lang="scss">
+  #evenementAdminTable
+      .img-evenement
+          img{
+              max-width: 100px;
+          }
+      .content-evenement
+          p{
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              max-width: 200px;
+          }
+</style>
+
 <template>
 <div class="row">
     <div class="col-md-12">
@@ -33,7 +48,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="evenement in evenements" track-by="$index" v-bind:key="evenement.id">
+                                        <tr v-for="evenement in evenements" :key="evenement.id">
                                         <!-- <tr> -->
                                             <td class="img-evenement"><img class="img img-responsive" v-bind:src="evenement.affiche"/></td>
                                             <td> {{evenement.titre }}</td>
@@ -43,10 +58,14 @@
                                             <td> {{evenement.dateDeb }}</td>
                                             <td> {{evenement.updated_at }}</td>
                                             <td class="text-right">
-                                                <a href="#" v-link="{ name: 'editEvenement',params: { id: evenement.id }}" class="btn btn-simple btn-info btn-icon like"><i
-                                                            class="material-icons">edit</i></a>
-                                                <a href="#" class="btn btn-simple btn-danger btn-icon remove" v-on:click="deleteEvenement(evenement,$index)"><i
-                                                            class="material-icons">close</i></a>
+                                                <!-- <a href="#" v-link="{ name: 'editEvenement',params: { id: evenement.id }}" class="btn btn-simple btn-info btn-icon like"><i
+                                                            class="material-icons">edit</i></a> -->
+                                                <router-link to="editEvenement" :to="{ name: 'editEvenement', params: { id: evenement.id }}"  class="btn btn-simple btn-info btn-icon like">
+                                                    <i class="material-icons">edit</i>
+                                                </router-link>
+
+                                                <button href="#" class="btn btn-simple btn-danger btn-icon remove" v-on:click="showModalConfirmDelete(evenement)"><i
+                                                            class="material-icons">close</i></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -76,12 +95,22 @@ export default {
     }
   },
 
-  methods: {
-    deleteEvenement(evenementToDelete,indexEvenement){
-        
-        var vm = this;
+  created(){
+    this.getAllEvents();
+  },
 
-        swal({
+  methods: {
+
+    getAllEvents(){
+      var vm = this;
+      evenementService.getAll().then(function(response) {
+        vm.evenements = response.body
+      });
+    },
+
+    showModalConfirmDelete(evenementToDelete){
+      var vm = this;
+      swal({
             title: 'Êtes-vous sur ?',
             text: "C'est une suppression définitive !",
             type: 'warning',
@@ -91,29 +120,47 @@ export default {
             confirmButtonText: 'Supprimer',
             cancelButtonText: 'Annuler',
             buttonsStyling: false
-        }).then(function () {
-
-          evenementService.delete(evenementToDelete.id)
-            .then(function(data){
-                vm.evenements.splice(indexEvenement, 1);
-            })
-            .catch(function(data){
-                console.log(data);
-                $.notify({
-                    icon: "danger",
-                    message: "Erreur : article non supprimé"
-                },{
-                    type: "danger",
-                    timer: 2000,
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    }
-                });
-          })
-
+        }).then(function(isConfirmed){
+          vm.deleteEvenement(evenementToDelete);
         }).catch(swal.noop);
-    }
+    },
+
+    deleteEvenement(evenementToDelete){
+      var vm = this;
+      evenementService.delete(evenementToDelete.id)
+        .then(function(data){
+             vm.evenements = vm.evenements.filter(function (item) {
+              return evenementToDelete.id!=item.id;
+            });
+            vm.showSuccessOnDelete();
+        })
+        .catch(function(data){
+            vm.showErrorOnDelete();
+      });
+    },
+    showErrorOnDelete(){
+      $.notify({
+            message: "Erreur : article non supprimé"
+        },{
+            timer: 2000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+    },
+    showSuccessOnDelete(){
+      $.notify({
+            message: "Article supprimé"
+        },{
+            type: "success",
+            timer: 2000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+    },
   },
 
   events: {
@@ -122,29 +169,11 @@ export default {
   watch: {
   },
 
-  route: {
-    data ({ to }) {
-      return evenementService.getAll().then(function(response) {
-          return {
-            evenements : response.body
-          }
-      });
-    }
-  }
+  // route: {
+  //   data ({ to }) {
+      
+  //   }
+  // }
 }
 </script>
 
-<style lang="scss">
-  #evenementAdminTable
-      .img-evenement
-          img{
-              max-width: 100px;
-          }
-      .content-evenement
-          p{
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              max-width: 200px;
-          }
-</style>

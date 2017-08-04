@@ -1,3 +1,18 @@
+<style lang="scss">
+  #evenementAdminTable
+      .img-evenement
+          img{
+              max-width: 100px;
+          }
+      .content-evenement
+          p{
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              max-width: 200px;
+          }
+</style>
+
 <template>
     <div class="col-md-12">
     <div class="alert alert-danger">
@@ -39,7 +54,7 @@
                         <div class="col-sm-7">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input class="form-control" type="text" name="titre" value="{{ evenement.titre }}" required>
+                                <input class="form-control" type="text" name="titre" v-model="evenement.titre" required>
                                 <span class="material-input"></span>
                             </div>
                         </div>
@@ -49,7 +64,7 @@
                         <div class="col-sm-7">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input class="form-control" type="text" name="lieu" value="{{ evenement.lieu }}" required>
+                                <input class="form-control" type="text" name="lieu" v-model="evenement.lieu" required>
                                 <span class="material-input"></span></div>
                         </div>
                     </div>
@@ -69,14 +84,14 @@
                         <div class="col-sm-2">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input name="dateDeb" type="text" class="form-control datetimepicker" value="{{ evenement.dateDeb }}">
+                                <input name="dateDeb" type="text" class="form-control datetimepicker" v-model="evenement.dateDeb">
                                 <span class="material-input"></span></div>
                         </div>
                         <label class="col-sm-2 label-on-left">Date de fin</label>
                         <div class="col-sm-2">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input name="dateFin" type="text" class="form-control datetimepicker" value="{{ evenement.dateFin }}">
+                                <input name="dateFin" type="text" class="form-control datetimepicker" v-model="evenement.dateFin">
                                 <span class="material-input"></span></div>
                         </div>
                     </div>
@@ -138,19 +153,23 @@ export default {
                 // vm.evenements.splice(indexEvenement, 1);
             })
             .catch(function(data){
-                console.log(data);
-                $.notify({
-                    icon: "danger",
-                    message: "Erreur : article non créé"
-                },{
-                    type: "danger",
-                    timer: 2000,
-                    placement: {
-                        from: 'top',
-                        align: 'right'
+               
+          })
+    },
+    getEvenement(idEvenement){
+         var vm = this;
+         evenementService.show(this.$route.params.id).then(function(response) {
+              vm.evenement = response.body;
+              evenementService.getAllCategoriesEvenement()
+                .then(function(response) {
+                    vm.categories = response.body;
+                    for (var i = 0; i < vm.categories.length; i++) {
+                        if(vm.categories[i].id == vm.evenement.categorie_id){
+                            vm.categorieSelected = vm.categories[i];
+                        }
                     }
                 });
-          })
+          });
     }
   },
 
@@ -158,53 +177,22 @@ export default {
   },
 
   updated: function() {
-    //    categories:function(){
-            console.log(this.categories);
-            $(".selectpicker").selectpicker();
-        // }
-  },
-  beforeUpdate: function() {
-    //    categories:function(){
-            console.log(this.categories);
-            $(".selectpicker").selectpicker();
-        // }
+    // $(".selectpicker").remove();
+    $(".selectpicker").selectpicker('refresh');
+    $(".selectpicker").selectpicker('render');
+    console.log(this.categorieSelected);
+    $('.selectpicker').selectpicker('val', this.categorieSelected.id);
+    // $(".selectpicker").selectpicker('refresh').val(this.categorieSelected);
+
   },
   created: function() {
-    //    categories:function(){
-            console.log(this.categories);
-            $(".selectpicker").selectpicker();
-        // }
+        this.getEvenement();
   },
 
   route: {
     data ({ to }) {
     //   console.log(this);
-      var vm = this;
-      evenementService.show(to.params.id).then(function(response) {
-          vm.evenement = response.body;
-          vm.$set('evenement',response.body);
-          evenementService.getAllCategoriesEvenement()
-            .then(function(response) {
-                
-                // $('#formNewArticle .fileinput').fileinput('clear');
-                // vm.categories = response.body;
-                vm.$set('categories',response.body);
-                // console.log(vm);
-                // console.log(vm.categories);
-
-                for (var i = 0; i < vm.categories.length; i++) {
-                    if(vm.categories[i].id == vm.evenement.categorie_id){
-                        vm.categorieSelected = vm.categories[i];
-                    }
-                    
-                }
-                // $(".selectpicker").selectpicker();
-                    // categories : response.body
-                
-            });
-
-          
-      });
+     
 
       
 
@@ -214,20 +202,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  #evenementAdminTable
-      .img-evenement
-          img{
-              max-width: 100px;
-          }
-      .content-evenement
-          p{
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              max-width: 200px;
-          }
-</style>
-
-    

@@ -1,3 +1,7 @@
+<style lang="scss">
+  
+</style>
+
 <template>
     <div class="container-fluid">
 
@@ -50,7 +54,7 @@
                             <div class="col-lg-5 col-md-6 col-sm-3">
                                 <div class="btn-group bootstrap-select">
                                     <select class="selectpicker" data-style="btn btn-primary btn-round" name="categorie_id" v:model="categorieId">
-                                    <option v-for="categorie in categories" v-bind:key='categorie.id' value="{{categorie.id}}"> {{categorie.nom}} </option>
+                                    <option v-for="categorie in categories" v-bind:key='categorie.id' v-model="categorie.id"> {{categorie.nom}} </option>
                                     </select>
                                 </div>
                             </div>

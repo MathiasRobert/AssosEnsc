@@ -1,4 +1,19 @@
-<template>
+<style lang="scss">
+  #articleAdminTable
+      .img-article
+          img{
+              max-width: 100px;
+          }
+      .content-article
+          p{
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              max-width: 200px;
+          }
+</style>
+
+<template> 
   <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -6,9 +21,12 @@
                 <i class="material-icons">assignment</i>
             </div>
             <div class="card-header card-header-button">
-                <a v-link="{ name: 'newArticle' }" class="btn btn-primary">
+                <!-- <a v-link="{ name: 'newArticle' }" class="btn btn-primary">
                     <i class="material-icons">add_circle</i> Ajouter un article
                 </a>
+                 --><router-link to="newArticle" class="btn btn-primary">
+                  <i class="material-icons">add_circle</i> Ajouter un article
+                </router-link>
             </div>
             <div class="card-content">
                 <h4 class="card-title">
@@ -73,38 +91,34 @@ export default {
     }
   },
 
+  created(){
+    this.getAllArticles();
+  },
+
   methods: {
+    getAllArticles(){
+      var vm = this;
+      articleService.getAll().then(function(response) {
+        vm.articles = response.body;
+      });
+    }
   },
 
   events: {
   },
 
   watch: {
+    // 'route' (to, from) {
+    //   console.log(to,from);
+    // }
   },
 
   route: {
     data ({ to }) {
-      return articleService.getAll().then(function(response) {
-          return {
-            articles : response.body
-          }
-      });
+      console.log(to);
+      return 
     }
   }
 }
 </script>
 
-<style lang="scss">
-  #articleAdminTable
-      .img-article
-          img{
-              max-width: 100px;
-          }
-      .content-article
-          p{
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              max-width: 200px;
-          }
-</style>
