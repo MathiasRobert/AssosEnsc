@@ -23,7 +23,6 @@
             <div class="card-content">
                 <h4 class="card-title">Gestion des évènements</h4>
                 <div class="toolbar">
-                    <!--        Here you can write extra buttons/actions for the toolbar              -->
                     <div class="card-header card-header-button">
                     <a href="http://localhost:8000/admin/evenements/create" class="btn btn-primary">
                         <i class="material-icons">add_circle</i> Ajouter un évènement
@@ -58,12 +57,9 @@
                                             <td> {{evenement.dateDeb }}</td>
                                             <td> {{evenement.updated_at }}</td>
                                             <td class="text-right">
-                                                <!-- <a href="#" v-link="{ name: 'editEvenement',params: { id: evenement.id }}" class="btn btn-simple btn-info btn-icon like"><i
-                                                            class="material-icons">edit</i></a> -->
                                                 <router-link to="editEvenement" :to="{ name: 'editEvenement', params: { id: evenement.id }}"  class="btn btn-simple btn-info btn-icon like">
                                                     <i class="material-icons">edit</i>
                                                 </router-link>
-
                                                 <button href="#" class="btn btn-simple btn-danger btn-icon remove" v-on:click="showModalConfirmDelete(evenement)"><i
                                                             class="material-icons">close</i></button>
                                             </td>
@@ -167,13 +163,7 @@ export default {
   },
 
   watch: {
-  },
-
-  // route: {
-  //   data ({ to }) {
-      
-  //   }
-  // }
+  }
 }
 </script>
 

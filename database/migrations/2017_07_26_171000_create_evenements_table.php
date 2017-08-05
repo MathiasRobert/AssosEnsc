@@ -21,8 +21,8 @@ class CreateEvenementsTable extends Migration
             $table->integer('categorie_id')->unsigned();
             $table->string('titre');
             $table->string('lieu');
-            $table->date('dateDeb');
-            $table->date('dateFin')->nullable();
+            $table->dateTime('dateDeb');
+            $table->dateTime('dateFin')->nullable();
             $table->float('prix');
             $table->text('tarifs')->nullable();
             $table->text('description')->nullable();

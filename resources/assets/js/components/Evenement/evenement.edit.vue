@@ -17,9 +17,7 @@
     <div class="col-md-12">
     <div class="alert alert-danger">
         <ul>
-        <!-- @foreach ($errors->all() as $error) -->
             <li>{{ $error }}</li>
-        <!-- @endforeach -->
         </ul>
     </div>
         <div class="card">
@@ -84,14 +82,14 @@
                         <div class="col-sm-2">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input name="dateDeb" type="text" class="form-control datetimepicker" v-model="evenement.dateDeb">
+                                <input id="dtPickerBegin" name="dateDeb" type="text" class="form-control datetimepicker" v-model="evenement.dateDeb">
                                 <span class="material-input"></span></div>
                         </div>
                         <label class="col-sm-2 label-on-left">Date de fin</label>
                         <div class="col-sm-2">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label"></label>
-                                <input name="dateFin" type="text" class="form-control datetimepicker" v-model="evenement.dateFin">
+                                <input id="dtPickerEnd" name="dateFin" type="text" class="form-control datetimepicker" v-model="evenement.dateFin">
                                 <span class="material-input"></span></div>
                         </div>
                     </div>
@@ -177,16 +175,26 @@ export default {
   },
 
   updated: function() {
-    // $(".selectpicker").remove();
-    $(".selectpicker").selectpicker('refresh');
-    $(".selectpicker").selectpicker('render');
-    console.log(this.categorieSelected);
+    $(".selectpicker").selectpicker('refresh').selectpicker('render');
     $('.selectpicker').selectpicker('val', this.categorieSelected.id);
-    // $(".selectpicker").selectpicker('refresh').val(this.categorieSelected);
+
+    $("#dtPickerBegin.datetimepicker").datetimepicker({date:new Date(this.evenement.dateDeb),format:'YYYY-MM-DD hh:mm:ss'});
+    $("#dtPickerEnd.datetimepicker").datetimepicker({date:new Date(this.evenement.dateFin),format:'YYYY-MM-DD hh:mm:ss'});
+    // $("#dtPickerEnd.datetimepicker").datetimepicker();
+    
+    // $("#dtPickerBegin.datetimepicker").datetimepicker().data("DateTimePicker").format('Y-m-d H:i:s').date(this.evenement.dateFin).show();
+    // $("#dtPickerEnd.datetimepicker").datetimepicker().data("DateTimePicker").format('Y-m-d H:i:s').date(this.evenement.dateFin).show();
+    // console.log(this.evenement.dateDeb);
+
+    
 
   },
   created: function() {
-        this.getEvenement();
+    
+    // $("#dtPickerBegin.datetimepicker").datetimepicker().data("DateTimePicker").date(this.evenement.dateDeb);
+    // $("#dtPickerEnd.datetimepicker").datetimepicker().data("DateTimePicker").date(this.evenement.dateFin);
+    this.getEvenement();
+  
   },
 
   route: {
