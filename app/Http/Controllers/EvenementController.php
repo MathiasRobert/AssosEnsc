@@ -98,17 +98,26 @@ class EvenementController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreEvenementRequest $request, $id)
+    public function update($id,StoreEvenementRequest $request)
     {
         $evenement = Evenement::find($id);
         $evenement->fill($request->all());
+
+        // return $request->all();
+
         if (isset($request->affiche) && $request->file('affiche')->isValid()) {
             $evenement->affiche = $request->affiche->store('public/images/'.$evenement->association_id.'/evenements/'.$evenement->id);
             $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
         }
         $evenement->save();
 
-        return redirect('admin/evenements');
+        if($request->ajax()){
+            return $evenement;
+        }else{
+            return redirect('admin/evenements');
+            // return view('admin.evenements.index', compact('evenements', 'association'));
+        }
+
     }
 
     /**
@@ -134,4 +143,11 @@ class EvenementController extends Controller
     public function getAllCategoriesEvenement(Request $request){
         return CategorieEvenement::all();
     }
+
+    public function getComments(Request $request,$id){
+        return Evenement::find($id)->comments()->with('user')->get();
+    }
+
+
+    
 }

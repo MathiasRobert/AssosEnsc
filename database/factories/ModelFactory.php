@@ -74,7 +74,8 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
 
     return [
         'user_id' => $userRandom->id,
-        'texte' => $faker->paragraphs($nb = 4, $asText = true),
+        'texte' => $faker->text($faker->numberBetween(20,200)),
+        // 'texte' => $faker->paragraphs($nb = 4, $asText = true),
     ];
 });
 

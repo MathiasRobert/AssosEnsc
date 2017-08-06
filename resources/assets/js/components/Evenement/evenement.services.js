@@ -12,7 +12,13 @@ export default {
   },
   getAllCategoriesEvenement(){
     return Vue.http.get('/api/admin/getAllCategoriesEvenement/');
-  }
+  },
+  update(id,data){
+    return Vue.http.post('/api/admin/evenements/'+id,data);
+  },
+  getCommentsEvenement(id){
+    return Vue.http.get('/api/admin/evenements/'+id+'/comments');
+  },
   // postArticle (data) {
   //   return Vue.http.post('/api/admin/articles', data);
   // }

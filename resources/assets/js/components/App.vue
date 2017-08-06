@@ -48,13 +48,13 @@
             </li>
             <li>
               <router-link :to="{name:'article'}">
-                  <i class="material-icons">image</i>
+                  <i class="material-icons">assignment</i>
                   <p>Articles</p>
               </router-link>
             </li>
             <li>
               <router-link :to="{name:'evenement'}">
-                  <i class="material-icons">apps</i>
+                  <i class="material-icons">event_note</i>
                   <p>Événements</p>
               </router-link>
             </li>

@@ -24,7 +24,7 @@
                 <!-- <a v-link="{ name: 'newArticle' }" class="btn btn-primary">
                     <i class="material-icons">add_circle</i> Ajouter un article
                 </a>
-                 --><router-link to="newArticle" class="btn btn-primary">
+                 --><router-link :to="{name:'newArticle'}" class="btn btn-primary">
                   <i class="material-icons">add_circle</i> Ajouter un article
                 </router-link>
             </div>

@@ -86,12 +86,11 @@
 
       methods: {
         postArticle () {
-            console.log(this.newArticle);
             var form = document.getElementById('formNewArticle');
             var dataForm = new FormData(form);
             articleService.postArticle(dataForm)
             .then(function(response){
-                console.log(response);
+                // console.log(response);
 
             });
 
