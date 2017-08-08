@@ -119,8 +119,12 @@
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Description</label>
-                                    <textarea class="form-control" name="description" rows="6" cols="50">{{evenement.description}}</textarea>
-                                    </div>
+                                    <textarea class="form-control hide" name="description" rows="6" cols="50">{{evenement.description}}</textarea>
+<!--                                     <vue-html5-editor :content="evenement.description" :height="500">
+                                    </vue-html5-editor> -->
+                                    <tinymce v-if='evenementLoaded' v-model='evenement.description'></tinymce>
+                                </div>
+                                <!-- <div v-html="evenement.description"></div> -->
                             </div>
                         </div>
                         <div class="row">
@@ -208,13 +212,16 @@ export default {
       evenement: {},
       comments:{},
       categories: [],
-      categorieSelected:{}
+      categorieSelected:{},
+      evenementLoaded : false
     }
   },
   
   created: function() {
     var vm = this;
     vm.getEvenement().then(function(){
+        $('#formEditArticle .is-empty').removeClass('is-empty');
+        vm.evenementLoaded = true;
         vm.getComments();
     });
   
@@ -272,7 +279,6 @@ export default {
   updated: function() {
     $(".selectpicker").selectpicker('refresh').selectpicker('render');
     $('.selectpicker').selectpicker('val', this.categorieSelected.id);
-
     $("#dtPickerBegin.datetimepicker").datetimepicker({date:new Date(this.evenement.dateDeb),format:'YYYY-MM-DD hh:mm:ss'});
     $("#dtPickerEnd.datetimepicker").datetimepicker({date:new Date(this.evenement.dateFin),format:'YYYY-MM-DD hh:mm:ss'});
   }
@@ -302,92 +308,6 @@ export default {
         display: none;
     }
 }
-
-.img-thumbnail {
-    border-radius: 16px
-}
-
-.img-raised {
-    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24),0 8px 10px -5px rgba(0,0,0,.2)
-}
-
-.media .avatar {
-    margin: 0 15px 0 auto;
-}
-
-.media .avatar img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.2);
-    /*width: 100%*/
-}
-
-.media .media-heading small {
-    font-family: Roboto,Helvetica,Arial,sans-serif
-}
-
-.media .media-body {
-    padding-right: 10px
-}
-
-.media .media-body .media .media-body {
-    padding-right: 0
-}
-
-.media .media-footer .btn {
-    margin-bottom: 20px
-}
-
-.media .media-footer:after {
-    display: table;
-    content: " ";
-    clear: both
-}
-
-.media p {
-    font-size: 16px;
-    line-height: 1.6em
-}
-
-.media-left,.media>.pull-left {
-    padding: 10px
-}
-
-.info {
-    max-width: 360px;
-    margin: 0 auto;
-    padding: 70px 0 30px
-}
-
-.info .icon>i {
-    font-size: 4.4em
-}
-
-.info .info-title {
-    color: #3C4858;
-    margin: 30px 0 15px
-}
-
-.info p {
-    color: #999
-}
-
-.info-horizontal .icon {
-    float: left;
-    margin-top: 24px;
-    margin-right: 10px
-}
-
-.info-horizontal .icon>i {
-    font-size: 2.6em
-}
-
-.card-title, .footer-big h4, .footer-big h5, .footer-brand, .info-title, .media .media-heading, .title {
-    font-weight: 700;
-    /*font-family: "Roboto Slab","Times New Roman",serif;*/
-}
-
 
 @media (max-width: 991px) {
     .card .form-horizontal .form-group {
@@ -450,7 +370,6 @@ export default {
     width: calc(100% - 70px);
     margin-left: 70px;
     .comment-likes{
-        /*margin-left: 70px;*/
         padding: 0px;
         margin: 0px;
     }

@@ -69,8 +69,8 @@ class EvenementController extends Controller
         $evenement->affiche = '/images/image_placeholder.jpg';
         $evenement->save();
         if (isset($request->affiche) && $request->file('affiche')->isValid()) {
-            $evenement->affiche = $request->affiche->store('public/images/'.$evenement->association_id.'/evenements/'.$evenement->id);
-            $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
+            $evenement->affiche = '/storage/'.$request->affiche->store('images/evenements/'.$evenement->id);
+            // $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
         }
         $evenement->save();
 
@@ -106,8 +106,8 @@ class EvenementController extends Controller
         // return $request->all();
 
         if (isset($request->affiche) && $request->file('affiche')->isValid()) {
-            $evenement->affiche = $request->affiche->store('public/images/'.$evenement->association_id.'/evenements/'.$evenement->id);
-            $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
+            $evenement->affiche = '/storage/'.$request->affiche->store('images/evenements/'.$evenement->id);
+            // $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
         }
         $evenement->save();
 
