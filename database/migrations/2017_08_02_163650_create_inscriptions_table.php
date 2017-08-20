@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParticipesTable extends Migration
+class CreateInscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateParticipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('participes', function (Blueprint $table) {
+        Schema::create('inscriptions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('evenement_id')->unsigned();
             $table->boolean('aPaye');
             $table->boolean('valide')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('participes', function($table) {
+        Schema::table('inscriptions', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('evenement_id')->references('id')->on('evenements');
         });
     }
@@ -35,6 +37,6 @@ class CreateParticipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participes');
+        Schema::dropIfExists('inscriptions');
     }
 }

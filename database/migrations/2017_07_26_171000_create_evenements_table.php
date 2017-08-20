@@ -19,7 +19,7 @@ class CreateEvenementsTable extends Migration
             $table->increments('id');
             $table->integer('association_id')->unsigned();
             $table->integer('categorie_id')->unsigned();
-            $table->string('titre');
+            $table->text('titre');
             $table->string('lieu');
             $table->dateTime('dateDeb');
             $table->dateTime('dateFin')->nullable();

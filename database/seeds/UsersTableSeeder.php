@@ -18,5 +18,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'bde@ensc.fr',
             'avatar' => 'http://lorempixel.com/600/600/cats/',
         ]);
+
+        for ($i=0; $i < 20 ; $i++) { 
+            factory(App\User::class)->make()->save();
+        }
+
     }
 }

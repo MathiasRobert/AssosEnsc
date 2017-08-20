@@ -21,9 +21,17 @@ class EvenementController extends Controller
      */
     public function index(Request $request)
     {
+        
+        if($request->filter){
+            return Evenement::orderBy('dateDeb','desc')->with('categorie')->where('categorie_id',$request->filter)->get();
+        }else
+        {
+            return Evenement::orderBy('dateDeb','desc')->with('categorie')->get();
+        }
+
         $association = Association::where('email', Auth::user()->email)->first();
         $evenements = $association->evenements()->with('categorie')->get();
-            
+
         if($request->ajax()){
             return $evenements;
         }else{
@@ -31,6 +39,14 @@ class EvenementController extends Controller
         }
         // return $evenements;
     }
+
+    // public function show($id)
+    // {
+    //     $evenement = Evenement::find($id);
+    //     $association = Association::find($evenement->association_id);
+    //     $association->couleur = $association->couleur->code;
+    //     return view('pages.asso.evenements.show', compact('evenement', 'association'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -51,8 +67,14 @@ class EvenementController extends Controller
      */
     public function show($id,Request $request)
     {
-        // return Evenement::find($id);
-        return Evenement::with('categorie')->find($id);
+        if($request->ajax()){
+            return Evenement::with('categorie')->find($id);
+        }
+        $evenement = Evenement::find($id);
+        $association = Association::find($evenement->association_id);
+        $association->couleur = $association->couleur->code;
+        return view('pages.asso.evenements.show', compact('evenement', 'association'));
+   
     }
 
     /**
@@ -145,7 +167,7 @@ class EvenementController extends Controller
     }
 
     public function getComments(Request $request,$id){
-        return Evenement::find($id)->comments()->with('user')->get();
+        return Evenement::find($id)->comments()->with('user','comments.user')->get();
     }
 
 

@@ -9,6 +9,7 @@ import ArticleView from './components/Article/article.index.vue';
 import ArticleNewView from './components/Article/article.new.vue';
 import EvenementIndexView from './components/Evenement/evenement.index.vue';
 import EvenementEditView from './components/Evenement/evenement.edit.vue';
+import EvenementCreateView from './components/Evenement/evenement.create.vue';
 
 import tinymceComponent from './components/plugins/tinymce.vue';
 
@@ -46,6 +47,11 @@ const router = new Router({
       path:'/back/evenement/edit/:id',
       name: 'editEvenement',
       component: EvenementEditView, 
+    },
+    {
+      path:'/back/evenement/create',
+      name: 'createEvenement',
+      component: EvenementCreateView, 
     },
     {
       path:'*',redirect:'/back/dashboard'

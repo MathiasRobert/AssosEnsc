@@ -24,7 +24,10 @@ class StoreAssociationRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'nom' => 'required',
+            'diminutif' => 'required',
+            'email' => 'required',
+            'couleur_id' => 'required',
         ];
     }
 }

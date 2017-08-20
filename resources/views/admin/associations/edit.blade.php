@@ -31,7 +31,16 @@
         <div class="card-content">
             <div class="tab-content">
                 <div class="tab-pane {{ empty($tab) || $tab == 'infos' ? 'active' : '' }}" id="infos">
-                    <form action="{{ route('association.update', $association->id) }}" method="post" enctype="multipart/form-data">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('associations.update', $association->id) }}" method="post" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
                         <div class="row">
@@ -58,14 +67,13 @@
                             <div class="col-md-8">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Nom</label>
-                                    <input type="text" class="form-control" value="{{ $association->nom }}" disabled>
+                                    <input type="text" class="form-control" name="nom" value="{{ $association->nom }}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Diminutif</label>
-                                    <input name="diminutif" type="text" class="form-control"
-                                           value="{{ $association->diminutif }}" disabled>
+                                    <input name="diminutif" type="text" class="form-control" value="{{ $association->diminutif }}">
                                 </div>
                             </div>
                         </div>
@@ -73,7 +81,7 @@
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Email</label>
-                                    <input type="email" class="form-control" value="{{ $association->email }}" disabled>
+                                    <input type="email" class="form-control" name="email" value="{{ $association->email }}">
                                 </div>
                             </div>
                             <div class="col-sm-3">

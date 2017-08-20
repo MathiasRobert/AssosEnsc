@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMembreRequest;
 use Illuminate\Http\Request;
 use App\Association;
 use App\Membre;
@@ -36,9 +37,19 @@ class MembreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMembreRequest $request)
     {
-        //
+        $membre = new Membre($request->all());
+        $association = Association::where('email', Auth::user()->email)->first();
+        $membre->association_id = $association->id;
+        $membre->photo = '/images/default-avatar.png';
+        $membre->save();
+        if (isset($request->photo) && $request->file('photo')->isValid()) {
+            $membre->photo = $request->photo->store('public/images/'.$membre->association_id.'/membres/'.$membre->id);
+            $membre->photo = '/storage/'.substr($membre->photo, 7);
+        }
+        $membre->save();
+        return redirect('admin/association/equipe/edit');
     }
 
     /**
@@ -61,9 +72,16 @@ class MembreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreMembreRequest $request, $id)
     {
-        //
+        $membre = Membre::find($id);
+        $membre->fill($request->all());
+        if (isset($request->photo) && $request->file('photo')->isValid()) {
+            $membre->photo = $request->photo->store('public/images/'.$membre->association_id.'/membres/'.$membre->id);
+            $membre->photo = '/storage/'.substr($membre->photo, 7);
+        }
+        $membre->save();
+        return redirect('admin/association/equipe/edit');
     }
 
     /**

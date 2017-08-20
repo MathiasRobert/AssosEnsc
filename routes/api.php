@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
+
 Route::resource('admin/articles', 'ArticleControllerApi');
 Route::resource('admin/evenements', 'EvenementController');
 Route::get('admin/evenements/{id}/comments', 'EvenementController@getComments');
@@ -27,3 +28,8 @@ Route::get('admin/evenements/{id}/comments', 'EvenementController@getComments');
 Route::get('admin/getAllCategoriesArticle', 'ArticleControllerApi@getAllCategoriesArticle');
 Route::get('admin/getAllCategoriesEvenement', 'EvenementController@getAllCategoriesEvenement');
 Route::get('admin/getCurrentAssociation', 'AssociationController@getCurrentAssociation');
+
+Route::post('inscription', 'InscriptionController@inscription');
+Route::post('desinscription', 'InscriptionController@desinscription');
+
+

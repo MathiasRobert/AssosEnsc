@@ -42,14 +42,14 @@
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Date de début</label>
-                                    <input id="dtPickerBegin" name="dateDeb" type="text" class="form-control datetimepicker" v-model="evenement.dateDeb">
+                                    <input required id="dtPickerBegin" name="dateDeb" type="text" class="form-control datetimepicker" v-model="evenement.dateDeb">
                                     </div>
                             </div>
                             <!-- <label class="col-sm-2 label-on-left"></label> -->
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Date de fin</label>
-                                    <input id="dtPickerEnd" name="dateFin" type="text" class="form-control datetimepicker" v-model="evenement.dateFin">
+                                    <input required id="dtPickerEnd" name="dateFin" type="text" class="form-control datetimepicker" v-model="evenement.dateFin">
                                     </div>
                             </div>
                             <div class="col-md-3">
@@ -73,76 +73,16 @@
                                     <input class="form-control" name="tarifs" v-model="evenement.tarifs">
                                     </div>
                             </div>
-                            
                         </div>
                         <div class="row">
-                            <!-- <div class="col-md-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Titre</label>
-                                    <input input class="form-control" type="text" name="titre" v-model="evenement.titre" required>
-                                </div>
-                            </div> -->
-                        </div>
-                        <div class="row">
-                           <!--  <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Lieu</label>
-                                    <input class="form-control" type="text" name="lieu" v-model="evenement.lieu" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Prix</label>
-                                    <input class="form-control" type="number" name="prix" v-model="evenement.prix" required>
-                                    
-                                </div>
-                            </div> -->
-                        </div>
-                        <div class="row">
-                            <!-- <div id="categorieControl" class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label id="categorieLabel" class="control-label">Catégorie</label>
-                                    <select name="categorie_id" class="selectpicker form-control" data-style="btn btn-primary btn-round"
-                                            title="">
-                                            <option v-for="categorie in categories" v-bind:key="categorie.id" v-bind:value="categorie.id">{{ categorie.nom }}</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                           
-                        </div>
-                        <div class="row">
-                            <!-- <label class="col-sm-2 label-on-left"></label> -->
-                            
-                        </div>
-                        <div class="row">
-                            <!-- <label class="col-sm-2 label-on-left">Description</label> -->
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Description</label>
                                     <textarea class="form-control hide" name="description" rows="6" cols="50">{{evenement.description}}</textarea>
-<!--                                     <vue-html5-editor :content="evenement.description" :height="500">
-                                    </vue-html5-editor> -->
                                     <tinymce v-if='evenementLoaded' v-model='evenement.description'></tinymce>
                                 </div>
-                                <!-- <div v-html="evenement.description"></div> -->
                             </div>
                         </div>
-                        <div class="row">
-                            <!-- <label class="col-sm-2 label-on-left">Description</label> -->
-                           <!--  <div class="col-md-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Description</label>
-                                    <textarea class="form-control" name="description" rows="6" cols="50">evenement.description</textarea>
-                                    </div>
-                            </div> -->
-                            <!-- <div class="quill-editor" 
-                               v-model="content"
-                               v-quill:myQuillEditor="editorOption">
-                            </div> -->
-                        </div>
-
-                      
-
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-success btn-fill"><i class="material-icons">edit</i> Sauvegarder</button>
@@ -176,25 +116,6 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <div class="media-area">
-                    <div class="media" v-for="comment in comments">
-                        <a class="pull-left" href="#pablo">
-                            <div class="avatar">
-                                <img class="media-object" v-bind:src="comment.user.avatar" alt="...">
-                            </div>
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{comment.user.name}}<small>· {{comment.updated_at}}</small></h4>
-                            <h6 class="text-muted"></h6>
-                            <p>{{comment.texte}}</p>
-                            <div class="media-footer">
-                                <a href="#pablo" class="btn btn-danger btn-simple pull-right">
-                                    <i class="material-icons">favorite</i> 243
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

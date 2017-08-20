@@ -27,5 +27,8 @@ class CouleursTableSeeder extends Seeder
         Couleur::Create([
             'code' => '#85929E'
         ]);
+        Couleur::Create([
+            'code' => '#795548'
+        ]);
     }
 }

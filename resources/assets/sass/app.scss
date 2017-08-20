@@ -129,6 +129,23 @@ $white: #ffffff;
   }
 }
 
+body {
+  .main-product {
+    padding: 40px;
+  }
+}
+
+.table {
+  .td-actions {
+    .btn {
+      width: 200px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding: 18px 36px;
+    }
+  }
+}
+
 /*
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     background-color: rgba(255,255,255,.2);

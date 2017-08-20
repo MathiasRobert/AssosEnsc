@@ -24,9 +24,15 @@
                 <h4 class="card-title">Gestion des évènements</h4>
                 <div class="toolbar">
                     <div class="card-header card-header-button">
-                    <a href="http://localhost:8000/admin/evenements/create" class="btn btn-primary">
+                    <!-- <a href="http://localhost:8000/admin/evenements/create" class="btn btn-primary">
                         <i class="material-icons">add_circle</i> Ajouter un évènement
-                    <div class="ripple-container"></div></a>
+                    <div class="ripple-container"></div>
+                    </a> -->
+                    
+                    <router-link to="editEvenement" :to="{name:'createEvenement'}"  class="btn btn-primary">
+                        <i class="material-icons">add_circle</i> Ajouter un évènement
+                        <div class="ripple-container"></div>
+                    </router-link>
                 </div>
                 </div>
                 <div class="material-datatables">

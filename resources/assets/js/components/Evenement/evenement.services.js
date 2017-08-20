@@ -4,6 +4,9 @@ export default {
   getAll () {
     return Vue.http.get('/api/admin/evenements');
   },
+  getEvenements () {
+    return Vue.http.get('/api/admin/evenements');
+  },
   delete (id) {
     return Vue.http.delete('/api/admin/evenements/'+id);
   },
