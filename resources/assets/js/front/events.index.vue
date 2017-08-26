@@ -163,11 +163,23 @@ export default {
 	    z-index: 1;
 	    width: 88px;
 	}*/
+	transition : transform 500ms;
+
+	&:focus, &:hover{
+		text-decoration: none;
+		transform: translateY(-5px);
+	}
 }
 	
 .post-box {
 
 	position: relative;
+	transition : transform 0.5s;
+
+	&:focus, &:hover{
+		text-decoration: none;
+		/*transform: scale(1.1);*/
+	}
 
 	
 
