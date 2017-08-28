@@ -4,7 +4,7 @@
 
     <div id="ip-container" class="ip-container" v-bind:class="{'loading':loadingState==1,'loaded':loadingState==2}" v-bind:style='{"display":loadingState == 3 ? "none":"block"}'>
         <div class="ip-header">
-            <div class="ip-logo">
+            <div class="ip-logo" id="ip-logo">
                 <svg
                    xmlns:dc="http://purl.org/dc/elements/1.1/"
                    xmlns:cc="http://creativecommons.org/ns#"
@@ -151,59 +151,61 @@
                        d="m 165.47181,102.36702 q -0.5812,0.0812 -1.0837,-0.0139 -0.49574,-0.0961 -0.87522,-0.34618 -0.37366,-0.25782 -0.61565,-0.65807 -0.242,-0.40025 -0.31569,-0.92738 -0.085,-0.608238 0.0187,-1.098163 0.10282,-0.49669 0.35198,-0.882927 0.255,-0.393939 0.63606,-0.674582 0.38783,-0.281598 0.86605,-0.458695 -0.70699,-0.128542 -1.13021,-0.59303 -0.41647,-0.465431 -0.51284,-1.154757 -0.0794,-0.56768 0.0602,-1.097075 0.13959,-0.529385 0.46702,-0.947233 0.33325,-0.425549 0.83015,-0.715499 0.4969,-0.28996 1.13216,-0.378769 0.54065,-0.07558 0.98327,0.0348 0.44939,0.109434 0.78061,0.359403 0.33798,0.249034 0.5424,0.626972 0.21023,0.370238 0.27259,0.81628 0.0642,0.459551 -0.007,0.882988 -0.0717,0.423437 -0.27548,0.789545 -0.19793,0.358397 -0.52211,0.651765 -0.32511,0.286603 -0.75995,0.478315 0.38492,0.04262 0.71361,0.175842 0.33543,0.132252 0.58854,0.365585 0.25216,0.22657 0.42294,0.560986 0.17077,0.334417 0.23218,0.773695 0.0964,0.689326 -0.0694,1.277504 -0.16582,0.58818 -0.54448,1.03386 -0.37867,0.44568 -0.93734,0.73738 -0.55962,0.28493 -1.24894,0.3813 z m -0.009,-0.5086 q 0.54741,-0.0765 0.98239,-0.31648 0.43499,-0.23996 0.72079,-0.61064 0.29256,-0.37163 0.41849,-0.85087 0.12497,-0.486009 0.0456,-1.053698 -0.0746,-0.533888 -0.30623,-0.859802 -0.23254,-0.332668 -0.55244,-0.501545 -0.32082,-0.175632 -0.68453,-0.214358 -0.36464,-0.04545 -0.70256,0.0018 -0.26355,0.03684 -0.54754,0.124811 -0.27722,0.08702 -0.545,0.241554 -0.26103,0.153629 -0.49139,0.378752 -0.22453,0.217432 -0.37502,0.52096 -0.15049,0.30354 -0.21342,0.691297 -0.0629,0.387756 0.004,0.867589 0.0586,0.419 0.24191,0.74477 0.18917,0.31806 0.47999,0.52545 0.29758,0.20645 0.68141,0.29059 0.38383,0.0842 0.84339,0.0199 z m -0.0876,-4.914245 q 0.54741,-0.07653 0.93414,-0.316634 0.3858,-0.246852 0.61942,-0.596466 0.23268,-0.356366 0.31791,-0.781693 0.0843,-0.432081 0.0229,-0.87136 -0.0501,-0.358186 -0.20842,-0.652993 -0.15159,-0.29576 -0.39998,-0.495301 -0.24838,-0.199543 -0.59071,-0.282596 -0.33653,-0.09076 -0.75554,-0.03218 -0.51361,0.0718 -0.9013,0.305147 -0.38187,0.225644 -0.62319,0.569437 -0.24133,0.343793 -0.33913,0.777775 -0.092,0.426271 -0.0258,0.899331 0.0472,0.337914 0.18528,0.635558 0.14388,0.289941 0.3874,0.503946 0.24257,0.207252 0.5868,0.303822 0.34423,0.09657 0.79026,0.03422 z" />
                   </g>
                 </svg>
+                <div class="ip-loader" id="ip-loader">
+                  <svg class="ip-inner" width="80px" height="80px" viewBox="0 0 80 80">
+                      <path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
+                      <path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"
+                          v-bind:style="{'strokeDasharray':lenghtLoader,'strokeDashoffset':loadingProgress}"
+                      />
+                  </svg>
+              </div>
             </div>
-            <div class="ip-loader">
-                <svg class="ip-inner" width="80px" height="80px" viewBox="0 0 80 80">
-                    <path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
-                    <path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"
-                        v-bind:style="{'strokeDasharray':lenghtLoader,'strokeDashoffset':loadingProgress}"
-                    />
-                </svg>
-            </div>
+            
         </div>
     </div>
 
-        <nav class="navbar navbar-toggleable-md main-navbar bg-white">
-            <div class="container">
-                <!-- <div class="navbar-translate">
-                    <button class="navbar-toggler navbar" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar bar1"></span>
-                        <span class="navbar-toggler-bar bar2"></span>
-                        <span class="navbar-toggler-bar bar3"></span>
-                    </button>
-                    <router-link :to="{name:'index'}" class="navbar-brand" rel="tooltip" title="" data-placement="bottom">
+      <header class="navbar navbar-light navbar-toggleable-md bd-navbar main-navbar">
+        <nav class="container">
+          <div class="d-flex justify-content-between hidden-lg-up">
+            <a class="navbar-brand" href="/">
+              Assos
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#bd-main-nav" aria-controls="bd-main-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+
+          <div class="navbar-collapse collapse justify-content-center" id="bd-main-nav" aria-expanded="false">
+            <ul class="nav navbar-nav">
+               <li class="nav-item">
+                  <router-link :to="{name:'index'}" class="nav-item nav-link">
                         Accueil
                     </router-link>
-                </div> -->
-                <div class="collapse navbar-collapse justify-content-center" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                          <router-link :to="{name:'index'}" class="nav-link">
-                                Accueil
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                             <router-link :to="{name:'indexEvents'}" class="nav-link">
-                                  <!-- <i class="fa fa-calendar"></i> -->
-                                  Evenements
-                              </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="{name:'associations'}" class="nav-link">
-                                <!-- <i class="fa fa-group"></i> -->
-                                Les assos
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link">
-                                <!-- <i class="fa fa-play"></i> -->
-                                Jeux
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                </li>
+                <li class="nav-item">
+                     <router-link :to="{name:'indexEvents'}" class="nav-item nav-link">
+                          <!-- <i class="fa fa-calendar"></i> -->
+                          Evenements
+                      </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link :to="{name:'associations'}" class="nav-item nav-link">
+                        <!-- <i class="fa fa-group"></i> -->
+                        Les assos
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link">
+                        <!-- <i class="fa fa-play"></i> -->
+                        Jeux
+                    </a>
+                </li>
+            </ul>
+          </div>
         </nav>
+      </header>
+
+        
 
           
         <div class="content">
@@ -219,6 +221,30 @@
             </main>
         </div>
 
+
+
+        <div class="modal fade" id="modalNotAuthenticated" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <!-- <div class="modal-header" style="border-bottom: none;">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                
+              </div> -->
+              <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div style="padding: 20px;">Veuillez vous identifier</div>
+                <a href="/login/google" class="btn btn-primary">Se connecter</a>
+              </div>
+             <!--  <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
   
     </div>
 
@@ -226,7 +252,6 @@
 
 
 <script>
-
         export default {
 
             data: function() {
@@ -245,7 +270,7 @@
                 var progress = 0;
 
                 var interval = setInterval(function() {
-                    progress = Math.min( progress + Math.random() * 0.2, 1 );
+                    progress = Math.min( progress + Math.random() * 0.16, 1 );
                     vm.loadingProgress = vm.lenghtLoader * ( 1 - progress );
 
                     if(progress==1){
@@ -286,11 +311,11 @@
 }
 
 .sidebar .nav li > a:hover, .sidebar .nav li > a:focus, .off-canvas-sidebar .nav li > a:hover, .off-canvas-sidebar .nav li > a:focus{
-    background-color: #9c27b0;
+    /*background-color: #9c27b0;*/
 }
 ul.nav{
   a.router-link-active,a:hover{
-      background-color: #9c27b0;
+      /*background-color: #9c27b0;*/
   }
 }
 
@@ -332,7 +357,6 @@ ul.nav{
     position: absolute;
     left: 0;
     width: 100%;
-    opacity: 0;
     cursor: default;
     pointer-events: none;
 }
@@ -345,7 +369,7 @@ ul.nav{
 }
 
 .ip-loader {
-    bottom: 20%;
+    /*bottom: 20%;*/
 }
 
 .ip-header .ip-inner {
@@ -369,19 +393,14 @@ ul.nav{
 }
 
 .ip-header .ip-loader svg path.ip-loader-circle {
-    -webkit-transition: stroke-dashoffset 0.2s;
     transition: stroke-dashoffset 0.2s;
-   /* stroke: #ef6e7e;
-    stroke: white;*/
     stroke: $mainColor;
 }
 
 
 /* Initial animation of header elements */
-.loading .ip-logo,
-.loading .ip-loader {
+.loading .ip-logo{
     opacity: 1;
-    -webkit-animation: animInitialHeader 1s cubic-bezier(0.7,0,0.3,1) both;
     animation: animInitialHeader 1s cubic-bezier(0.7,0,0.3,1) both;
 }
 
@@ -413,7 +432,6 @@ ul.nav{
 .loaded .ip-logo svg path {
     -webkit-transition: all 0.5s ease 0.3s;
     transition: all 0.5s ease 0.3s;
-    fill: #fff;
 }
 
 /* Header animation when loading finishes */
@@ -430,5 +448,15 @@ ul.nav{
     to { -webkit-transform: translate3d(0,-100%,0); transform: translate3d(0,-100%,0); }
 }
 
+
+/*---------------------MODAL AUTH------------------*/
+
+#modalNotAuthenticated{
+  button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
 
 </style>

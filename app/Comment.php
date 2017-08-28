@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable = [
+        'commentable_id',
+        'commentable_type',
+        'texte'
+    ];
     /**
      * Get all of the owning commentable models.
      */

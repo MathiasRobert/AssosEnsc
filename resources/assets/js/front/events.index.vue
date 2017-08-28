@@ -153,16 +153,6 @@ export default {
 .post-preview{
 	position: relative;
 	margin-bottom: 30px;
-	/*.date{
-	    position: absolute;
-	    top: 8px;
-	    right: 8px;
-	    background: rgba(0, 0, 0, 0.71);
-	    color: white;
-	    border-radius: 4px;
-	    z-index: 1;
-	    width: 88px;
-	}*/
 	transition : transform 500ms;
 
 	&:focus, &:hover{
@@ -185,7 +175,7 @@ export default {
 
 	> figure{
 		position: relative;
-		height: 200px;
+		max-height: 200px;
 		overflow: hidden;
 		margin:0px;
 	 	/*background: $mainColor;*/
@@ -214,7 +204,7 @@ export default {
 		h5{
 			margin: 0px;
 		    display: inline-block;
-		    border-bottom: 1px solid $mainColor;
+		    /*border-bottom: 1px solid $mainColor;*/
 		    margin-bottom: 10px;
 		    & + h6{
 		    	font-weight: 300;

@@ -22,6 +22,9 @@ export default {
   getCommentsEvenement(id){
     return Vue.http.get('/api/admin/evenements/'+id+'/comments');
   },
+  postCommentEvenement(data){
+    return Vue.http.post('/api/comments',data);
+  },
   // postArticle (data) {
   //   return Vue.http.post('/api/admin/articles', data);
   // }

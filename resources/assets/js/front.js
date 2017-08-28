@@ -8,6 +8,7 @@ import IndexVue from './front/index.vue';
 import IndexEventsVue from './front/events.index.vue';
 import ShowEventVue from './front/events.show.vue';
 import AssosVue from './front/assos.vue';
+import userService from './front/user.services.js';
 
 Vue.config.debug = true;
 
@@ -40,8 +41,14 @@ const router = new Router({
   ]
 });
 
-const app = new Vue({
-  router,
-  el:'#app',
-  render : h => h(App)
-});
+
+userService.getCurrentUser().then(function() {
+  
+  const app = new Vue({
+    router,
+    el:'#app',
+    render : h => h(App)
+  });
+
+})
+

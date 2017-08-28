@@ -30,43 +30,60 @@
         </header>
         <div class="event-img-container">
           <img class="img-responsive" v-bind:src="evenement.affiche">
+          <div class="event-actions text-center" style="display: none">
+            <button class="btn btn-icon">
+                <i class="fa fa-heart-o"></i>
+                <i> 243</i>
+            </button>
+            <button class="btn btn-icon">
+                <i class="fa fa-check"></i>
+                <i> 23</i>
+            </button>
+            <button class="btn btn-primary">
+                Je m'inscris
+            </button>
+          </div>
         </div>
-        <div class="event-actions text-center">
-          <button class="btn btn-icon">
-              <i class="fa fa-heart-o"></i>
-              <i> 243</i>
-          </button>
-          <button class="btn btn-primary">
-              Je m'inscris
-          </button>
-          <button class="btn btn-icon">
-              <i class="fa fa-check"></i>
-              <i> 23</i>
-          </button>
-        </div>
+        
         <div class="event-content">
-          <div><strong>Prix :</strong> {{ evenement.prix }} €</div>
-          <div><strong>Lieu :</strong> {{ evenement.lieu }}</div>
-          <div><strong>Place restantes :</strong> {{ evenement.nbMaxParticipants }}</div>
-          <div class="event-description" v-html='evenement.description'></div>
+          <div class="row">
+            <div class="col-md-8">
+              <div><strong>Prix :</strong> {{ evenement.prix }} €</div>
+              <div><strong>Lieu :</strong> {{ evenement.lieu }}</div>
+              <div><strong>Place restantes :</strong> {{ evenement.nbMaxParticipants }}</div>
+             
+            </div>
+            <div class="col-md-4 text-right">
+              <button class="btn btn-primary">
+                Je m'inscris
+              </button>
+            </div>
+          </div>
+          <div class="event-description">
+            <div><strong>Description</strong></div>
+            <div v-html='evenement.description'></div>
+          </div>
+         
+          
 
-           <hr>
-            <h5 class="title text-center">Post your comment</h5>
-            <div class="post-comment">
-                <a class="pull-left author" href="#pablo">
-                    <div class="avatar">
-                          <img class="cmt-object" alt="64x64" src="">
-                    </div>
-                </a>
-                <div class="cmt-body">
-                      <div class="form-group is-empty"><textarea class="form-control" placeholder="Write some nice stuff or nothing..." rows="6"></textarea><span class="material-input"></span></div>
-                      <div class="cmt-footer text-right">
-                           <a href="#pablo" class="btn btn-primary">Post Comment</a>
-                      </div>
-                </div>
-            </div> 
+           <!-- <hr> -->
+            <!-- <h5 class="title text-center">Post your comment</h5> -->
+           
 
           <hr>
+          <div class="post-comment">
+              <!-- <a class="pull-left author" href="#pablo">
+                  <div class="avatar">
+                        <img class="cmt-object" alt="64x64" src="">
+                  </div>
+              </a> -->
+              <div class="cmt-body">
+                    <div class="form-group is-empty"><textarea class="form-control" placeholder="Commenter cet évenement..." rows="6" v-model="commentText"></textarea><span class="material-input"></span></div>
+                    <div class="cmt-footer text-right">
+                         <button class="btn btn-primary" v-on:click="postComment">Commenter</button>
+                    </div>
+              </div>
+          </div> 
           <h5 class="title text-center">{{comments.length}} Commentaires</h5>
           <ul class="js-comments-list comments-list">
                 <li class="comment-container cfix user-comment" v-for="comment in comments">
@@ -78,7 +95,7 @@
                           <a class="user-name-link bold js-mini-profile" data-id="44063465" href="https://www.behance.net/seb90grado8237">{{comment.user.name}}</a>
                           <span class="comment-date js-format-timestamp" data-timestamp="1501963744">{{comment.updated_at}}</span>
                         </div>
-                        <div class="comment-text-wrap"><div class="comment-text">{{comment.texte}}</div></div>
+                        <div class="comment-text-wrap"><div class="comment-text" v-html="comment.texte"></div></div>
                       </div>
                       <div class="comment-actions">
                         <button class="btn btn-icon comment-likes">
@@ -100,7 +117,7 @@
                                     <a class="user-name-link bold js-mini-profile" data-id="44063465" href="https://www.behance.net/seb90grado8237">{{commentToComment.user.name}}</a>
                                     <span class="comment-date js-format-timestamp" data-timestamp="1501963744">{{commentToComment.updated_at}}</span>
                                   </div>
-                                  <div class="comment-text-wrap"><div class="comment-text">{{commentToComment.texte}}</div></div>
+                                  <div class="comment-text-wrap"><div class="comment-text" v-html="commentToComment.texte"></div></div>
                                 </div>
                                 <div class="comment-actions">
                                   <button class="btn btn-icon comment-likes">
@@ -127,6 +144,7 @@
 
 // import evenementService from './evenement.services.js';
 import evenementService from '../components/Evenement/evenement.services.js';
+import userService from './user.services.js';
 
 
 export default {
@@ -135,6 +153,7 @@ export default {
     return {
       evenement: {},
       comments:[],
+      commentText:'',
       categories: [],
       categorieSelected:{},
     }
@@ -145,13 +164,17 @@ export default {
     vm.getEvenement().then(function(){
         vm.getComments();
     });
+
+    console.log(userService);
+    userService.getCurrentUser();
+
   
   },
 
   methods: {
     getEvenement(idEvenement){
          var vm = this;
-         return evenementService.show(this.$route.params.id).then(function(response) {
+         return evenementService.show(vm.$route.params.id).then(function(response) {
               vm.evenement = response.body;
               vm.evenement.monthBegin = moment(vm.evenement.dateDeb).format('MMMM');
               vm.evenement.dayBegin = moment(vm.evenement.dateDeb).format('D');
@@ -161,9 +184,36 @@ export default {
     },
     getComments(){
         var vm = this;
-        return evenementService.getCommentsEvenement(this.evenement.id).then(function(response){
+        return evenementService.getCommentsEvenement(vm.evenement.id).then(function(response){
             vm.comments = response.body;
         });
+    },
+    postComment(){
+      var vm = this;
+
+      console.log(userService.currentUser);
+      if(userService.currentUser == null){
+        
+         // console.log(vm.$route);
+         // // vm.$router.push('/api/user');
+         // window.location.href = '/api/user'; 
+         // vm.$route.router.go('/login/google');
+         $('#modalNotAuthenticated').modal('show');
+      }
+      else
+      {
+        var data = {
+          'texte' : vm.commentText,
+          'commentable_id'   : vm.evenement.id,
+          'commentable_type' : vm.evenement.commentable_type,
+        };
+        return evenementService.postCommentEvenement(data).then(function(response){
+            vm.commentText = '';
+            vm.getComments();
+        });
+      }
+
+      
     }
   },
 
@@ -268,6 +318,7 @@ export default {
 
     .event-description{
       margin-top:20px;
+      text-align: justify;
     }
 
   }
@@ -353,5 +404,18 @@ export default {
   margin-right: 10px;
 }
 
-  
+.event-img-container{
+  position: relative;
+  .event-actions{
+    /*margin-top: 10px;*/
+      position: absolute;
+      bottom: 17px;
+      background: white;
+      padding: 20px;
+      right: 0px;
+      border-radius: 4px 0px 0px 4px;
+  }
+}
+
+
 </style>

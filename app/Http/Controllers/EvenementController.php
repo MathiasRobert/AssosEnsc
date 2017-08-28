@@ -68,7 +68,9 @@ class EvenementController extends Controller
     public function show($id,Request $request)
     {
         if($request->ajax()){
-            return Evenement::with('categorie')->find($id);
+            $evenement = Evenement::with('categorie')->find($id);
+            $evenement->commentable_type = get_class($evenement);
+            return $evenement;
         }
         $evenement = Evenement::find($id);
         $association = Association::find($evenement->association_id);
