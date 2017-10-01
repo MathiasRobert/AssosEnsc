@@ -25,33 +25,26 @@ class EvenementController extends Controller
     public function index(Request $request)
     {
 
-        if($request->filter){
-            return Evenement::orderBy('dateDeb','desc')->with('categorie')->where('categorie_id',$request->filter)->get();
-        }else
-        {
-            return Evenement::orderBy('dateDeb','desc')->with('categorie')->get();
-        }
+//        if($request->filter)
+//        {
+//            return Evenement::orderBy('dateDeb','desc')->with('categorie')->where('categorie_id',$request->filter)->get();
+//        }
+//        else
+//        {
+//            return Evenement::orderBy('dateDeb','desc')->with('categorie')->get();
+//        }
 
         $association = Association::where('email', Auth::user()->email)->first();
         $evenements = $association->evenements()->with('categorie')->get();
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return $evenements;
-        }else{
+        } else {
             return view('admin.evenements.index', compact('evenements', 'association'));
         }
         // return $evenements;
         $evenements = $association->evenements->all();
         return view('admin.evenements.index', compact('evenements', 'association'));
-    }
-
-    public function show($id)
-    {
-        $evenement = Evenement::find($id);
-        $evenement->dateDeb = Date::parse($evenement->dateDeb)->format('l j F Y - h:i');
-        $association = Association::find($evenement->association_id);
-        $association->couleur = $association->couleur->code;
-        return view('pages.asso.evenements.show', compact('evenement', 'association'));
     }
 
     /**
@@ -71,14 +64,16 @@ class EvenementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id,Request $request)
+    public function show($id, Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $evenement = Evenement::with('categorie')->find($id);
             $evenement->commentable_type = get_class($evenement);
             return $evenement;
+        } else {
+            $evenement = Evenement::find($id);
+            $evenement->dateDeb = Date::parse($evenement->dateDeb)->format('l j F Y - h:i');
         }
-        $evenement = Evenement::find($id);
         $association = Association::find($evenement->association_id);
         $association->couleur = $association->couleur->code;
         return view('pages.asso.evenements.show', compact('evenement', 'association'));
@@ -99,7 +94,7 @@ class EvenementController extends Controller
         $evenement->affiche = '/images/image_placeholder.jpg';
         $evenement->save();
         if (isset($request->affiche) && $request->file('affiche')->isValid()) {
-            $evenement->affiche = '/storage/'.$request->affiche->store('images/evenements/'.$evenement->id);
+            $evenement->affiche = '/storage/' . $request->affiche->store('images/evenements/' . $evenement->id);
             // $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
         }
         $evenement->save();
@@ -128,7 +123,7 @@ class EvenementController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id,StoreEvenementRequest $request)
+    public function update($id, StoreEvenementRequest $request)
     {
         $evenement = Evenement::find($id);
         $evenement->fill($request->all());
@@ -136,14 +131,14 @@ class EvenementController extends Controller
         // return $request->all();
 
         if (isset($request->affiche) && $request->file('affiche')->isValid()) {
-            $evenement->affiche = '/storage/'.$request->affiche->store('images/evenements/'.$evenement->id);
+            $evenement->affiche = '/storage/' . $request->affiche->store('images/evenements/' . $evenement->id);
             // $evenement->affiche = '/storage/'.substr($evenement->affiche, 7);
         }
         $evenement->save();
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return $evenement;
-        }else{
+        } else {
             return redirect('admin/evenements');
             // return view('admin.evenements.index', compact('evenements', 'association'));
         }
@@ -167,14 +162,16 @@ class EvenementController extends Controller
         //     return response(['status' => 'success']);
         // }
         // return Evenement::all()->getEl();
-        return response(['status' => 'success','id_deleted' => $id]);
+        return response(['status' => 'success', 'id_deleted' => $id]);
     }
 
-    public function getAllCategoriesEvenement(Request $request){
+    public function getAllCategoriesEvenement(Request $request)
+    {
         return CategorieEvenement::all();
     }
 
-    public function getComments(Request $request,$id){
-        return Evenement::find($id)->comments()->with('user','comments.user')->get();
+    public function getComments(Request $request, $id)
+    {
+        return Evenement::find($id)->comments()->with('user', 'comments.user')->get();
     }
 }
