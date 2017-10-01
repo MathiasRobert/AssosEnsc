@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+
 use App\User;
 
 class UsersController extends Controller
@@ -32,4 +34,9 @@ class UsersController extends Controller
         User::create($request->all());
         return 'success';
     }
+
+    // public function current(Request $request){
+    //     return Auth::user();
+    // }
+
 }

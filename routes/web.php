@@ -41,3 +41,17 @@ Route::get('logintest', function() {
     Auth::login($user);
     return back();
 })->name('logintest');
+
+
+Route::get('/back/{all}', function () {
+    return view('pages.back');
+})->where(['all' => '.*']);;
+
+
+Route::get('/front/{all}', function () {
+    return view('front');
+})->where(['all' => '.*']);;
+
+// Route::any('{all}', function () {
+//     return view('index');
+// })

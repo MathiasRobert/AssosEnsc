@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Evenement;
 use App\Article;
+use App\Comment;
 
 class CommentsTableSeeder extends Seeder
 {
@@ -25,5 +26,12 @@ class CommentsTableSeeder extends Seeder
         		$article->comments()->save(factory(App\Comment::class)->make());
         	}
         });
+
+        foreach (Comment::all() as $comment) {
+            // echo rand(0,2);
+            for ($i=0; $i < rand(0,3) ; $i++) { 
+                $comment->comments()->save(factory(App\Comment::class)->make());
+            }
+        }
     }
 }

@@ -6,8 +6,15 @@ use App\Association;
 use App\Http\Requests\StoreAssociationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use App\Couleur;
+
+
 use Auth;
+
+use Validator;
+use Illuminate\Support\Facades\Input;
+
+use App\Couleur;
+
 
 class AssociationController extends Controller
 {
@@ -65,6 +72,11 @@ class AssociationController extends Controller
         $couleurs = Couleur::all();
         $membres = $association->membres->all();
         return view('admin.associations.edit', compact('association', 'couleurs', 'membres'));
+    }
+
+
+    public function getCurrentAssociation(Request $request){
+        return Association::where('email', Auth::user()->email)->first();
     }
 
     /**

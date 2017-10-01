@@ -33,17 +33,25 @@ $factory->define(App\Evenement::class, function (Faker\Generator $faker) {
 
 	$categorieEvenementRandom = CategorieEvenement::orderBy(DB::raw('RAND()'))->first();
 
+    $imagesEvent = [
+        '/images/office.jpg',
+        '/images/party.jpg',
+        '/images/pong.jpg',
+        '/images/whisky.jpg',
+    ];
+
     return [
 		'association_id' => 0, // redefinis Dans EvenementsTableSeederSeeder
 		'categorie_id' => $categorieEvenementRandom->id,
-		'titre' => $faker->name,
-		'lieu' => $faker->streetName,
+		'titre' => $faker->text(30),
+		'lieu' => $faker->streetName.", 33000 Bordeaux",
 		'dateDeb' => $faker->dateTime(),
 		'dateFin' => $faker->dateTime(),
 		'prix' => $faker->numberBetween(0,70),
 		'tarifs' => '3$ La pinte, 4$ Mojito et le pastaga 2$',
-		'description' => $faker->text(200),
-		'affiche' => $faker->imageUrl($width = 640, $height = 480),
+		'description' => $faker->text(400),
+        //'affiche' => $faker->imageUrl($width = 640, $height = 480),
+		'affiche' => $imagesEvent[$faker->numberBetween(0,3)],
 		'nbMaxParticipants'=> $faker->numberBetween(0,50) ,
     ];
 });
@@ -74,7 +82,8 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
 
     return [
         'user_id' => $userRandom->id,
-        'texte' => $faker->paragraphs($nb = 4, $asText = true),
+        'texte' => $faker->text($faker->numberBetween(20,200)),
+        // 'texte' => $faker->paragraphs($nb = 4, $asText = true),
     ];
 });
 
@@ -93,4 +102,17 @@ $factory->define(App\Membre::class, function (Faker\Generator $faker) {
         'photo' => $faker->imageUrl($width = 500, $height = 500, 'people'),
         'created_at' => $faker->dateTime,
     ];
+});
+
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+
+    $faker->locale('fr_FR');
+
+    return [
+        'name' => $faker->lastName.' '.$faker->firstName,
+        'email' => $faker->email,
+        'google_id' => $faker->numberBetween(2,12070),
+        'avatar' => '/images/default-avatar.png',
+    ];
+
 });
