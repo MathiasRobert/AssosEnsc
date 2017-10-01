@@ -5,7 +5,7 @@
 <title>Assos ENSC</title>
 
 <!-- Bootstrap core CSS     -->
-<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/bootstrap-dashboard.min.css" rel="stylesheet" />
 <!--  Material Dashboard CSS    -->
 <link href="/css/material-dashboard.css" rel="stylesheet" />
 <!--     Fonts and icons     -->

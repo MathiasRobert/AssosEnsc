@@ -14,7 +14,7 @@ $black_20: rgba(0, 0, 0, 0.2);
 $white: #ffffff;
 
 .wrapper {
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 .page-header-carousel {
@@ -115,7 +115,8 @@ $white: #ffffff;
 .navbar {
   .navbar-nav {
     .profile-photo {
-      padding: 0;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
       .profile-photo-small {
         height: 40px;
         width: 40px;
@@ -144,7 +145,22 @@ body {
       padding: 18px 36px;
     }
   }
+  .text-date {
+    text-transform: capitalize;
+  }
+  .numJour {
+    font-size: 25px;
+  }
 }
+
+.section-asso {
+  padding-top: 20px;
+}
+
+.date-eve {
+  text-transform: capitalize;
+}
+
 
 /*
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {

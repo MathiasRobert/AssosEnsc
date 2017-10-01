@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\CategorieEvenement;
 use App\Evenement;
 use App\Http\Requests\StoreEvenementRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Association;
 use Auth;
+use Jenssegers\Date\Date;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -28,6 +30,7 @@ class EvenementController extends Controller
     public function show($id)
     {
         $evenement = Evenement::find($id);
+        $evenement->dateDeb = Date::parse($evenement->dateDeb)->format('l j F Y - h:i');
         $association = Association::find($evenement->association_id);
         $association->couleur = $association->couleur->code;
         return view('pages.asso.evenements.show', compact('evenement', 'association'));

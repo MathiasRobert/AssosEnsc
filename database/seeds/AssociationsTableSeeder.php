@@ -54,19 +54,6 @@ class AssociationsTableSeeder extends Seeder
         ]);
 
         Association::create([
-        	'id'=> 4,
-        	'nom'  => "Bureau Des Arts",
-        	'diminutif'  => "BDA",
-        	'email'  => "bda@ensc.fr",
-        	'couleur_id'  => 3,
-        	'lien_facebook'  => null,
-        	'lien_siteweb'  => null,
-        	'description_courte' => "Le BDA illumine tes journées et te fait découvrir des monts et merveilles.",
-      		'description_longue' => null,
-        	'logo' => "/images/bda.jpg",
-        ]);
-
-        Association::create([
         	'id'=> 5,
         	'nom'  => "Junior Entreprise",
         	'diminutif'  => "JE",

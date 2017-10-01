@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', ['uses' => 'PagesController@home']);
 
 Route::get('asso/{diminutif}', ['uses' => 'PagesController@index']);
 Route::resource('evenements', 'EvenementController', ['only' => ['show']]);
+Route::resource('articles', 'ArticleController', ['only' => ['show']]);
+Route::get('/calendrier', ['uses' => 'PagesController@calendrier']);
 
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
@@ -32,10 +32,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 
+Route::post('inscription', 'InscriptionController@inscription');
+Route::post('desinscription', 'InscriptionController@desinscription');
 
 //POUR TEST
 Route::get('logintest', function() {
     $user = App\User::where('email', 'bde@ensc.fr')->first();
     Auth::login($user);
-    return redirect('/');
+    return back();
 })->name('logintest');

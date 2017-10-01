@@ -17,5 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('inscription', 'InscriptionController@inscription');
-Route::post('desinscription', 'InscriptionController@desinscription');
+

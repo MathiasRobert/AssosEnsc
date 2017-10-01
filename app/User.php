@@ -31,4 +31,11 @@ class User extends Authenticatable
     public function isAdmin(){
         return (Auth::check() && Association::where('email', '=', Auth::user()->email)->first());
     }
+
+    public function estInscrit($evenement_id){
+        return Inscription::where([
+            ['user_id', '=', Auth::user()->id],
+            ['evenement_id', '=', $evenement_id]
+        ])->first();
+    }
 }

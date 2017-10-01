@@ -7,6 +7,7 @@ use App\CategorieArticle;
 use Illuminate\Http\Request;
 use Auth;
 use App\Association;
+use Jenssegers\Date\Date;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\StoreArticleRequest;
@@ -23,6 +24,15 @@ class ArticleController extends Controller
         $association = Association::where('email', Auth::user()->email)->first();
         $articles = $association->articles->all();
         return view('admin.articles.index', compact('articles', 'association'));
+    }
+
+    public function show($id)
+    {
+        $article = Article::find($id);
+        $commentaires = $article->comments;
+        $association = Association::find($article->association_id);
+        $association->couleur = $association->couleur->code;
+        return view('pages.asso.articles.show', compact('article', 'association', 'commentaires'));
     }
 
     /**

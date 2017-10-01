@@ -1,5 +1,5 @@
 <!-- Partie "Article" -->
-<div class="tab-pane active" id="articles">
+<div class="tab-pane" id="articles" role="tabpanel">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -14,9 +14,9 @@
                             <div class="col-md-8">
                                 <h6 class="category text-info">{{ $article->categorie }}</h6>
                                 <h3 class="card-title">
-                                    <a href="">{{ $article->titre }}</a>
+                                    <a href="{{ route('articles.show', $article->id) }}">{{ $article->titre }}</a>
                                 </h3>
-                                <p class="card-description">{{ $article->texte }} …<a href=""> Lire Plus </a></p>
+                                <p class="card-description">{{ $article->texte }} …<a href="{{ route('articles.show', $article->id) }}"> Lire Plus </a></p>
                                 <p class="author">
                                     {{ $article->created_at }}
                                 </p>

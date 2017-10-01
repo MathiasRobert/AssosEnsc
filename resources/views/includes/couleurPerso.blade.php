@@ -15,15 +15,15 @@
         color: {{ $association->couleur }} !important;
     }
 
-    .form-control, .form-group .form-control {
-        background-image: linear-gradient({{ $association->couleur }}, {{ $association->couleur }}), linear-gradient(#D2D2D2, #D2D2D2) !important;
-    }
+    {{--.form-control, .form-group .form-control {--}}
+        {{--background-image: linear-gradient({{ $association->couleur }}, {{ $association->couleur }}), linear-gradient(#D2D2D2, #D2D2D2) !important;--}}
+    {{--}--}}
 
     .form-group:is-focused .form-control {
         background-image: linear-gradient({{ $association->couleur }}, {{ $association->couleur }}), linear-gradient(#D2D2D2, #D2D2D2) !important;
     }
 
-    .card > .header, .card > form > .header {
+    .card > .nav-tabs, .card > form > .header {
         background-color: {{ $association->couleur }} !important;
     }
 

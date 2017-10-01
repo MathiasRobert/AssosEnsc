@@ -24,8 +24,15 @@ class InscriptionController extends Controller
         return response()->json(['status' => 'failed']);
     }
 
-    public function deinscription(Request $request)
+    public function desinscription(Request $request)
     {
-        
+        $inscription = Inscription::where([
+            ['user_id', '=', $request->user_id],
+            ['evenement_id', '=', $request->evenement_id]
+        ]);
+        if($inscription->delete()) {
+            return response()->json(['status' => 'success']);
+        }
+        return response()->json(['status' => 'failed']);
     }
 }

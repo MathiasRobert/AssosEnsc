@@ -90,7 +90,7 @@ $factory->define(App\Membre::class, function (Faker\Generator $faker) {
         'poste' => $faker->jobTitle,
         'email' => $faker->email,
         'description' => $faker->paragraphs($nb = 1, $asText = true),
-        'photo' => $faker->imageUrl($width = 500, $height = 500),
+        'photo' => $faker->imageUrl($width = 500, $height = 500, 'people'),
         'created_at' => $faker->dateTime,
     ];
 });
