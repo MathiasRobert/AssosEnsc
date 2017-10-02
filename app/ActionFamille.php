@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Famille extends Model
+class ActionFamille extends Model
 {
-    public $timestamps = false;
+    //
 }

@@ -11,16 +11,16 @@
                 <thead>
                 <tr>
                     <th class="text-center">Date</th>
-                    <th class="text-center">Affiche</th>
                     <th>Évenement</th>
+                    <th></th>
                     <th class="text-right">Prix</th>
-                    <th class="text-center">Actions</th>
+                    {{--<th class="text-center">Actions</th>--}}
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($evenements as $e)
 
-                    <tr data-date="{!! $e->dateDeb !!} {!! $e->heureDeb !!}">
+                    <tr class='clickable-row' data-href='{{ route('evenements.show', $e->id) }}' data-date="{!! $e->dateDeb !!} {!! $e->heureDeb !!}">
                         <td class="text-date text-center ">
                             <span class="numJour">{!! $e->dateNumJour !!}</span>
                             {!! $e->dateMois !!}
@@ -33,7 +33,7 @@
                             </div>
                         </td>
                         <td class="td-name">
-                            <a href="">{!! $e->titre !!}</a>
+                            {!! $e->titre !!}
                             <br>
                             <small>{!! $e->heureDeb !!} - {!! $e->lieu !!}</small>
                         </td>
@@ -44,19 +44,17 @@
                                 {!! $e->prix !!}€
                             @endif
                         </td>
-                        <td class="td-actions text-right">
-                            <div class="btn-group btn-group-vertical">
-                                <a href="{{ route('evenements.show', $e->id) }}" role="button" class="btn btn-primary btn-block">
-                                    En savoir plus <i class="now-ui-icons travel_info"></i>
-                                </a>
-                                @if(!$e->estPasse)
-                                    <a id="" role="button" class="btn-inscription btn btn-success btn-block">
-                                        Participer &nbsp;
-                                        <i class="now-ui-icons ui-1_simple-add"></i>
-                                    </a>
-                                @endif
-                            </div>
-                        </td>
+                        {{--<td class="td-actions text-right">--}}
+                                {{--<a href="{{ route('evenements.show', $e->id) }}" role="button" class="btn btn-sm btn-primary btn-block">--}}
+                                    {{--En savoir plus <i class="now-ui-icons travel_info"></i>--}}
+                                {{--</a>--}}
+                                {{--@if(!$e->estPasse)--}}
+                                    {{--<a id="" role="button" class="btn-inscription btn btn-success btn-block">--}}
+                                        {{--Participer &nbsp;--}}
+                                        {{--<i class="now-ui-icons ui-1_simple-add"></i>--}}
+                                    {{--</a>--}}
+                                {{--@endif--}}
+                        {{--</td>--}}
                     </tr>
                 @endforeach
                 </tbody>

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\ActionFamille;
 use App\Evenement;
 use App\Article;
+use App\Famille;
+use DateTime;
 use Illuminate\Http\Request;
 use App\Association;
 use Carbon\Carbon;
 use Jenssegers\Date\Date;
+use DB;
 
 class PagesController extends Controller
 {
@@ -48,13 +52,50 @@ class PagesController extends Controller
     public function home()
     {
         $associations = Association::all();
-        $evenements = Evenement::all();
-        $articles = Article::all();
-        return view('pages.home', compact( 'associations', 'evenements', 'articles'));
+        $evenements = Evenement::where('dateDeb','>=',new DateTime('today'))
+            ->orderBy(DB::raw('ABS(DATEDIFF(evenements.dateDeb, NOW()))'))->take(3)->get();
+        foreach($evenements as $entries){
+            Date::setLocale('fr');
+            $entries->dateNumJour = Date::parse($entries->dateDeb)->format('j');
+            $entries->dateMois = substr(Date::parse($entries->dateDeb)->format('F'), 0, 4);
+            $entries->dateJour = Date::parse($entries->dateDeb)->format('l');
+            $entries->dateAnnee = Date::parse($entries->dateDeb)->format('Y');
+            $entries->heureDeb = Date::parse($entries->dateDeb)->format('H:i');
+            $dateEvenement = Carbon::parse($entries->dateDeb);
+            $dateActuelle = Carbon::now();
+            if($dateEvenement->gte($dateActuelle))
+                $entries->estPasse = false;
+            else
+                $entries->estPasse = true;
+        }
+        $articles = Article::orderBy('created_at', 'desc')->take(3)->get();
+        foreach($articles as $entries){
+            $entries->categorie = $entries->categorie->nom;
+            $entries->texte = substr($entries->texte, 0, 100);
+        }
+        $familles = Famille::orderBy('points','desc')->get();
+        $max = Famille::max('points');
+        foreach ($familles as $f)
+        {
+            $f->pourcentage = round((float)($f->points/$max) * 100 );
+        }
+        return view('pages.home', compact( 'associations', 'evenements', 'articles', 'familles'));
     }
 
     public function calendrier()
     {
         return view('pages.calendrier');
+    }
+
+    public function famille()
+    {
+        $actions = ActionFamille::orderBy('date', 'desc');
+        $familles = Famille::orderBy('points','desc')->get();
+        $max = Famille::max('points');
+        foreach ($familles as $f)
+        {
+            $f->pourcentage = round((float)($f->points/$max) * 100 );
+        }
+        return view('pages.famille', compact('familles', 'actions'));
     }
 }

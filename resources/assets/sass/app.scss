@@ -151,6 +151,14 @@ body {
   .numJour {
     font-size: 25px;
   }
+  .clickable-row:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    background-color: whitesmoke;
+  }
+  .clickable-row {
+    transition: all .2s ease-in-out;
+  }
 }
 
 .section-asso {
@@ -161,6 +169,92 @@ body {
   text-transform: capitalize;
 }
 
+.graph-familles {
+  list-style: none;
+  padding-left: 0px;
+  width: 80%;
+  li {
+    height: 35px;
+    color: white;
+    text-align: right;
+    font-size: 14px;
+    line-height: 35px;
+    padding: 0px 20px;
+    margin-bottom: 5px;
+    transition: all .1s ease-in-out;
+  }
+  li:hover {
+    transform: scale(1.05);
+  }
+  .Rouge {
+    background: #c0392b;
+  }
+  .Vert {
+    background: #2ecc71;
+  }
+  .Bleu {
+    background: #3498db;
+  }
+  .Jaune {
+    background: #f1c40f;
+  }
+  .Orange {
+    background: #e67e22;
+  }
+}
+
+#chart {
+  position: relative;
+  margin-top: 40px;
+  width: 500px;
+  height: 200px;
+}
+
+@-webkit-keyframes bargrowth {
+  0% {
+    max-height: 0%;
+  }
+  100% {
+    max-height: 100%;
+  }
+}
+
+@keyframes bargrowth {
+  0% {
+    max-height: 0%;
+  }
+  100% {
+    max-height: 100%;
+  }
+}
+
+.bar {
+  -webkit-animation: bargrowth 1000ms ease;
+  animation: bargrowth 1000ms ease;
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+}
+.Rouge {
+  background: #F44336;
+  box-shadow: 1px -1px #D32F2F, 2px -2px #D32F2F, 3px -3px #D32F2F, 4px -4px #D32F2F, 5px -5px #D32F2F, 6px -6px #D32F2F, 7px -7px #D32F2F, 8px -8px #D32F2F, 9px -9px #D32F2F, 10px -10px #D32F2F;
+}
+.Vert {
+  background: #4CAF50;
+  box-shadow: 1px -1px #388E3C, 2px -2px #388E3C, 3px -3px #388E3C, 4px -4px #388E3C, 5px -5px #388E3C, 6px -6px #388E3C, 7px -7px #388E3C, 8px -8px #388E3C, 9px -9px #388E3C, 10px -10px #388E3C;
+}
+.Bleu {
+  background: #2196F3;
+  box-shadow: 1px -1px #1976D2, 2px -2px #1976D2, 3px -3px #1976D2, 4px -4px #1976D2, 5px -5px #1976D2, 6px -6px #1976D2, 7px -7px #1976D2, 8px -8px #1976D2, 9px -9px #1976D2, 10px -10px #1976D2;
+}
+.Jaune {
+  background: #FFEB3B;
+  box-shadow: 1px -1px #FBC02D, 2px -2px #FBC02D, 3px -3px #FBC02D, 4px -4px #FBC02D, 5px -5px #FBC02D, 6px -6px #FBC02D, 7px -7px #FBC02D, 8px -8px #FBC02D, 9px -9px #FBC02D, 10px -10px #FBC02D;
+}
+.Orange {
+  background: #FF9800;
+  box-shadow: 1px -1px #F57C00, 2px -2px #F57C00, 3px -3px #F57C00, 4px -4px #F57C00, 5px -5px #F57C00, 6px -6px #F57C00, 7px -7px #F57C00, 8px -8px #F57C00, 9px -9px #F57C00, 10px -10px #F57C00;
+}
 
 /*
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
