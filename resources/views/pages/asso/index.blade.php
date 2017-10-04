@@ -12,7 +12,7 @@
         <div class="content-center">
             <h1 class="title">{!! $association->nom !!}</h1>
             <div class="text-center">
-                <a href="#pablo" class="btn btn-primary btn-icon  btn-round">
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
                     <i class="fa fa-facebook-square"></i>
                 </a>
             </div>

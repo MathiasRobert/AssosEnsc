@@ -13,7 +13,11 @@
                     <img class="img-responsive" src="{!! $evenement->affiche !!}">
                 </div>
                 <div class="col-md-6 col-sm-6">
-                    <h2 class="title"> {!! $evenement->titre !!} </h2>
+                    <h2 class="title"> {!! $evenement->titre !!} <span class="pull-right">
+                            <a href="{!! $evenement->lien_facebook !!}" class="btn btn-icon btn-facebook btn-round">
+                                <i class="fa fa-facebook"> </i>
+                            </a>
+                        </span></h2>
                     <h5 class="category">{!! $evenement->lieu !!}</h5>
                     <h2 class="main-price">
                         @if ($evenement->prix == 0)
@@ -41,13 +45,7 @@
                     </div>
                     <!--  end acordeon -->
                     <div>
-                        <h3 class="date-eve">{!! $evenement->dateDeb !!}
-                        <span class="pull-right">
-                            <a href="{!! $evenement->lien_facebook !!}" class="btn btn-primary btn-icon  btn-round">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </span>
-                        </h3>
+                        <h3 class="date-eve">{!! $evenement->dateDeb !!}</h3>
                     </div>
 
                 </div>

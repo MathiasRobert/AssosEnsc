@@ -121,7 +121,9 @@
                             <div class="card">
                                 <div class="card-block">
                                     <h4 class="card-title text-center">
-                                        Calabar
+                                        <i class="fa fa-beer" aria-hidden="true"></i>
+                                         Calabar <i class="fa fa-beer" aria-hidden="true"></i>
+
                                     </h4>
                                     <p class="card-description">
                                         <ul class="graph-familles">

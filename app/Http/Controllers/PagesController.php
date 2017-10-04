@@ -82,9 +82,9 @@ class PagesController extends Controller
         return view('pages.home', compact( 'associations', 'evenements', 'articles', 'familles'));
     }
 
-    public function calendrier()
+    public function calabar()
     {
-        return view('pages.calendrier');
+        return view('pages.calabar');
     }
 
     public function famille()
