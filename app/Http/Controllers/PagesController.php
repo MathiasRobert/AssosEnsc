@@ -89,7 +89,7 @@ class PagesController extends Controller
 
     public function famille()
     {
-        $actions = ActionFamille::orderBy('date', 'desc');
+        $actions = ActionFamille::orderBy('quand', 'desc')->take(10)->get();
         $familles = Famille::orderBy('points','desc')->get();
         $max = Famille::max('points');
         foreach ($familles as $f)

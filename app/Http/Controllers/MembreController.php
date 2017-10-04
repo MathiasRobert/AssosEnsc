@@ -93,11 +93,10 @@ class MembreController extends Controller
     public function destroy(Request $request, $id)
     {
         // delete
-        $membre = Membre::find($id);
-        $membre->delete();
+        Membre::destroy($id);
 
         if ( $request->ajax() ) {
-            $membre->delete( $request->all() );
+            Membre::destroy( $request->all() );
 
             return response(['status' => 'success']);
         }

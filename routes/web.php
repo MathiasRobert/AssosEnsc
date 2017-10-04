@@ -28,6 +28,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/associations/{tab}', ['uses' => 'AdminController@association']);
     Route::resource('admin/articles', 'ArticleController', ['except' => ['show']]);
     Route::resource('admin/evenements', 'EvenementController', ['except' => ['show']]);
+    Route::resource('admin/actionsFamilles', 'ActionFamilleController', ['except' => ['show']]);
     Route::resource('admin/membres', 'MembreController', ['except' => ['show', 'index']]);
     Route::resource('admin/associations', 'AssociationController', ['except' => ['show', 'index', 'destroy']]);
 

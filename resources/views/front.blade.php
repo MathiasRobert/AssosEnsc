@@ -8,7 +8,7 @@
 	<!-- Bootstrap core CSS     -->
 	<link href="/css/bootstrap4.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-	<!-- <link href="/css/now-ui-kit.css" rel="stylesheet" /> -->
+    <link href="/css/now-ui-kit.css" rel="stylesheet" />
 <!-- 	<link href="/css/demo.css" rel="stylesheet" /> -->
 	<link href="/css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 

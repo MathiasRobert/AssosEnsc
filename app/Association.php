@@ -41,6 +41,10 @@ class Association extends Model
         return $this->hasMany('App\Membre');
     }
 
+    public function actionsFamilles(){
+        return $this->hasMany('App\ActionFamille');
+    }
+
     public function couleur() {
         return $this->belongsTo('App\Couleur');
     }

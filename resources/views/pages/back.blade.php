@@ -8,7 +8,7 @@
 	<title>Assos ENSC</title>
 
 	<!-- Bootstrap core CSS     -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/bootstrap-dashboard.min.css" rel="stylesheet" />
 	<!--  Material Dashboard CSS    -->
 	<link href="/css/material-dashboard.css" rel="stylesheet" />
 	<!--     Fonts and icons     -->
@@ -33,7 +33,7 @@
     
         <!--   Core JS Files   -->
     <script src="/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap3.min.js" type="text/javascript"></script>
     <script src="/js/material.min.js" type="text/javascript"></script>
     <!-- Forms Validations Plugin -->
     <script src="/js/jquery.validate.min.js"></script>

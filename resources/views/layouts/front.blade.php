@@ -57,6 +57,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/famille">Jeux des Familles</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/calendrier"><i class="now-ui-icons ui-1_calendar-60"></i> Calendrier</a>
                 </li>
 

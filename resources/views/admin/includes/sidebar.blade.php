@@ -58,6 +58,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     <p>Evenements</p>
                 </a>
             </li>
+            <li class="@if(Route::currentRouteName() === 'actionsFamilles.index') active @endif">
+                <a href="{{ route('actionsFamilles.index') }}">
+                    <i class="material-icons">games</i>
+                    <p>Jeux des familles</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

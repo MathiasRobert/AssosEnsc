@@ -5,23 +5,18 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <h2 class="title">Classements</h2>
-                    {{--<ul class="graph-familles graph-familles-grand">--}}
-                    {{--@foreach($familles as $f)--}}
-                    {{--<li class="{{ $f->nom }}"--}}
-                    {{--style="width: {{ $f->pourcentage + 20}}%">{{ $f->points }}</li>--}}
-                    {{--@endforeach--}}
-                    {{--</ul>--}}
+                <div class="col-md-12 classement-familles">
+                    <h2 class="title">Classements des familles</h2>
                     <div id="chart">
+                        <img src="/images/crown.png" class="crown">
                         @foreach($familles as $f)
-                            <div class="bar {{ $f->nom }}" style="width: 50px; height: {{ $f->pourcentage }}%; left: {{ $f->id * 100 }}px;"></div>
+                            <div class="bar {{ $f->nom }}" style="width: 50px; height: {{ $f->pourcentage }}%; left: {{ $f->id * 70 }}px;"></div>
                         @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <h2 class="title">Dernières actions</h2>
+                <h4 class="title">Dernières actions</h4>
                 <table class="table table-shopping table-center">
                     <tbody>
                     @foreach ($actions as $a)

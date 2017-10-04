@@ -187,19 +187,19 @@ body {
     transform: scale(1.05);
   }
   .Rouge {
-    background: #c0392b;
+    background: #F44336;
   }
   .Vert {
-    background: #2ecc71;
+    background: #4CAF50;
   }
   .Bleu {
-    background: #3498db;
+    background: #2196F3;
   }
   .Jaune {
-    background: #f1c40f;
+    background: #FFEB3B;
   }
   .Orange {
-    background: #e67e22;
+    background: #FF9800;
   }
 }
 
@@ -208,6 +208,26 @@ body {
   margin-top: 40px;
   width: 500px;
   height: 200px;
+  .Rouge {
+    background: #F44336;
+    box-shadow: 1px -1px #D32F2F, 2px -2px #D32F2F, 3px -3px #D32F2F, 4px -4px #D32F2F, 5px -5px #D32F2F, 6px -6px #D32F2F, 7px -7px #D32F2F, 8px -8px #D32F2F, 9px -9px #D32F2F, 10px -10px #D32F2F;
+  }
+  .Vert {
+    background: #4CAF50;
+    box-shadow: 1px -1px #388E3C, 2px -2px #388E3C, 3px -3px #388E3C, 4px -4px #388E3C, 5px -5px #388E3C, 6px -6px #388E3C, 7px -7px #388E3C, 8px -8px #388E3C, 9px -9px #388E3C, 10px -10px #388E3C;
+  }
+  .Bleu {
+    background: #2196F3;
+    box-shadow: 1px -1px #1976D2, 2px -2px #1976D2, 3px -3px #1976D2, 4px -4px #1976D2, 5px -5px #1976D2, 6px -6px #1976D2, 7px -7px #1976D2, 8px -8px #1976D2, 9px -9px #1976D2, 10px -10px #1976D2;
+  }
+  .Jaune {
+    background: #FFEB3B;
+    box-shadow: 1px -1px #FBC02D, 2px -2px #FBC02D, 3px -3px #FBC02D, 4px -4px #FBC02D, 5px -5px #FBC02D, 6px -6px #FBC02D, 7px -7px #FBC02D, 8px -8px #FBC02D, 9px -9px #FBC02D, 10px -10px #FBC02D;
+  }
+  .Orange {
+    background: #FF9800;
+    box-shadow: 1px -1px #F57C00, 2px -2px #F57C00, 3px -3px #F57C00, 4px -4px #F57C00, 5px -5px #F57C00, 6px -6px #F57C00, 7px -7px #F57C00, 8px -8px #F57C00, 9px -9px #F57C00, 10px -10px #F57C00;
+  }
 }
 
 @-webkit-keyframes bargrowth {
@@ -228,6 +248,24 @@ body {
   }
 }
 
+@-webkit-keyframes monter {
+  0% {
+    bottom: 10%;
+  }
+  100% {
+    bottom: 110%;
+  }
+}
+
+@keyframes monter {
+  0% {
+    bottom: 10%;
+  }
+  100% {
+    bottom: 110%;
+  }
+}
+
 .bar {
   -webkit-animation: bargrowth 1000ms ease;
   animation: bargrowth 1000ms ease;
@@ -235,25 +273,21 @@ body {
   bottom: 0;
   display: inline-block;
 }
-.Rouge {
-  background: #F44336;
-  box-shadow: 1px -1px #D32F2F, 2px -2px #D32F2F, 3px -3px #D32F2F, 4px -4px #D32F2F, 5px -5px #D32F2F, 6px -6px #D32F2F, 7px -7px #D32F2F, 8px -8px #D32F2F, 9px -9px #D32F2F, 10px -10px #D32F2F;
+
+.crown {
+  position: absolute;
+  bottom: 110%;
+  left: 60px;
+  z-index: 100;
+  -webkit-animation: monter 1000ms ease;
+  animation: monter 1000ms ease;
 }
-.Vert {
-  background: #4CAF50;
-  box-shadow: 1px -1px #388E3C, 2px -2px #388E3C, 3px -3px #388E3C, 4px -4px #388E3C, 5px -5px #388E3C, 6px -6px #388E3C, 7px -7px #388E3C, 8px -8px #388E3C, 9px -9px #388E3C, 10px -10px #388E3C;
-}
-.Bleu {
-  background: #2196F3;
-  box-shadow: 1px -1px #1976D2, 2px -2px #1976D2, 3px -3px #1976D2, 4px -4px #1976D2, 5px -5px #1976D2, 6px -6px #1976D2, 7px -7px #1976D2, 8px -8px #1976D2, 9px -9px #1976D2, 10px -10px #1976D2;
-}
-.Jaune {
-  background: #FFEB3B;
-  box-shadow: 1px -1px #FBC02D, 2px -2px #FBC02D, 3px -3px #FBC02D, 4px -4px #FBC02D, 5px -5px #FBC02D, 6px -6px #FBC02D, 7px -7px #FBC02D, 8px -8px #FBC02D, 9px -9px #FBC02D, 10px -10px #FBC02D;
-}
-.Orange {
-  background: #FF9800;
-  box-shadow: 1px -1px #F57C00, 2px -2px #F57C00, 3px -3px #F57C00, 4px -4px #F57C00, 5px -5px #F57C00, 6px -6px #F57C00, 7px -7px #F57C00, 8px -8px #F57C00, 9px -9px #F57C00, 10px -10px #F57C00;
+
+.classement-familles {
+  padding-bottom: 20px;
+  .title {
+    padding-bottom: 40px;
+  }
 }
 
 /*

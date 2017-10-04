@@ -134,8 +134,8 @@ $(document).ready(function () {
         });
     });
 
-    // Delete evenement
-    table.on('click', '.remove-memvre', function (e) {
+    // Delete membre
+    table.on('click', '.remove-membre', function (e) {
         var id = $(this).data("id");
         var token = $(this).data("token");
         var tr = $(this).closest('tr');
@@ -178,6 +178,64 @@ $(document).ready(function () {
                     $.notify({
                         icon: "danger",
                         message: "Erreur : membre non supprimé"
+
+                    },{
+                        type: "danger",
+                        timer: 2000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    // Delete action
+    table.on('click', '.remove-action', function (e) {
+        var id = $(this).data("id");
+        var token = $(this).data("token");
+        var tr = $(this).closest('tr');
+        swal({
+            title: 'Êtes-vous sur ?',
+            text: "C'est une suppression définitive !",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Supprimer',
+            cancelButtonText: 'Annuler',
+            buttonsStyling: false
+        }).then(function () {
+            $.ajax({
+                url: "/admin/actionsFamilles/" + id,
+                type: 'DELETE',
+                data: {
+                    "id": id,
+                    "_method": 'DELETE',
+                    "_token": token,
+                },
+                success: function () {
+                    table.row(tr).remove().draw();
+                    e.preventDefault();
+                    $.notify({
+                        icon: "done",
+                        message: "Action supprimé"
+
+                    },{
+                        type: "success",
+                        timer: 2000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+                },
+                fail: function () {
+                    $.notify({
+                        icon: "danger",
+                        message: "Erreur : action non supprimé"
 
                     },{
                         type: "danger",

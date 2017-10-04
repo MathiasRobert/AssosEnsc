@@ -11758,7 +11758,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-08bb676b", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-08bb676b", __vue__options__)
+    hotAPI.reload("data-v-08bb676b", __vue__options__)
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],11:[function(require,module,exports){
@@ -11777,7 +11777,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-0c7632ef", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-0c7632ef", __vue__options__)
+    hotAPI.reload("data-v-0c7632ef", __vue__options__)
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3}],12:[function(require,module,exports){
@@ -11836,7 +11836,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-2d4c5e3a", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-2d4c5e3a", __vue__options__)
+    hotAPI.reload("data-v-2d4c5e3a", __vue__options__)
   }
 })()}
 },{"../components/Evenement/evenement.services.js":8,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],13:[function(require,module,exports){
@@ -11936,7 +11936,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-05d83508", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-05d83508", __vue__options__)
+    hotAPI.reload("data-v-05d83508", __vue__options__)
   }
 })()}
 },{"../components/Evenement/evenement.services.js":8,"./user.services.js":15,"vue":6,"vue-hot-reload-api":3,"vueify/lib/insert-css":7}],14:[function(require,module,exports){
@@ -11951,7 +11951,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-7cec511c", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-7cec511c", __vue__options__)
+    hotAPI.reload("data-v-7cec511c", __vue__options__)
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":3}],15:[function(require,module,exports){
@@ -11985,3 +11985,4 @@ exports.default = {
 },{"vue":6}]},{},[9]);
 
 //# sourceMappingURL=front.js.map
+nt.js.map

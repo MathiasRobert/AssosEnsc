@@ -1,6 +1,7 @@
 <!--   Core JS Files   -->
 <script src="/js/jquery.min.js" type="text/javascript"></script>
-<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/tether.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap3.min.js" type="text/javascript"></script>
 <script src="/js/material.min.js" type="text/javascript"></script>
 <!-- Forms Validations Plugin -->
 <script src="/js/jquery.validate.min.js"></script>
