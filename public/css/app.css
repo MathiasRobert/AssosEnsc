@@ -133,8 +133,8 @@ body .main-product {
 
 .table .clickable-row:hover {
   cursor: pointer;
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
+  -webkit-transform: scale(1.015);
+  transform: scale(1.015);
   background-color: whitesmoke;
 }
 
@@ -205,7 +205,7 @@ body .main-product {
 }
 
 .graph-familles .Jaune {
-  background: #FFEB3B;
+  background: #FDD835;
 }
 
 .graph-familles .Orange {

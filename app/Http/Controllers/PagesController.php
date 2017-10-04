@@ -90,6 +90,11 @@ class PagesController extends Controller
     public function famille()
     {
         $actions = ActionFamille::orderBy('quand', 'desc')->take(10)->get();
+        Date::setLocale('fr');
+        foreach ($actions as $a)
+        {
+            $a->quand = Carbon::parse($a->quand)->format('d/m/Y');
+        }
         $familles = Famille::orderBy('points','desc')->get();
         $max = Famille::max('points');
         foreach ($familles as $f)
