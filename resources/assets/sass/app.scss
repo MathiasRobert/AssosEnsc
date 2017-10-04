@@ -161,6 +161,24 @@ body {
   }
 }
 
+.tr-actions {
+  .Rouge {
+    background: #F44336;
+  }
+  .Vert {
+    background: #4CAF50;
+  }
+  .Bleu {
+    background: #2196F3;
+  }
+  .Jaune {
+    background: #FFEB3B;
+  }
+  .Orange {
+    background: #FF9800;
+  }
+}
+
 .section-asso {
   padding-top: 20px;
 }
@@ -208,6 +226,11 @@ body {
   margin-top: 40px;
   width: 500px;
   height: 200px;
+  .points-graph {
+    position: relative;
+    left : 10px;
+    bottom: -100%;
+  }
   .Rouge {
     background: #F44336;
     box-shadow: 1px -1px #D32F2F, 2px -2px #D32F2F, 3px -3px #D32F2F, 4px -4px #D32F2F, 5px -5px #D32F2F, 6px -6px #D32F2F, 7px -7px #D32F2F, 8px -8px #D32F2F, 9px -9px #D32F2F, 10px -10px #D32F2F;
@@ -284,11 +307,49 @@ body {
 }
 
 .classement-familles {
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   .title {
-    padding-bottom: 40px;
+    padding-bottom: 60px;
   }
 }
+
+@media(max-width: 767px) {
+  #chart {
+    display: none;
+  }
+  #chart-inline {
+    list-style: decimal;
+    li {
+      padding-bottom: 10px;
+      font-size: large;
+      .nombre-points {
+        font-size: large;
+      }
+    }
+    .Rouge {
+      background: #F44336;
+    }
+    .Vert {
+      background: #4CAF50;
+    }
+    .Bleu {
+      background: #2196F3;
+    }
+    .Jaune {
+      background: #FFEB3B;
+    }
+    .Orange {
+      background: #FF9800;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  #chart-inline {
+    display: none;
+  }
+}
+
 
 /*
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {

@@ -142,6 +142,26 @@ body .main-product {
   transition: all .2s ease-in-out;
 }
 
+.tr-actions .Rouge {
+  background: #F44336;
+}
+
+.tr-actions .Vert {
+  background: #4CAF50;
+}
+
+.tr-actions .Bleu {
+  background: #2196F3;
+}
+
+.tr-actions .Jaune {
+  background: #FFEB3B;
+}
+
+.tr-actions .Orange {
+  background: #FF9800;
+}
+
 .section-asso {
   padding-top: 20px;
 }
@@ -197,6 +217,12 @@ body .main-product {
   margin-top: 40px;
   width: 500px;
   height: 200px;
+}
+
+#chart .points-graph {
+  position: relative;
+  left: 10px;
+  bottom: -100%;
 }
 
 #chart .Rouge {
@@ -278,11 +304,48 @@ body .main-product {
 }
 
 .classement-familles {
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .classement-familles .title {
-  padding-bottom: 40px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 767px) {
+  #chart {
+    display: none;
+  }
+  #chart-inline {
+    list-style: decimal;
+  }
+  #chart-inline li {
+    padding-bottom: 10px;
+    font-size: large;
+  }
+  #chart-inline li .nombre-points {
+    font-size: large;
+  }
+  #chart-inline .Rouge {
+    background: #F44336;
+  }
+  #chart-inline .Vert {
+    background: #4CAF50;
+  }
+  #chart-inline .Bleu {
+    background: #2196F3;
+  }
+  #chart-inline .Jaune {
+    background: #FFEB3B;
+  }
+  #chart-inline .Orange {
+    background: #FF9800;
+  }
+}
+
+@media (min-width: 768px) {
+  #chart-inline {
+    display: none;
+  }
 }
 
 /*

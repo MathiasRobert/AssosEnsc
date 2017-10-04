@@ -4,25 +4,38 @@
 
     <div class="section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 classement-familles">
+            <div class="row justify-content-center">
+                <div class="col-md-6 classement-familles">
                     <h2 class="title">Classements des familles</h2>
                     <div id="chart">
                         <img src="/images/crown.png" class="crown">
                         @foreach($familles as $f)
-                            <div class="bar {{ $f->nom }}" style="width: 50px; height: {{ $f->pourcentage }}%; left: {{ $f->id * 70 }}px;"></div>
+                            <div class="bar {{ $f->nom }}" style="width: 50px; height: {{ $f->pourcentage }}%; left: {{ $f->id * 70 }}px;"><span class="points-graph">{{ $f->points }}</span></div>
                         @endforeach
                     </div>
+                    <ul id="chart-inline">
+                        @foreach($familles as $f)
+                            <li><span class="carre-famille {{ $f->nom }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                &nbsp;{{ $f->nom }} : <strong>{{ $f->points }}</strong>
+                                points</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h4 class="title">Dernières actions</h4>
                 <table class="table table-shopping table-center">
+                    <thead>
+                        <th>Date</th>
+                        <th>Qui</th>
+                        <th>Action</th>
+                        <th class="text-right">Points</th>
+                    </thead>
                     <tbody>
                     @foreach ($actions as $a)
 
-                        <tr data-date="{!! $a->quand !!}" class='clickable-row'>
-                            <td class="text-date text-center ">
+                        <tr class="tr-actions" data-date="{!! $a->quand !!}">
+                            <td class="text-date ">
                                 {!! $a->quand !!}
                             </td>
                             <td>
@@ -32,7 +45,9 @@
                                 {!! $a->quoi !!}
                             </td>
                             <td class="td-number">
-                                {!! $a->points !!}
+                                {!! $a->points !!} points
+                            </td>
+                            <td class="td-famille {!! $a->famille->nom !!}">
                             </td>
                         </tr>
                     @endforeach

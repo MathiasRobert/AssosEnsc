@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/famille">Jeux des Familles</a>
+                    <a class="nav-link" href="/famille"><i class="now-ui-icons sport_trophy"></i> Coupe des Familles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/calendrier"><i class="now-ui-icons ui-1_calendar-60"></i> Calendrier</a>
