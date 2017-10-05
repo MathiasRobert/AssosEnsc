@@ -57,7 +57,8 @@
             </div> -->
 
             <section id="comments-section">
-              <div class="cmt-body">
+              
+              <div class="cmt-body" v-if="user">
                     <div class="form-group is-empty"><textarea class="form-control" placeholder="Commenter cet évenement..." rows="6" v-model="commentText"></textarea><span class="material-input"></span></div>
                     <div class="cmt-footer text-right">
                          <button class="btn btn-primary" v-on:click="postComment">Commenter</button>
@@ -250,6 +251,7 @@
         return Vue.http.get('/api/user').then(function(data) {
             if(data.body != ""){
                 vm.currentUser = data.body;
+                console.log(data);
             }
         });
       }
@@ -292,6 +294,7 @@
           evenement: {},
           comments:[],
           commentText:'',
+          user:null
         },
   
         created: function() {
@@ -300,7 +303,9 @@
                 vm.getComments();
             });
 
-            userService.getCurrentUser();
+            userService.getCurrentUser().then(function(){
+               vm.user = userService.currentUser;
+            });
 
         },
 
