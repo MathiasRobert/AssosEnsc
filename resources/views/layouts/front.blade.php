@@ -48,7 +48,7 @@
                             Les Assos
                         </p>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @foreach($assoDiminutifs as $diminutif)
                             <li>
                                 <a class="dropdown-item" href="/asso/{!! $diminutif !!}">{!! $diminutif !!}</a>
@@ -73,7 +73,7 @@
                                      alt="avatar">
                             </div>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                             <li>
                                 <a class="dropdown-item" href="#">Mon compte</a>
                             </li>
@@ -104,7 +104,7 @@
     </div>
 </nav>
 
-<div class="wrapper">
+<div class="wrapper" id="app">
 
 @yield('header')
 
@@ -123,10 +123,13 @@
 
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 <script src="/js/now-ui-kit.js" type="text/javascript"></script>
+<script src="/js/app.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/vue.min.js"></script>
+<script type="text/javascript" src="/js/vue-resource.min.js"></script>
 
 @yield('scripts')
 
-<script src="/js/app.js" type="text/javascript"></script>
+
 </body>
 
 </html>

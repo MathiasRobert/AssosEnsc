@@ -76,6 +76,7 @@ class EvenementController extends Controller
         }
         $association = Association::find($evenement->association_id);
         $association->couleur = $association->couleur->code;
+
         return view('pages.asso.evenements.show', compact('evenement', 'association'));
 
     }
