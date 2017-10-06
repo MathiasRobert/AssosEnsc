@@ -58,51 +58,51 @@
 
             <section id="comments-section">
               
-              <div class="cmt-body" v-if="user">
+              <div class="cmt-body">
                     <div class="form-group is-empty"><textarea class="form-control" placeholder="Commenter cet évenement..." rows="6" v-model="commentText"></textarea><span class="material-input"></span></div>
                     <div class="cmt-footer text-right">
-                         <button class="btn btn-primary" v-on:click="postComment">Commenter</button>
+                         <button class="btn btn-primary" v-on:click="postComment" v-bind:disabled="commentText==''">Commenter</button>
                     </div>
-              </div> 
+              </div>
 
               <!-- <h5 class="title text-center">Commentaires</h5> -->
               <h5 class="title text-center">@{{comments.length}} Commentaires</h5>
 
                 <ul class="comments-list">
-                    <li class="comment-container cfix user-comment" v-for="comment in comments">
+                    <li class="comment-container user-comment" v-for="comment in comments">
                         <a target="_blank" class="rf-avatar js-mini-profile" data-id="44063465">
                           <img v-bind:src="comment.user.avatar" class="rf-avatar__image js-avatar__image">
                         </a>
                           <div class="comment-text-container left relative">
-                            <div class="comment-user-date-wrap ui-corner cfix">
+                            <div class="comment-user-date-wrap ui-corner">
                               <a class="user-name-link bold js-mini-profile" data-id="44063465" href="https://www.behance.net/seb90grado8237">@{{comment.user.name}}</a>
                               <span class="comment-date js-format-timestamp" data-timestamp="1501963744">@{{comment.updated_at}}</span>
                             </div>
                             <div class="comment-text-wrap"><div class="comment-text" v-html="comment.texte">@{{comment.texte}}</div></div>
                           </div>
                           <div class="comment-actions">
-                            <button class="btn btn-primary btn-simple btn-round">
+                            <!-- <button class="btn btn-primary btn-simple btn-round">
                                 <i class="fa fa-reply"></i> Répondre
-                            </button>
+                            </button> -->
                           </div>
-                          <div class="comment-actions comments-to-comment">
+                          <div class="comments-to-comment">
                            <ul>
-                              <li class="comment-container cfix user-comment" v-for="commentToComment in comment.comments">
+                              <li class="comment-container user-comment" v-for="commentToComment in comment.comments">
                                   <a target="_blank" href="https://www.behance.net/seb90grado8237" class="rf-avatar js-mini-profile" data-id="44063465">
                                     <img v-bind:src="commentToComment.user.avatar" class="rf-avatar__image js-avatar__image">
                                   </a>
                                     <div class="comment-text-container left relative">
-                                      <div class="comment-user-date-wrap ui-corner cfix">
+                                      <div class="comment-user-date-wrap ui-corner">
                                         <a class="user-name-link bold js-mini-profile" data-id="44063465" href="https://www.behance.net/seb90grado8237">@{{commentToComment.user.name}}</a>
                                         <span class="comment-date js-format-timestamp" data-timestamp="1501963744">@{{commentToComment.updated_at}}</span>
                                       </div>
                                       <div class="comment-text-wrap"><div class="comment-text" v-html="commentToComment.texte">@{{commentToComment.texte}}</div></div>
                                     </div>
-                                    <div class="comment-actions">
+                                    <!-- <div class="comment-actions">
                                        <button class="btn btn-primary btn-simple btn-round">
                                             <i class="fa fa-reply"></i> Répondre
                                         </button>
-                                    </div>
+                                    </div> -->
                               </li>
                           </ul>
                           </div>
@@ -225,6 +225,29 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="modalNotAuthenticated" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!-- <div class="modal-header" style="border-bottom: none;">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            
+          </div> -->
+          <div class="modal-body text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div style="padding: 20px;">Veuillez vous identifier pour pouvoir poster ce commentaire.</div>
+            <a href="/login/google" class="btn btn-primary">Se connecter</a>
+          </div>
+         <!--  <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
 @endsection
 
 @section('scripts')
@@ -293,8 +316,7 @@
         data:{
           evenement: {},
           comments:[],
-          commentText:'',
-          user:null
+          commentText:''
         },
   
         created: function() {
@@ -303,9 +325,7 @@
                 vm.getComments();
             });
 
-            userService.getCurrentUser().then(function(){
-               vm.user = userService.currentUser;
-            });
+            userService.getCurrentUser();
 
         },
 
@@ -449,7 +469,7 @@
 <style type="text/css">
 
 #comments-section{
-  max-width: 800px;
+  max-width: 685px;
   margin: 0 auto;
 }
 
@@ -604,6 +624,10 @@
   padding: 20px;
   right: 0px;
   border-radius: 4px 0px 0px 4px;
+}
+
+.user-comment{
+    margin-top: 10px;
 }
 
 </style>
