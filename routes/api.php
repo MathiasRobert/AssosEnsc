@@ -32,6 +32,7 @@ Route::resource('comments', 'CommentController');
 
 
 Route::get('admin/evenements/{id}/comments', 'EvenementController@getComments');
+Route::get('admin/articles/{id}/comments', 'ArticleControllerApi@getComments');
 
 
 Route::get('admin/getAllCategoriesArticle', 'ArticleControllerApi@getAllCategoriesArticle');

@@ -142,10 +142,30 @@ class ArticleControllerApi extends Controller
         return redirect('admin/articles');
     }
 
+    public function show($id, Request $request)
+    {
+        if ($request->ajax()) {
+            $article = Article::with('categorie')->find($id);
+            $article->commentable_type = get_class($article);
+            return $article;
+        } else {
+            $article = Article::find($id);
+        }
+        $association = Association::find($article->association_id);
+        $association->couleur = $association->couleur->code;
+
+        return view('pages.asso.articles.show', compact('article', 'association'));
+
+    }
 
     public function getAllCategoriesArticle()
     {
         return CategorieArticle::all();
+    }
+
+    public function getComments(Request $request, $id)
+    {
+        return Article::find($id)->comments()->with('user', 'comments.user')->get();
     }
 
 }

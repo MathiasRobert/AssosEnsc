@@ -14,7 +14,7 @@ class Article extends Model
 
     public function comments()
     {
-        return $this->morphMany('App\Comment', 'commentable');
+        return $this->morphMany('App\Comment', 'commentable')->orderBy('created_at','desc');
     }
     /**
      * Get the association that owns the article.

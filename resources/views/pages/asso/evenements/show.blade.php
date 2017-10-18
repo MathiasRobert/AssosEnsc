@@ -130,102 +130,6 @@
         {{--</div>--}}
     {{--@endif--}}
 
-    
-    <!-- MODAL PAIEMENT -->
-    <div class="modal fade" id="paiementModale">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="card card-signup card-plain">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                    class="material-icons">clear</i></button>
-
-                        <div class="header header-primary text-center">
-                            <h4 class="card-title">Log in</h4>
-                            <div class="social-line">
-                                <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form" method="" action="">
-                            <p class="description text-center">Or Be Classical</p>
-                            <div class="card-content">
-
-                                <div class="input-group">
-								<span class="input-group-addon">
-									<i class="material-icons">face</i>
-								</span>
-                                    <div class="form-group is-empty"><input type="text" class="form-control"
-                                                                            placeholder="First Name..."><span
-                                                class="material-input"></span></div>
-                                </div>
-
-                                <div class="input-group">
-								<span class="input-group-addon">
-									<i class="material-icons">email</i>
-								</span>
-                                    <div class="form-group is-empty"><input type="text" class="form-control"
-                                                                            placeholder="Email..."><span
-                                                class="material-input"></span></div>
-                                </div>
-
-                                <div class="input-group">
-								<span class="input-group-addon">
-									<i class="material-icons">lock_outline</i>
-								</span>
-                                    <div class="form-group is-empty"><input type="password" placeholder="Password..."
-                                                                            class="form-control"><span
-                                                class="material-input"></span></div>
-                                </div>
-
-                                <!-- If you want to add a checkbox to this form, uncomment this code
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="optionsCheckboxes" checked>
-                                        Subscribe to newsletter
-                                    </label>
-                                </div> -->
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer text-center">
-                        <a href="#pablo" class="btn btn-primary btn-simple btn-wd btn-lg">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="paiementModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="card card-signup card-plain">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                    class="material-icons">clear</i></button>
-                        <h3 class="modal-title card-title text-center">Payer directement en ligne ?</h3>
-                    </div>
-                    <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-success">Payer</button>
-                        <button type="button" class="btn btn-simple" data-dismiss="modal">Remettre à plus tard/Payer à
-                            l'ancienne
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="modal fade" id="modalNotAuthenticated" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -240,10 +144,6 @@
             <div style="padding: 20px;">Veuillez vous identifier pour pouvoir poster ce commentaire.</div>
             <a href="/login/google" class="btn btn-primary">Se connecter</a>
           </div>
-         <!--  <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div> -->
         </div>
       </div>
     </div>
